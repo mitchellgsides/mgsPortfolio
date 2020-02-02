@@ -5,11 +5,19 @@
   "homepage": "https://seunzone.github.io/TD-React-Challenge-Test-1",
   "dependencies": {
     "bootstrap": "3",
+    "fit-file-parser": "^1.6.17",
+    "fs": "0.0.1-security",
     "gh-pages": "^2.0.1",
     "react": "^16.5.2",
     "react-bootstrap": "^0.32.4",
+    "react-csv-reader": "^2.0.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "2.0.4"
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "2.0.4",
+    "styled-components": "^5.0.0",
+    "tcx-js": "^1.0.1",
+    "xml2js": "^0.4.23"
   },
   "scripts": {
     "start": "react-scripts start",
