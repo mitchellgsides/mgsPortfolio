@@ -16,10 +16,10 @@ const NavItem = styled.div`
 
 const items = ['Home', 'Menu', 'Stuff']
 
-export default function TitleBar() {
-    return (
-        <Container columns={items.map(i => '1fr')}>
-            {items.map((item, i) => <NavItem key={`${item}-${i}`}>{item}</NavItem>)}
-        </Container>
-    )
+export default function TitleBar () {
+  return (
+    <Container columns={items.map(i => '1fr')}>
+      {items.map((item, i) => <NavItem key={`${item}-${i}`}>{item}</NavItem>)}
+    </Container>
+  )
 }

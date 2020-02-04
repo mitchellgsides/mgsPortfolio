@@ -12,10 +12,20 @@ import { colors } from './utils/colors'
 const AppContainer = styled.main`
   background-color: ${colors.dark};
   color: ${colors.light};
+  box-sizing: border-box;
+  margin: 0;
 `
 const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
+`
+const HeaderBar = styled.div`
+  display: flex;
+  justify-content: space-between;
+`
+const HeaderItem = styled.div`
+  padding: 1rem;
+  margin: 0.5rem;
 `
 
 const stravaProps = {
@@ -35,10 +45,17 @@ class App extends Component {
   render () {
     return (
       <AppContainer>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <h1>Mitchell G Sides</h1>
-          <h4><em>Currently Under Construction!</em></h4>
-        </div>
+        <HeaderBar>
+          <HeaderItem>
+            <h1>Mitchell G Sides</h1>
+          </HeaderItem>
+          <HeaderItem>
+            <h6><em>Current as of February 4, 2020, Check Back For Updates Daily!</em></h6>
+          </HeaderItem>
+          <HeaderItem>
+            <h4><em>Currently Under Construction!</em></h4>
+          </HeaderItem>
+        </HeaderBar>
         <NavBar routes={routes} />
         <MainContainer>
           {routes.map((route, index) =>

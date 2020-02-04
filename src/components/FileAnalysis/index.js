@@ -1,13 +1,24 @@
 import React, { useState } from 'react'
-import XMLParser from '../../utils/xmlParser'
+import { XMLToJsonParser } from '../../utils/xmlParser'
+import styled from 'styled-components'
+import Chart2 from '../Chart/Chart2'
+
+const GraphContainer = styled.div`
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 export default function FunctionFileAnalysis (props) {
 //   const [output, updateOutput] = useState('')
   const [file, uploadFile] = useState(null)
-  const [xmlTrackpoints, setTrackpoints] = useState(null)
+  const [powerCurve, setPowerCurve] = useState([])
+  const [loading, setLoading] = useState(false)
 
   const handleXML = (file) => {
-    XMLParser(file, setTrackpoints)
+    XMLToJsonParser(file, setPowerCurve, setLoading)
   }
 
   return (
@@ -21,8 +32,11 @@ export default function FunctionFileAnalysis (props) {
           )}
         />
       </label>
-      <button onClick={() => handleXML(file)}>Analyze</button>
-      <h1>{xmlTrackpoints ? [0].textContent : null}</h1>
+      <button onClick={() => handleXML(file)}>Upload</button>
+      <div>{loading ? <div>Loading...</div> : powerCurve && powerCurve.map((i, index) => <div key={`${i}-${index}`}>{i.duration}: {i.power}</div>)}</div>
+      <GraphContainer>
+        <Chart2 locations={powerCurve} />
+      </GraphContainer>
     </div>
   )
 }
