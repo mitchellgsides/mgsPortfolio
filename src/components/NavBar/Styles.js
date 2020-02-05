@@ -12,8 +12,8 @@ export const NavLinkItem = styled(NavLink)`
   justify-content: center;
   align-items: center;
   &:hover {
-      background-color: ${colors.selected};
-      color: ${colors.selected_font};
+    text-shadow: 2px 2px rgb(80, 80, 80);
+      font-weight: 600;
   }
 `
 export const NavIcon = styled.div`
@@ -24,6 +24,11 @@ export const NavIcon = styled.div`
 export const NavChildren = styled.div`
   display: none;
 `
+export const ChildNavTitle = styled.div`
+  padding: 1rem;
+  cursor: pointer;
+  align-self: center;
+`
 export const ParentNav = styled.div`
   cursor: pointer;
   display: flex;
@@ -31,12 +36,12 @@ export const ParentNav = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 1rem;
-  padding-right: 0;
+  padding-right: 0;          
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
   &:hover {
       ${NavChildren} {
           display: flex;
-          justify-content: space-evenly;
-          align-items: center;
       }
       background-color: ${colors.navbar};
   }
@@ -46,12 +51,9 @@ export const ParentNavTitle = styled.div`
   padding: 1rem;
   cursor: pointer;
   font-weight: 600;
-`
-export const ChildNavTitle = styled.div`
-  padding: 1rem;
-  cursor: pointer;
-  font-weight: 500;
-  align-self: center;
+  &:hover {
+  text-shadow: 2px 2px rgb(120, 120, 120);
+  }
 `
 const NavBarKeyframeIn = keyframes`
     0% {
@@ -59,18 +61,19 @@ const NavBarKeyframeIn = keyframes`
     }
     100% {
         height: 55vh;
-        background-color: red;
+        background-color: ${colors.navbar};
     }
 `
-export const NavBarKeyframeOut = keyframes`
+const NavBarKeyframeOut = keyframes`
     100% {
         height: 10vh;
     }
     0% {
         height: 55vh;
-        background-color: red;
+        background-color: ${colors.navbar};
     }
 `
+
 export const NavBarContainer = styled.div`
   position: absolute;
   bottom: 45vh;
@@ -82,11 +85,11 @@ export const NavBarContainer = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   background-color: ${colors.navbar};
-  animation: ${NavBarKeyframeOut} 300ms ease-in;
+  animation: ${NavBarKeyframeOut} 200ms ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   &:hover {
-    animation: ${NavBarKeyframeIn} 300ms ease-in;
+    animation: ${NavBarKeyframeIn} 200ms ease-in;
     animation-iteration-count: 1;
     animation-fill-mode: both;
     ${NavLinkItem} {

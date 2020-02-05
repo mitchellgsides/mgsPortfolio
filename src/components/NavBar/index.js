@@ -18,13 +18,15 @@ export default function NavBar (props) {
       {routes.map((route, index) => {
         return (route.children && route.children.length > 0
           ? (
-            <ParentNav>
+            <ParentNav
+              key={`${route.title}-${index}`}
+            >
               <ParentNavTitle>
                 {route.title}
               </ParentNavTitle>
               <NavChildren>
                 {route.children.map((child, index) => (
-                  <NavLinkItem ischild to={child.path} key={`child-link-${child.title}-${index}`}>
+                  <NavLinkItem to={child.path} key={`child-link-${child.title}-${index}`}>
                     <ChildNavTitle>
                       {child.title}
                     </ChildNavTitle>
@@ -34,6 +36,7 @@ export default function NavBar (props) {
           )
           : (
             <NavLinkItem
+              key={`${route.title}-${index}`}
               to={route.path}
             >
               <ParentNavTitle>

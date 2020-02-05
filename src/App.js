@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import { withRouter, Route } from 'react-router-dom'
 import CalculatorPage from './components/CalculatorPage/index'
 import FileAnalysis from './components/FileAnalysis/index'
+import ContactItem from './components/ContactItem'
 import DemoAppDisplay from './components/DemoAppDisplay'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
 import {
   AppContainer,
-  HeaderBar,
   TopHalf,
   BottomHalf,
   HeaderItem,
@@ -38,11 +38,11 @@ const routes = [
   {
     path: '/contact',
     title: 'Contact',
-    component: Projects,
+    component: null,
     children: [
-      { path: '/contact/linkedin', title: 'LinkedIn', component: null },
-      { path: '/contact/github', title: 'Github', component: null },
-      { path: '/contact/gmail', title: 'Gmail', component: null }
+      { path: '/contact/linkedin', title: 'LinkedIn', component: () => ContactItem({ title: 'linkedin' }) },
+      { path: '/contact/github', title: 'GitHub', component: () => ContactItem({ title: 'github' }) },
+      { path: '/contact/gmail', title: 'Gmail', component: () => ContactItem({ title: 'gmail' }) }
     ]
   }
 ]
@@ -53,18 +53,8 @@ class App extends Component {
       <AppContainer>
         <HomePageContainer>
           <TopHalf>
-            <HeaderBar>
-              <HeaderItem>
-                <h1>Mitchell G Sides</h1>
-              </HeaderItem>
-
-              <HeaderItem>
-                <h6><em>Current as of February 4, 2020, Check Back For Updates Daily!</em></h6>
-                <h4><em>Currently Under Construction!</em></h4>
-              </HeaderItem>
-            </HeaderBar>
             <NavBar routes={routes} />
-            {routes.map((route, index) => {
+            {routes.filter(route => route.title !== 'Contact').map((route, index) => {
               return !route.children
                 ? (
                   <Route
@@ -87,13 +77,29 @@ class App extends Component {
           </TopHalf>
           <BottomHalf>
             <BottomHalfContainer>
-                Bottom Half 1
+              <HeaderItem>
+                <h1>Mitchell G Sides</h1>
+                <HeaderItem>
+                  <h6><em>Currently Under Construction. Check Back For Updates Daily!</em></h6>
+                </HeaderItem>
+              </HeaderItem>
             </BottomHalfContainer>
             <BottomHalfMainContainer>
-                Bottom Half 2 \Main/
+              {routes.filter(route => route.title === 'Contact')[0].children.map((child, index) => {
+                return (
+                  <Route
+                    key={`${index}-${child.path}-child-route`}
+                    path={child.path}
+                    exact
+                    component={child.component}
+                  />)
+              })}
             </BottomHalfMainContainer>
             <BottomHalfContainer>
-                Bottom Half 3
+              {routes.filter(route => route.title === 'Contact')[0].children.map((child, index) => {
+                return (
+                  child.component())
+              })}
             </BottomHalfContainer>
           </BottomHalf>
         </HomePageContainer>
