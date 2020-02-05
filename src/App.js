@@ -113,13 +113,7 @@ class App extends Component {
             </BottomHalfMainContainer>
 
             <BottomHalfContainer open={open}>
-              {routes.filter(route => route.title === 'Contact')[0].children.map((child, index) => {
-                return (
-                  <div key={`${child}-${index}`}>
-                    {child.component({ title: child.title, showDescription: false })}
-                  </div>
-                )
-              })}
+              <ContactItem />
             </BottomHalfContainer>
           </BottomHalf>
         </HomePageContainer>
