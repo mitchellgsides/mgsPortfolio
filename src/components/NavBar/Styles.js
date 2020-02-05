@@ -12,14 +12,16 @@ export const NavLinkItem = styled(NavLink)`
   justify-content: center;
   align-items: center;
   &:hover {
-    text-shadow: 2px 2px rgb(80, 80, 80);
-      font-weight: 600;
+    text-shadow: 2px 2px rgba(80, 80, 80, 0.2);
+    font-weight: 600;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 `
 export const NavIcon = styled.div`
   cursor: pointer;
+  color: ${colors.light};
+  font-size: 20px;
   padding: 1rem;
-  font-weight: 600;
 `
 export const NavChildren = styled.div`
   display: none;
@@ -43,46 +45,50 @@ export const ParentNav = styled.div`
       ${NavChildren} {
           display: flex;
       }
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       background-color: ${colors.navbar};
   }
 `
 export const ParentNavTitle = styled.div`
-  display: none;
   padding: 1rem;
   cursor: pointer;
   font-weight: 600;
-  &:hover {
-  text-shadow: 2px 2px rgb(120, 120, 120);
-  }
+
 `
 const NavBarKeyframeIn = keyframes`
     0% {
         height: 10vh;
+        color: rgba(0, 0, 0, 0);
+
     }
     100% {
-        height: 55vh;
+        height: 60vh;
         background-color: ${colors.navbar};
+        color: '';
     }
 `
 const NavBarKeyframeOut = keyframes`
     100% {
         height: 10vh;
+        color: rgba(0, 0, 0, 0);
     }
     0% {
-        height: 55vh;
+        height: 60vh;
         background-color: ${colors.navbar};
+    color: '';
     }
 `
 
 export const NavBarContainer = styled.div`
   position: absolute;
-  bottom: 45vh;
-  left: 0vw;
+  bottom: 40vh;
+  left: ${(p) => p.open ? 45 : 0}vw;
   width: 20vw;
   height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  text-align: center;
   justify-content: space-between;
   background-color: ${colors.navbar};
   animation: ${NavBarKeyframeOut} 200ms ease-in;
@@ -97,9 +103,6 @@ export const NavBarContainer = styled.div`
     }
     ${NavIcon} {
         display: none;
-    }
-    ${ParentNavTitle} {
-        display: flex;
     }
   }
 `

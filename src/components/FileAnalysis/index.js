@@ -21,19 +21,33 @@ export default function FunctionFileAnalysis (props) {
     XMLToJsonParser(file, setPowerCurve, setLoading)
   }
 
+  const tempStyles = {
+    padding: '0.5rem',
+    listStyleType: 'none'
+  }
+
   return (
     <div>
-      <label>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+      Work in progress. Choose a Garmin or compatible .tcx file to view brief power curve.
+      </div>
+      <ul style={tempStyles}>
+        <em>Features in development:</em>
+        <li style={tempStyles}>Max Power at Specified Cadence for Specified Duration</li>
+        <li style={tempStyles}>Add Average Power of Specified Duration to Curve</li>
+      </ul>
+      <label style={tempStyles}>
             Upload file:
         <input
+          style={tempStyles}
           type='file'
           onChange={(e) => uploadFile(
             e.target.files[0]
           )}
         />
       </label>
-      <button onClick={() => handleXML(file)}>Upload</button>
-      <div>{loading ? <div>Loading...</div> : powerCurve && powerCurve.map((i, index) => <div key={`${i}-${index}`}>{i.duration}: {i.power}</div>)}</div>
+      <button style={tempStyles} onClick={() => handleXML(file)}>Upload</button>
+      <div style={tempStyles}>{loading ? <div>Loading...</div> : powerCurve && powerCurve.map((i, index) => <div key={`${i}-${index}`}>{i.duration}: {i.power}</div>)}</div>
       <GraphContainer>
         <Chart2 locations={powerCurve} />
       </GraphContainer>

@@ -1,52 +1,49 @@
 import styled from 'styled-components'
 import { colors } from './utils/colors'
+// import mountain from './assets/icon-images/Tetons .jpg'
 
 export const AppContainer = styled.div`
   background-color: ${colors.dark};
   color: ${colors.light};
   box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
 `
-export const MainContainer = styled.main`
-  display: flex;
-  flex-direction: column;
-`
-export const HeaderBar = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  width: 20vw;
-  height: 100vh;
-  align-items: center;
-  justify-content: space-around;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
 `
 export const HeaderItem = styled.div`
-  padding: 1rem;
-  margin: 0.5rem;
+  padding: 0.5rem;
+  font-size: smaller;
 `
 export const HomePageContainer = styled.div`
     box-style: border-box;
 `
 export const TopHalf = styled.div`
-  background-color: rgb(100, 100, 100);
-  height: 49.5vh;
+  height: ${(p) => p.open ? 79.5 : 59.5}vh;
+  display: flex;
+  flex-direction: row;
+  margin-left: ${(p) => p.open ? '20vw' : 0};
+  align-items: ${(p) => p.open ? 'flex-start' : 'flex-end'};
+  justify-content: ${(p) => p.open ? 'flex-start' : 'flex-end'};
 `
 export const BottomHalf = styled.div`
   background-color: darkred;
-  height: 50vh;
+  height: ${(p) => p.open ? 20 : 40}vh;
+  width: 100vw;
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
 `
 export const BottomHalfContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 25vw;
+    width: 30vw;
     height: 100%;
-    border: 1px solid white;
+`
+export const BottomHalfContainerOne = styled(BottomHalfContainer)`
+  width: 20vw;
 `
 export const BottomHalfMainContainer = styled(BottomHalfContainer)`
   width: 50vw;

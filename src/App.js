@@ -7,6 +7,7 @@ import DemoAppDisplay from './components/DemoAppDisplay'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
+import mountain from './assets/icon-images/Tetons 2.jpg'
 import {
   AppContainer,
   TopHalf,
@@ -14,8 +15,10 @@ import {
   HeaderItem,
   HomePageContainer,
   BottomHalfMainContainer,
+  BottomHalfContainerOne,
   BottomHalfContainer
 } from './Styles'
+import styled from 'styled-components'
 
 const stravaProps = {
   title: 'StravaPR',
@@ -40,21 +43,42 @@ const routes = [
     title: 'Contact',
     component: null,
     children: [
-      { path: '/contact/linkedin', title: 'LinkedIn', component: () => ContactItem({ title: 'linkedin' }) },
-      { path: '/contact/github', title: 'GitHub', component: () => ContactItem({ title: 'github' }) },
-      { path: '/contact/gmail', title: 'Gmail', component: () => ContactItem({ title: 'gmail' }) }
+      { path: '/contact/linkedin', title: 'LinkedIn', component: (props) => ContactItem(props) },
+      { path: '/contact/github', title: 'GitHub', component: (props) => ContactItem(props) },
+      { path: '/contact/gmail', title: 'Gmail', component: (props) => ContactItem(props) }
     ]
   }
 ]
 
+export const ImageContainer = styled.div`
+  width: 500px;
+  height: 500px;
+  z-index: 0;
+  position: absolute;
+  background-attachment: scroll;
+    background-attachment: fixed;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.75),
+        rgba(0, 0, 0, 0.75)
+        ),
+        url(${mountain});
+`
+
 class App extends Component {
   render () {
+    const open = this.props.location.pathname !== '/'
     return (
       <AppContainer>
         <HomePageContainer>
-          <TopHalf>
-            <NavBar routes={routes} />
-            {routes.filter(route => route.title !== 'Contact').map((route, index) => {
+          {/* <ImageContainer><img style={{ height: '100vh', width: '100vw' }} src={mountain} alt='mountains' /></ImageContainer> */}
+          <TopHalf open={open}>
+            <Route
+              path='/about'
+              exact
+              component={About}
+            />
+            <NavBar open={open} routes={routes.filter(route => route.title !== 'Contact')} />
+            {routes.filter(route => route.title !== 'Contact' && route.title !== 'About').map((route, index) => {
               return !route.children
                 ? (
                   <Route
@@ -75,35 +99,30 @@ class App extends Component {
             }
             )}
           </TopHalf>
-          <BottomHalf>
-            <BottomHalfContainer>
+          <BottomHalf open={open}>
+
+            <BottomHalfContainerOne open={open}>
               <HeaderItem>
                 <h1>Mitchell G Sides</h1>
-                <HeaderItem>
-                  <h6><em>Currently Under Construction. Check Back For Updates Daily!</em></h6>
-                </HeaderItem>
+                <h6>Currently Under Construction. Check Back For Updates Daily!</h6>
               </HeaderItem>
-            </BottomHalfContainer>
-            <BottomHalfMainContainer>
-              {routes.filter(route => route.title === 'Contact')[0].children.map((child, index) => {
-                return (
-                  <Route
-                    key={`${index}-${child.path}-child-route`}
-                    path={child.path}
-                    exact
-                    component={child.component}
-                  />)
-              })}
+            </BottomHalfContainerOne>
+
+            <BottomHalfMainContainer open={open}>
+              {open ? <div>tagline Stuff!!</div> : null}
             </BottomHalfMainContainer>
-            <BottomHalfContainer>
+
+            <BottomHalfContainer open={open}>
               {routes.filter(route => route.title === 'Contact')[0].children.map((child, index) => {
                 return (
-                  child.component())
+                  <div key={`${child}-${index}`}>
+                    {child.component({ title: child.title, showDescription: false })}
+                  </div>
+                )
               })}
             </BottomHalfContainer>
           </BottomHalf>
         </HomePageContainer>
-        <NavBar routes={routes} />
       </AppContainer>
     )
   }

@@ -10,7 +10,7 @@ export const CalculatorContainer = styled.div`
 
 export const SportTabContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: space-between;
   justify-content: center;
   background-color: ${colors.transition_bg};
