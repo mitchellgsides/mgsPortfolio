@@ -89,7 +89,7 @@ export const PaceInputContainer = styled(TimeInputContainer)`
 export const AppContainer = styled.div`
     text-align: center;
     background-color: ${colors.main_bg};
-    min-height: 100vh;
+    min-height: 99vh;
     display: flex;
     margin: 0;
     flex-direction: column;

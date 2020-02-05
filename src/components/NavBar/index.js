@@ -1,36 +1,53 @@
 import React from 'react'
-import styled from 'styled-components'
-import { NavLink } from 'react-router-dom'
-import { colors } from '../../utils/colors'
-
-const NavBarContainer = styled.div`
-  position: sticky;
-  top: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
-  background-color: ${colors.navbar};
-`
-const NavLinkItem = styled(NavLink)`
-  padding: 1rem;
-  color: ${colors.light};
-  text-decoration: none;
-  font-weight: 800;
-`
+import PropTypes from 'prop-types'
+import {
+  NavBarContainer,
+  NavLinkItem,
+  ParentNav,
+  NavChildren,
+  ChildNavTitle,
+  ParentNavTitle,
+  NavIcon
+} from './Styles'
 
 export default function NavBar (props) {
   const { routes } = props
   return (
     <NavBarContainer>
-      {routes.filter(route => route.parent).map((route, index) =>
-        <NavLinkItem
-          key={`${index}-${route.path}-link`}
-          to={route.path}
-        >
-          {route.title}
-        </NavLinkItem>
+      <NavIcon>=</NavIcon>
+      {routes.map((route, index) => {
+        return (route.children && route.children.length > 0
+          ? (
+            <ParentNav>
+              <ParentNavTitle>
+                {route.title}
+              </ParentNavTitle>
+              <NavChildren>
+                {route.children.map((child, index) => (
+                  <NavLinkItem ischild to={child.path} key={`child-link-${child.title}-${index}`}>
+                    <ChildNavTitle>
+                      {child.title}
+                    </ChildNavTitle>
+                  </NavLinkItem>))}
+              </NavChildren>
+            </ParentNav>
+          )
+          : (
+            <NavLinkItem
+              to={route.path}
+            >
+              <ParentNavTitle>
+                {route.title}
+              </ParentNavTitle>
+            </NavLinkItem>
+          )
+        )
+      }
       )}
     </NavBarContainer>
   )
+}
+
+NavBar.propTypes = {
+  routes: PropTypes.array.isRequired
 }

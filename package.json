@@ -2,7 +2,7 @@
   "name": "jv",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://seunzone.github.io/TD-React-Challenge-Test-1",
+  "homepage": "https://mitchellgsides.github.io/mgsPortfolio/",
   "dependencies": {
     "@material-ui/core": "^4.9.1",
     "bootstrap": "3",
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "predeploy": "yarn run build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
