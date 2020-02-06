@@ -19,7 +19,8 @@ export const HomePageContainer = styled.div`
     box-style: border-box;
 `
 export const TopHalf = styled.div`
-  height: ${(p) => p.open ? 79.5 : 59.5}vh;
+  ${''};
+  
   display: flex;
   flex-direction: row;
   margin-left: ${(p) => p.open ? '20vw' : 0};

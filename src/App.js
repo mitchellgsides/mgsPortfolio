@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { withRouter, Route } from 'react-router-dom'
 import CalculatorPage from './components/CalculatorPage/index'
 import FileAnalysis from './components/FileAnalysis/index'
-import ContactItem from './components/ContactItem'
+import ContactPage from './components/ContactPage'
 import DemoAppDisplay from './components/DemoAppDisplay'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
@@ -43,9 +43,9 @@ const routes = [
     title: 'Contact',
     component: null,
     children: [
-      { path: '/contact/linkedin', title: 'LinkedIn', component: (props) => ContactItem(props) },
-      { path: '/contact/github', title: 'GitHub', component: (props) => ContactItem(props) },
-      { path: '/contact/gmail', title: 'Gmail', component: (props) => ContactItem(props) }
+      { path: '/contact/linkedin', title: 'LinkedIn', component: (props) => ContactPage(props) },
+      { path: '/contact/github', title: 'GitHub', component: (props) => ContactPage(props) },
+      { path: '/contact/gmail', title: 'Gmail', component: (props) => ContactPage(props) }
     ]
   }
 ]
@@ -113,7 +113,7 @@ class App extends Component {
             </BottomHalfMainContainer>
 
             <BottomHalfContainer open={open}>
-              <ContactItem />
+              <ContactPage />
             </BottomHalfContainer>
           </BottomHalf>
         </HomePageContainer>

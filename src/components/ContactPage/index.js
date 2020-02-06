@@ -1,18 +1,21 @@
 import React from 'react'
 import styled from 'styled-components'
-import LinkedIn from '../../assets/icon-images/linkedin-icon.svg'
-import GitHub from '../../assets/icon-images/github-icon.svg'
-import Gmail from '../../assets/icon-images/gmail-icon.png'
 import { colors } from '../../utils/colors'
+import { Icon } from '../Icon/index'
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
+import { faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const ContactItemContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  @media (max-width: 380px) {
+    flex-direction: column;
+  }
 `
 const ContactItem = styled.a`
-  font-size: 35px;
+  font-size: 1.5rem;
   text-decoration: none;
   color: ${colors.light};
   &:hover {
@@ -20,25 +23,19 @@ const ContactItem = styled.a`
   }
 `
 
-const ContactIcon = styled.img`
-  color: whitesmoke;
-  fill: whitesmoke;
-  padding: 1rem;
-`
-
 export default function ContactPage (props) {
   return (
     <ContactItemContainer>
       <ContactItem href='https://linkedin.com/in/mitchell-sides/' rel='noopener noreferrer' target='_blank'>
-        <ContactIcon src={LinkedIn} height='30' />
+        <Icon icon={faLinkedin} size='lg' />
       </ContactItem>
 
-      <ContactItem href='https://github.com/mitchellgsides' rel='noopener noreferrer' target='_blank' class='soc-icon'>
-        <ContactIcon src={GitHub} height='30' />
+      <ContactItem href='https://github.com/mitchellgsides' rel='noopener noreferrer' target='_blank'>
+        <Icon icon={faGithub} size='lg' />
       </ContactItem>
 
       <ContactItem href='mailto:mitchellgsides@gmail.com' rel='noopener noreferrer' target='_blank'>
-        <ContactIcon src={Gmail} height='30' />
+        <Icon icon={faEnvelope} size='lg' />
       </ContactItem>
     </ContactItemContainer>
   )
