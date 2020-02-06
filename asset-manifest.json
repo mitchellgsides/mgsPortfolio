@@ -1,11 +1,15 @@
 {
-  "main.js": "/mgsPortfolio/static/js/main.8f08ab38.chunk.js",
-  "main.js.map": "/mgsPortfolio/static/js/main.8f08ab38.chunk.js.map",
-  "static/js/1.036116a6.chunk.js": "/mgsPortfolio/static/js/1.036116a6.chunk.js",
-  "static/js/1.036116a6.chunk.js.map": "/mgsPortfolio/static/js/1.036116a6.chunk.js.map",
+  "main.js": "/mgsPortfolio/static/js/main.bf9d2170.chunk.js",
+  "main.js.map": "/mgsPortfolio/static/js/main.bf9d2170.chunk.js.map",
+  "static/js/1.79282241.chunk.js": "/mgsPortfolio/static/js/1.79282241.chunk.js",
+  "static/js/1.79282241.chunk.js.map": "/mgsPortfolio/static/js/1.79282241.chunk.js.map",
   "runtime~main.js": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js",
   "runtime~main.js.map": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js.map",
+  "static/media/linkedin-icon.svg": "/mgsPortfolio/static/media/linkedin-icon.b3385435.svg",
+  "static/media/github-icon.svg": "/mgsPortfolio/static/media/github-icon.4097a5be.svg",
+  "static/media/gmail-icon.png": "/mgsPortfolio/static/media/gmail-icon.220852d3.png",
+  "static/media/Tetons 2.jpg": "/mgsPortfolio/static/media/Tetons 2.af2dbf54.jpg",
   "index.html": "/mgsPortfolio/index.html",
-  "precache-manifest.d7f69fec7033c693f2e9f01da5998151.js": "/mgsPortfolio/precache-manifest.d7f69fec7033c693f2e9f01da5998151.js",
+  "precache-manifest.19f37d83f2d1ef77f7c17202a79058d8.js": "/mgsPortfolio/precache-manifest.19f37d83f2d1ef77f7c17202a79058d8.js",
   "service-worker.js": "/mgsPortfolio/service-worker.js"
 }
