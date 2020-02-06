@@ -7,9 +7,7 @@ export const NavLinkItem = styled(NavLink)`
   color: ${colors.light};
   text-decoration: none;
   font-weight: 600;
-  height: 3rem;
   display: none;
-  justify-content: center;
   align-items: center;
   &:hover {
     text-shadow: 2px 2px rgba(80, 80, 80, 0.2);
@@ -20,25 +18,16 @@ export const NavLinkItem = styled(NavLink)`
 export const NavIcon = styled.div`
   cursor: pointer;
   color: ${colors.light};
-  font-size: 20px;
-  padding: 1rem;
 `
 export const NavChildren = styled.div`
   display: none;
+  flex-direction: column;
 `
 export const ChildNavTitle = styled.div`
-  padding: 1rem;
   cursor: pointer;
-  align-self: center;
 `
 export const ParentNav = styled.div`
-  cursor: pointer;
-  display: flex;
-  height: 3rem;
-  flex-direction: row;
-  align-items: center;
-  padding: 1rem;
-  padding-right: 0;          
+  cursor: pointer;       
   animation-iteration-count: 1;
   animation-fill-mode: both;
   &:hover {
@@ -46,7 +35,7 @@ export const ParentNav = styled.div`
           display: flex;
       }
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-color: ${colors.navbar};
+      background-color: ${colors.gold};
   }
 `
 export const ParentNavTitle = styled.div`
@@ -62,9 +51,9 @@ const NavBarKeyframeIn = keyframes`
 
     }
     100% {
-        height: 60vh;
-        background-color: ${colors.navbar};
-        color: '';
+        height: 100%;
+        top: 0;
+        background-color: ${colors.gold};
     }
 `
 const NavBarKeyframeOut = keyframes`
@@ -73,27 +62,21 @@ const NavBarKeyframeOut = keyframes`
         color: rgba(0, 0, 0, 0);
     }
     0% {
-        height: 60vh;
-        background-color: ${colors.navbar};
-    color: '';
+        height: 100%;
+        top: 0;
+        background-color: ${colors.gold};
     }
 `
 
 export const NavBarContainer = styled.div`
-  position: absolute;
-  bottom: 40vh;
-  left: ${(p) => p.open ? 45 : 0}vw;
-  width: 20vw;
-  height: 10vh;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: center;
-  justify-content: space-between;
+  width: 100%;
   background-color: ${colors.navbar};
   animation: ${NavBarKeyframeOut} 200ms ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: both;
+  @media (max-width: 400px) {
+    top: 0;
+  }
   &:hover {
     animation: ${NavBarKeyframeIn} 200ms ease-in;
     animation-iteration-count: 1;

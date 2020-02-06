@@ -1,83 +1,73 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import NavBar from '../NavBar'
-// import ContactItem from '../ContactItem'
-// import About from '../About'
+import ContactPage from '../ContactPage'
+import { Route } from 'react-router'
 
 const HomePageContainer = styled.div`
   display: flex;
-  flex-direction: ${(p) => p.open ? 'row' : 'column'};
-`
-const BottomHalfContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: ${(p) => p.open ? 'flex-end' : 'center'};
-    align-items: center;
-    width: 30vw;
-    height: ${(p) => p.open ? '100vh' : '100%'};
-    background-color: ${(p) => p.color};
-`
-const BottomHalfContainerOne = styled(BottomHalfContainer)`
-    width: 20vw;
-    height: 100vh;
-`
-const BottomHalfMainContainer = styled(BottomHalfContainer)`
-  width: ${(p) => p.open ? 80 : 50}vw;
-`
-const HomePageTitle = styled.h1`
-    border-bottom: 3px solid whitesmoke;
-    font-weight: 500;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-    cursor: pointer;
-`
-const ContactIconsContainer = styled.div`
-  display: flex;
   flex-direction: row;
+  min-height: 100vh;
+`
+const SubContainer = styled.div`
+  flex: ${(p) => p.flex};
+  background-color: ${(p) => p.color};
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
+`
+const InnerContainer = styled(SubContainer)`
+  border: 1px solid red;
+  width: 99%;
+  justify-content: center;
+  &:hover {
+    flex: 2
+  }
 `
 
-const TopHalf = styled.div`
-  background-color: rgb(100, 100, 100);
-  height: ${(p) => p.open ? 50 : 100}vh;
-  width: ${(p) => p.open ? 100 : 20}vw;
+const MainContainer = styled(SubContainer)`
+  justify-content: space-between;
 `
-const BottomHalf = styled.div`
-  background-color: darkred;
-  height: ${(p) => p.open ? 50 : 100}vh;
-  width: ${(p) => p.open ? 80 : 100}vw;
+const InfoSection = styled.section`
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+const ContactSection = styled(InfoSection)`
+  border-top: 2px solid blue;
 `
 
 export default function HomePage (props) {
-  const [open, setOpen] = useState(false)
-  const { routes } = props
-  const title = 'Mitchell G Sides'
+  const { title, routes } = props
   return (
-    <HomePageContainer open={open}>
+    <HomePageContainer>
       <NavBar routes={routes} />
-      <TopHalf open={open} />
-      <BottomHalf open={open}>
 
-        <BottomHalfContainerOne color='red' open={open}>
-          <HomePageTitle onClick={() => setOpen(!open)} open={open}>
-            {title.toUpperCase()}
-          </HomePageTitle>
-          <h5>Tagline</h5>
-          <ContactIconsContainer>
-            {['linkedin', 'github', 'gmail'].map((i, index) => <ContactItem key={`${i}-${index}`} title={i} />)}
-          </ContactIconsContainer>
-        </BottomHalfContainerOne>
+      <SubContainer color='red' flex={1}>
+        <InfoSection>
+          <h2>{title.toUpperCase()}</h2>
+          <h5>Full Stack Engineer</h5>
+        </InfoSection>
+        <ContactSection>
+          <h2>Contact Me:</h2>
+          <ContactPage />
+        </ContactSection>
+      </SubContainer>
 
-        <BottomHalfMainContainer color='green' open={open}>
-          {open ? <About /> : null}
-        </BottomHalfMainContainer>
-
-        {open
-          ? null
-          : <BottomHalfContainer color='goldenrod' open={open} />}
-
-      </BottomHalf>
+      <MainContainer color='green' flex={4}>
+        {routes.map((route, index) => (
+          <InnerContainer flex={1} key={`${route.title}-${index}`}>
+            <Route
+              path={route.path}
+              component={route.component}
+              exact
+            />
+          </InnerContainer>
+        ))}
+      </MainContainer>
     </HomePageContainer>
   )
 }

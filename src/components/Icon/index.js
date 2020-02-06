@@ -4,9 +4,6 @@ import styled from 'styled-components'
 import { colors } from '../../utils/colors'
 
 const StyledIcon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-  margin: 0.5rem;
-  padding: 0.25rem;
   color: ${colors.light};
 `
 

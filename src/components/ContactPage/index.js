@@ -10,9 +10,6 @@ const ContactItemContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  @media (max-width: 380px) {
-    flex-direction: column;
-  }
 `
 const ContactItem = styled.a`
   font-size: 1.5rem;

@@ -13,9 +13,9 @@ import { Icon } from '../Icon'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 
 export default function NavBar (props) {
-  const { routes } = props
+  const { routes, open } = props
   return (
-    <NavBarContainer>
+    <NavBarContainer open={open}>
       <NavIcon><Icon icon={faBars} /></NavIcon>
       {routes.map((route, index) => {
         return (route.children && route.children.length > 0

@@ -7,16 +7,14 @@ import DemoAppDisplay from './components/DemoAppDisplay'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
-import mountain from './assets/icon-images/Tetons 2.jpg'
+import { colors } from './utils/colors'
 import {
   AppContainer,
-  TopHalf,
-  BottomHalf,
-  HeaderItem,
-  HomePageContainer,
-  BottomHalfMainContainer,
-  BottomHalfContainerOne,
-  BottomHalfContainer
+  SubContainer,
+  MainContainer,
+  InnerContainer,
+  ContactSection,
+  InfoSection
 } from './Styles'
 import styled from 'styled-components'
 
@@ -26,7 +24,6 @@ const stravaProps = {
 }
 
 const routes = [
-  { path: '/', title: 'Home', component: null, children: null },
   { path: '/about', title: 'About', component: About, children: null },
   {
     path: '/projects',
@@ -37,86 +34,55 @@ const routes = [
       { path: '/projects/triathlon', title: 'Triathlon Pace', component: CalculatorPage },
       { path: '/projects/strava-pr', title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps) }
     ]
-  },
-  {
-    path: '/contact',
-    title: 'Contact',
-    component: null,
-    children: [
-      { path: '/contact/linkedin', title: 'LinkedIn', component: (props) => ContactPage(props) },
-      { path: '/contact/github', title: 'GitHub', component: (props) => ContactPage(props) },
-      { path: '/contact/gmail', title: 'Gmail', component: (props) => ContactPage(props) }
-    ]
   }
 ]
-
-export const ImageContainer = styled.div`
-  width: 500px;
-  height: 500px;
-  z-index: 0;
-  position: absolute;
-  background-attachment: scroll;
-    background-attachment: fixed;
-    background-image: linear-gradient(
-        rgba(0, 0, 0, 0.75),
-        rgba(0, 0, 0, 0.75)
-        ),
-        url(${mountain});
-`
 
 class App extends Component {
   render () {
     const open = this.props.location.pathname !== '/'
+    const title = 'Mitchell G Sides'
     return (
       <AppContainer>
-        <HomePageContainer>
-          {/* <ImageContainer><img style={{ height: '100vh', width: '100vw' }} src={mountain} alt='mountains' /></ImageContainer> */}
-          <TopHalf open={open}>
-            <Route
-              path='/about'
-              exact
-              component={About}
-            />
-            <NavBar open={open} routes={routes.filter(route => route.title !== 'Contact')} />
-            {routes.filter(route => route.title !== 'Contact' && route.title !== 'About').map((route, index) => {
-              return !route.children
-                ? (
+
+        <SubContainer color={colors.dark} flex={1}>
+          <NavBar routes={routes.filter(route => route.title !== 'Contact')} />
+          <InfoSection>
+            <h2>{title.toUpperCase()}</h2>
+            <h5>Full Stack Engineer</h5>
+          </InfoSection>
+          <ContactSection>
+            <h2>Contact Me:</h2>
+            <ContactPage />
+          </ContactSection>
+        </SubContainer>
+
+        <MainContainer flex={4}>
+          {routes.map((route, index) => {
+            return !route.children
+              ? (
+                <InnerContainer depth={index}>
+                  {route.title}
                   <Route
                     key={`${index}-${route.path}-route`}
                     path={route.path}
-                    exact
                     component={route.component}
                   />
-                )
-                : route.children.map((child, index) => (
-                  <Route
-                    key={`${index}-${child.path}-child-route`}
-                    path={child.path}
-                    exact
-                    component={child.component}
-                  />
-                ))
-            }
-            )}
-          </TopHalf>
-          <BottomHalf open={open}>
-
-            <BottomHalfContainerOne open={open}>
-              <HeaderItem>
-                <h1>Mitchell G Sides</h1>
-                <h6>Currently Under Construction. Check Back For Updates Daily!</h6>
-              </HeaderItem>
-            </BottomHalfContainerOne>
-
-            <BottomHalfMainContainer open={open}>
-              {open ? <div>tagline Stuff!!</div> : null}
-            </BottomHalfMainContainer>
-
-            <BottomHalfContainer open={open}>
-              <ContactPage />
-            </BottomHalfContainer>
-          </BottomHalf>
-        </HomePageContainer>
+                </InnerContainer>
+              )
+              : (
+                <InnerContainer depth={index}>
+                  {route.title}
+                  {route.children.map((child, index) => (
+                    <Route
+                      depth={index}
+                      key={`${index}-${child.path}-child-route`}
+                      path={child.path}
+                      component={child.component}
+                    />))}
+                </InnerContainer>)
+          }
+          )}
+        </MainContainer>
       </AppContainer>
     )
   }

@@ -8,6 +8,7 @@ export const colors = {
   light: light,
   main_font: light,
   navbar: '#f87060',
+  gold: '#A39587',
   selected: '#CDD7D6',
   selected_font: dark,
   link: '#282c34',
