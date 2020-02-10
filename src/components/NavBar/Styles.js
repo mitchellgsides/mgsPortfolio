@@ -70,6 +70,7 @@ const NavBarKeyframeOut = keyframes`
 
 export const NavBarContainer = styled.div`
   width: 100%;
+  height: 10vh;
   background-color: ${colors.darker_red};
   animation: ${NavBarKeyframeOut} 200ms ease-in;
   animation-iteration-count: 1;

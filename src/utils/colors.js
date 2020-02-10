@@ -4,7 +4,6 @@ export const colors = {
   // main colors
   light: '#EFEFEF',
   dark: '#332E2C',
-
   // reds
   bright_red: '#DA251C',
   darker_red: '#550C18',

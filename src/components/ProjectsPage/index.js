@@ -6,11 +6,8 @@ import { colors } from '../../utils/colors'
 const ProjectsContainer = styled.div`
   max-width: 500px;
 `
-const ProjectsList = styled.ul`
-  list-style-type: none;
-  text-decoration: none;
-`
-const ProjectItem = styled.li`
+
+const ProjectItem = styled.div`
     background-color: ${colors.gunmetal};
     padding: 1rem;
     margin: 0.5rem;
@@ -51,19 +48,17 @@ const projects = [
 export default function Projects (props) {
   return (
     <ProjectsContainer>
-      <ProjectsList>
-        {projects.map((project, index) => (
-          <ProjectItem
-            key={`${project.name}-${index}`}
-          >
-            <ProjectTitleLink to={`/projects/${project.pathname}`}>
-              {project.name}
-            </ProjectTitleLink>
-            <p>{project.description}</p>
+      {projects.map((project, index) => (
+        <ProjectItem
+          key={`${project.name}-${index}`}
+        >
+          <ProjectTitleLink to={`/projects/${project.pathname}`}>
+            {project.name}
+          </ProjectTitleLink>
+          <p>{project.description}</p>
 
-          </ProjectItem>
-        ))}
-      </ProjectsList>
+        </ProjectItem>
+      ))}
     </ProjectsContainer>
   )
 }
