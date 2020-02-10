@@ -1,30 +1,16 @@
 /* Utils Page for Colors */
 
-const light = '#E8E8E8'
-const dark = 'rgb(40, 40, 40)'
-
 export const colors = {
   // main colors
-  light: light,
-  main_font: light,
-  navbar: '#f87060',
-  gold: '#A39587',
-  selected: '#CDD7D6',
-  selected_font: dark,
-  link: '#282c34',
-  // swim colors
-  main_bg: '#102542',
-  swim_font: light,
-  // bike colors
-  bike_font: light,
-  // run colors
-  run_font: light,
-  // transition colors
-  transition_bg: '#102542',
-  transition_font: light,
+  light: '#EFEFEF',
+  dark: '#332E2C',
 
-  totalTime_bg: '#102542',
-  totalTime_font: light
+  // reds
+  bright_red: '#DA251C',
+  darker_red: '#550C18',
+  // grey
+  gunmetal: '#292F36'
+
 }
 
 // blue #102542

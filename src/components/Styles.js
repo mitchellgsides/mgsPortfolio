@@ -13,21 +13,21 @@ export const SportTabContainer = styled.div`
   flex-direction: row;
   align-items: space-between;
   justify-content: center;
-  background-color: ${colors.transition_bg};
+  background-color: ${colors.gunmetal};
 `
 export const SportTab = styled.div`
     cursor: pointer;
     text-align: center;
 `
 export const SportTabTitle = styled.div`
-    color: ${(p) => !p.selected ? colors.transition_bg : colors.transition_font};
-    background-color: ${(p) => !p.selected ? colors.transition_font : colors.transition_bg};
+    color: ${(p) => !p.selected ? colors.gunmetal : colors.light};
+    background-color: ${(p) => !p.selected ? colors.light : colors.gunmetal};
     padding: 1rem;
 `
 export const SportItem = styled.div`
     margin-left: 0;
     color: ${colors.light};
-    background-color: ${colors.main_bg};
+    background-color: ${colors.dark};
 `
 export const CalculatorPageContainer = styled.div`
     display: flex;
@@ -56,8 +56,8 @@ export const Title = styled.div`
 `
 
 export const TimeBox = styled.div`
-    color: ${colors.totalTime_font};
-    background-color: ${colors.totalTime_bg};
+    color: ${colors.light};
+    background-color: ${colors.gunmetal};
     font-size: 1.75rem;
     font-weight: bold;
     text-align: center;
@@ -88,7 +88,7 @@ export const PaceInputContainer = styled(TimeInputContainer)`
 
 export const AppContainer = styled.div`
     text-align: center;
-    background-color: ${colors.main_bg};
+    background-color: ${colors.dark};
     min-height: 99vh;
     display: flex;
     margin: 0;
@@ -133,8 +133,8 @@ export const DistanceSelectorTitleList = styled.div`
 export const DistanceItem = styled.div`
     list-style-type: none;
     cursor: pointer;
-    background-color: ${(p) => p.selected ? colors.selected : ''};
-    color: ${(p) => p.selected ? colors.selected_font : ''};
+    background-color: ${(p) => p.selected ? colors.dark : ''};
+    color: ${(p) => p.selected ? colors.light : ''};
     font-size: 1rem;
     font-weight: 600;
     padding: 0.65rem;

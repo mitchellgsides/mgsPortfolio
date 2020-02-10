@@ -9,10 +9,6 @@ export const AppContainer = styled.div`
 `
 
 export const ImageContainer = styled.div`
-  width: 500px;
-  height: 500px;
-  z-index: 0;
-  position: absolute;
   background-attachment: scroll;
     background-attachment: fixed;
     background-image: linear-gradient(
@@ -36,12 +32,20 @@ export const SubContainer = styled.div`
 `
 export const InnerContainer = styled(SubContainer)`
   width: 99%;
-  justify-content: center;
   flex: 1;
-  background-color: rgb(200, ${(p) => 150 - p.depth * 9}, ${(p) => 150 - p.depth * 9});
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(200, ${(p) => 150 - p.depth * 30}, ${(p) => 150 - p.depth * 30});
   &:hover {
-    flex: 3
+    flex: 4
   }
+`
+
+export const Box = styled.div`
+  width: 100vw;
+  flex: 1;
 `
 
 export const MainContainer = styled(SubContainer)`

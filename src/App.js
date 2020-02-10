@@ -7,6 +7,7 @@ import DemoAppDisplay from './components/DemoAppDisplay'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
+import mountain from './assets/icon-images/Tetons.jpg'
 import { colors } from './utils/colors'
 import {
   AppContainer,
@@ -14,9 +15,9 @@ import {
   MainContainer,
   InnerContainer,
   ContactSection,
-  InfoSection
+  InfoSection,
+  ImageContainer
 } from './Styles'
-import styled from 'styled-components'
 
 const stravaProps = {
   title: 'StravaPR',
@@ -30,25 +31,24 @@ const routes = [
     title: 'Projects',
     component: Projects,
     children: [
-      { path: '/projects/file-analysis', title: 'Ride File Analysis', component: FileAnalysis },
-      { path: '/projects/triathlon', title: 'Triathlon Pace', component: CalculatorPage },
-      { path: '/projects/strava-pr', title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps) }
+      { path: '/projects/file-analysis', title: 'Ride File Analysis', component: FileAnalysis, description: '' },
+      { path: '/projects/triathlon', title: 'Triathlon Pace', component: CalculatorPage, description: 'This app allows you to set a distance, time, and pace, and see your total time for a triathlon.' },
+      { path: '/projects/strava-pr', title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps), description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.' }
     ]
   }
 ]
 
 class App extends Component {
   render () {
-    const open = this.props.location.pathname !== '/'
     const title = 'Mitchell G Sides'
     return (
       <AppContainer>
-
         <SubContainer color={colors.dark} flex={1}>
           <NavBar routes={routes.filter(route => route.title !== 'Contact')} />
           <InfoSection>
             <h2>{title.toUpperCase()}</h2>
             <h5>Full Stack Engineer</h5>
+            <p>Under Construction. Check Back for Updates!</p>
           </InfoSection>
           <ContactSection>
             <h2>Contact Me:</h2>
@@ -57,28 +57,36 @@ class App extends Component {
         </SubContainer>
 
         <MainContainer flex={4}>
+          <ImageContainer>
+            <img href={mountain} alt='mountains' />
+          </ImageContainer>
           {routes.map((route, index) => {
             return !route.children
               ? (
-                <InnerContainer depth={index}>
+                <InnerContainer
+                  depth={index}
+                  key={`${index}-${route.path}-route`}
+                >
                   {route.title}
                   <Route
-                    key={`${index}-${route.path}-route`}
                     path={route.path}
                     component={route.component}
                   />
                 </InnerContainer>
               )
               : (
-                <InnerContainer depth={index}>
-                  {route.title}
+                <InnerContainer
+                  key={`${index}-${route.path}-route`}
+                  depth={index}
+                >
                   {route.children.map((child, index) => (
                     <Route
-                      depth={index}
                       key={`${index}-${child.path}-child-route`}
+                      depth={index}
                       path={child.path}
                       component={child.component}
-                    />))}
+                    />
+                  ))}
                 </InnerContainer>)
           }
           )}

@@ -35,7 +35,7 @@ export const ParentNav = styled.div`
           display: flex;
       }
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-color: ${colors.gold};
+      background-color: ${colors.bright_red};
   }
 `
 export const ParentNavTitle = styled.div`
@@ -53,7 +53,7 @@ const NavBarKeyframeIn = keyframes`
     100% {
         height: 100%;
         top: 0;
-        background-color: ${colors.gold};
+        background-color: ${colors.bright_red};
     }
 `
 const NavBarKeyframeOut = keyframes`
@@ -64,13 +64,13 @@ const NavBarKeyframeOut = keyframes`
     0% {
         height: 100%;
         top: 0;
-        background-color: ${colors.gold};
+        background-color: ${colors.bright_red};
     }
 `
 
 export const NavBarContainer = styled.div`
   width: 100%;
-  background-color: ${colors.navbar};
+  background-color: ${colors.darker_red};
   animation: ${NavBarKeyframeOut} 200ms ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: both;

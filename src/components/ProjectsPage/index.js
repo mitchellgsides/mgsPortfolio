@@ -11,7 +11,7 @@ const ProjectsList = styled.ul`
   text-decoration: none;
 `
 const ProjectItem = styled.li`
-    background-color: ${colors.link};
+    background-color: ${colors.gunmetal};
     padding: 1rem;
     margin: 0.5rem;
 `
