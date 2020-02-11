@@ -1,7 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
+import { colors } from '../../utils/colors'
 
 const AboutContainer = styled.div`
+  ${'' /* background-color: ${colors.gunmetal}; */}
 `
 const AboutText = styled.p`
   padding: 12px;
@@ -10,10 +12,9 @@ const AboutText = styled.p`
 
 export default function About (props) {
   return (
-    <AboutContainer style={{ }}>
+    <AboutContainer>
       <h2>About Me</h2>
       <AboutText>
-      Some shorter stuff about me right up in here
         I'm a full stack developer and student of programming languages and technology.
         Prior to development, I was a professional cyclist and coach, as well as a high school
         teacher in science and physical education. While coaching elite athletes using advanced

@@ -8,9 +8,14 @@ const ProjectsContainer = styled.div`
 `
 
 const ProjectItem = styled.div`
-    background-color: ${colors.gunmetal};
-    padding: 1rem;
-    margin: 0.5rem;
+    border-radius: 1rem;
+    padding: 2rem;
+    margin: 1rem;
+    cursor: pointer;
+    border: 1px solid ${colors.gunmetal};
+    &:hover {
+      background-color: ${colors.gunmetal};
+    }
 `
 
 const ProjectTitleLink = styled(NavLink)`
@@ -35,13 +40,6 @@ const projects = [
     description: 'This project allows you to analyze a single power file and evaluate different training metrics such as average power over a given duration',
     imageSrc: '../',
     imageAlt: 'Power Symbol, Watts'
-  },
-  {
-    name: 'Strava PR Lister',
-    pathname: 'strava-pr',
-    description: 'One of my first web applications, this is a simple and straightforward introductory cycling power analysis tool. It allows you to quickly reference the average power, normalized power, 5min max, and 20min max power of your last Strava rides.',
-    imageSrc: '../',
-    imageAlt: 'Strava Logo Thing'
   }
 ]
 

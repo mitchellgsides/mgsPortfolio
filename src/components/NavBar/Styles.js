@@ -18,6 +18,10 @@ export const NavLinkItem = styled(NavLink)`
 export const NavIcon = styled.div`
   cursor: pointer;
   color: ${colors.light};
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `
 export const NavChildren = styled.div`
   display: none;
@@ -35,7 +39,7 @@ export const ParentNav = styled.div`
           display: flex;
       }
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-color: ${colors.bright_red};
+      background-color: ${colors.darker_red};
   }
 `
 export const ParentNavTitle = styled.div`
@@ -46,7 +50,7 @@ export const ParentNavTitle = styled.div`
 `
 const NavBarKeyframeIn = keyframes`
     0% {
-        height: 10vh;
+      height: 50%;
         color: rgba(0, 0, 0, 0);
 
     }
@@ -58,7 +62,7 @@ const NavBarKeyframeIn = keyframes`
 `
 const NavBarKeyframeOut = keyframes`
     100% {
-        height: 10vh;
+        height: 50%;
         color: rgba(0, 0, 0, 0);
     }
     0% {

@@ -2,14 +2,13 @@
 
 export const colors = {
   // main colors
-  light: '#EFEFEF',
+  light: '#F1FFFA',
   dark: '#332E2C',
   // reds
-  bright_red: '#DA251C',
-  darker_red: '#550C18',
+  bright_red: '#6E515B',
+  darker_red: '#64222D',
   // grey
-  gunmetal: '#292F36'
-
+  gunmetal: 'rgba(94, 117, 121, 0.8)'
 }
 
 // blue #102542
