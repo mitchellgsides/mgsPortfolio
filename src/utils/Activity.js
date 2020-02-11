@@ -87,10 +87,8 @@ export default class Activity {
     if (lapToAnalyze.track) {
       lap = lapToAnalyze.track
     }
-    console.log('create powerCurve', lap)
     const curve = durations.map(i => {
       if (i <= lap.length) {
-        console.log('create power curve', i)
         return Object.assign({}, {
           duration: i,
           power: Math.round(this.getAveragePowerOverDuration(lap, i))
@@ -98,7 +96,6 @@ export default class Activity {
       } else return null
     })
     curve.push({ duration: lap.length, power: this.getAveragePower(lap) })
-    console.log('Power Curve', curve)
     return curve.filter(i => i != null)
   }
 
@@ -115,14 +112,12 @@ export default class Activity {
         currentMax = tempMax
       }
     }
-    console.log(`Max of Duration ${duration}`, Math.round(currentMax / duration))
     return Math.round(currentMax / duration)
   }
 
   getPowerOverDurationWithCadence (lap, duration, cadence) {
     const arr = this.getCadenceAndPowerArr(lap).map(i => i)
     let currentMax = 0
-    console.log('getPOwerOverDurationWithCadence', arr, currentMax)
     for (let i = 0; i + duration < arr.length; i++) {
       const tempMax = arr.map(i => i.power).slice(i, i + duration).reduce((acc, curr) => acc + curr)
       if (tempMax > currentMax && cadence >= arr.map(i => i.cadence).slice(i, i + duration).reduce((acc, curr) => acc + curr)) {
