@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { colors } from '../../utils/colors'
 
 const AboutContainer = styled.div`
-  ${'' /* background-color: ${colors.gunmetal}; */}
+  padding: 1rem;
+  border: 1px solid ${colors.gunmetal};
+  border-radius: 1rem;
 `
 const AboutText = styled.p`
-  padding: 12px;
+  padding: 0.5rem;
   max-width: 500px;
 `
 

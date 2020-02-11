@@ -10,6 +10,7 @@ import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
 import { colors } from './utils/colors'
 import mountain from './assets/icon-images/Tetons.jpg'
+import prism from './assets/icon-images/prism.png'
 import {
   AppContainer,
   SubContainer,
@@ -17,9 +18,11 @@ import {
   InnerContainer,
   ContactSection,
   InfoSection,
+  InfoSectionContainer,
   InfoSectionMobile,
   ContactSectionMobile,
-  MobileContactSection
+  MobileContactSection,
+  prismBackground
 } from './Styles'
 
 // const stravaProps = {
@@ -53,29 +56,38 @@ class App extends Component {
   render () {
     const title = 'Mitchell G Sides'
     return (
-      <AppContainer>
-        <SubContainer color={colors.darker_red} flex={1}>
+      <AppContainer
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
+          backgroundAttachment: 'fixed',
+          backgroundSize: '100%',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat'
+        }}
+      >
+        <SubContainer
+          style={{
+            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0.3))'
+          }}
+          flex={1}
+        >
           <NavBar routes={routes.filter(route => !route.requiresParent)} />
-          <InfoSection>
-            <h2>{title.toUpperCase()}</h2>
-            <h5>Full Stack Engineer</h5>
-            <p>Under Construction. Check Back for Updates!</p>
-          </InfoSection>
-          <ContactSection>
-            <h2>Contact:</h2>
-            <ContactPage />
-          </ContactSection>
+          <InfoSectionContainer>
+            <InfoSection>
+              <h2>{title.toUpperCase()}</h2>
+              <h5>Full Stack Engineer</h5>
+              <p>Under Construction. Check Back for Updates!</p>
+            </InfoSection>
+            <ContactSection>
+              <h2>Contact:</h2>
+              <ContactPage />
+            </ContactSection>
+          </InfoSectionContainer>
+
         </SubContainer>
 
         <MainContainer
           flex={5}
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
-            backgroundAttachment: 'fixed',
-            backgroundSize: '100%',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
         >
           {routes.map((route, index) => {
             return (

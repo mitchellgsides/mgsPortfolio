@@ -39,7 +39,7 @@ export const ParentNav = styled.div`
           display: flex;
       }
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      background-color: ${colors.darker_red};
+      background-color: rgba(75, 0, 0, 0.5);
   }
 `
 export const ParentNavTitle = styled.div`
@@ -50,40 +50,36 @@ export const ParentNavTitle = styled.div`
 `
 const NavBarKeyframeIn = keyframes`
     0% {
-      height: 50%;
+      flex: 1;
         color: rgba(0, 0, 0, 0);
-
     }
     100% {
-        height: 100%;
+        flex: 4;
         top: 0;
-        background-color: ${colors.bright_red};
     }
 `
 const NavBarKeyframeOut = keyframes`
     100% {
-        height: 50%;
+      flex: 1;
         color: rgba(0, 0, 0, 0);
     }
     0% {
-        height: 100%;
+      flex: 4;
         top: 0;
-        background-color: ${colors.bright_red};
     }
 `
 
 export const NavBarContainer = styled.div`
   width: 100%;
-  height: 10vh;
-  background-color: ${colors.darker_red};
-  animation: ${NavBarKeyframeOut} 200ms ease-in;
+  flex: 1;
+  animation: ${NavBarKeyframeOut} 400ms ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: both;
   @media (max-width: 400px) {
     top: 0;
   }
   &:hover {
-    animation: ${NavBarKeyframeIn} 200ms ease-in;
+    animation: ${NavBarKeyframeIn} 400ms ease-in;
     animation-iteration-count: 1;
     animation-fill-mode: both;
     ${NavLinkItem} {

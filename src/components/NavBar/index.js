@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import prism from '../../assets/icon-images/prism.png'
 import {
   NavBarContainer,
   NavLinkItem,
@@ -9,18 +10,22 @@ import {
   ParentNavTitle,
   NavIcon
 } from './Styles'
+
 import { Icon } from '../Icon'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
+import { faMountain } from '@fortawesome/free-solid-svg-icons'
 
 export default function NavBar (props) {
   const { routes } = props
   return (
     <NavBarContainer>
-      <NavIcon><Icon icon={faBars} /></NavIcon>
+      <NavIcon>
+        <Icon icon={faMountain} />
+      </NavIcon>
       {routes.map((route, index) => {
         return (route.children && route.children.length > 0
           ? (
             <ParentNav
+
               key={`${route.title}-${index}`}
             >
               <ParentNavTitle>

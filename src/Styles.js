@@ -75,7 +75,9 @@ export const Box = styled.div`
   width: 100vw;
   flex: 1;
 `
-
+export const InfoSectionContainer = styled.div`
+  flex: 1
+`
 export const MainContainer = styled.div`
   flex: 4;
   display: flex;
