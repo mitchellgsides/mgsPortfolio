@@ -3,11 +3,13 @@ import { withRouter, Route } from 'react-router-dom'
 import CalculatorPage from './components/CalculatorPage/index'
 import FileAnalysis from './components/FileAnalysis/index'
 import ContactPage from './components/ContactPage'
-import DemoAppDisplay from './components/DemoAppDisplay'
+// import DemoAppDisplay from './components/DemoAppDisplay'
+import TechExperience from './components/TechExperience'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
 import { colors } from './utils/colors'
+import mountain from './assets/icon-images/Tetons.jpg'
 import {
   AppContainer,
   SubContainer,
@@ -20,14 +22,15 @@ import {
   MobileContactSection
 } from './Styles'
 
-const stravaProps = {
-  title: 'StravaPR',
-  link: 'https://mitchellgsides.github.io/Strava-PR-Lister/'
-}
+// const stravaProps = {
+//   title: 'StravaPR',
+//   link: 'https://mitchellgsides.github.io/Strava-PR-Lister/'
+// }
 
 const routes = [
   { path: '/', exact: true, title: 'Home', component: null },
   { path: '/about', exact: true, title: 'About', component: About },
+  { path: '/experience', exact: true, title: 'Experience', component: TechExperience },
   {
     path: '/projects',
     exact: true,
@@ -35,8 +38,8 @@ const routes = [
     component: Projects
   },
   { path: '/projects/file-analysis', exact: true, title: 'Ride File Analysis', component: FileAnalysis, description: '', requiresParent: true },
-  { path: '/projects/triathlon', exact: true, title: 'Triathlon Pace', component: CalculatorPage, description: 'This app allows you to set a distance, time, and pace, and see your total time for a triathlon.', requiresParent: true },
-  { path: '/projects/strava-pr', exact: true, title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps), description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.', requiresParent: true }
+  { path: '/projects/triathlon', exact: true, title: 'Triathlon Pace', component: CalculatorPage, description: 'This app allows you to set a distance, time, and pace, and see your total time for a triathlon.', requiresParent: true }
+  // { path: '/projects/strava-pr', exact: true, title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps), description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.', requiresParent: true }
 ]
 
 class App extends Component {
@@ -64,7 +67,16 @@ class App extends Component {
           </ContactSection>
         </SubContainer>
 
-        <MainContainer flex={5}>
+        <MainContainer
+          flex={5}
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url(${mountain})`,
+            backgroundAttachment: 'fixed',
+            backgroundSize: '100%',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        >
           {routes.map((route, index) => {
             return (
               <InnerContainer key={`${index}-${route.title}`}>

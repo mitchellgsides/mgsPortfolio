@@ -2,17 +2,19 @@ import React from 'react'
 import styled from 'styled-components'
 
 const AboutContainer = styled.div`
+`
+const AboutText = styled.p`
   padding: 12px;
   max-width: 500px;
 `
 
 export default function About (props) {
   return (
-    <AboutContainer>
+    <AboutContainer style={{ }}>
       <h2>About Me</h2>
-      <p>
+      <AboutText>
       Some shorter stuff about me right up in here
-        {/* I'm a full stack developer and student of programming languages and technology.
+        I'm a full stack developer and student of programming languages and technology.
         Prior to development, I was a professional cyclist and coach, as well as a high school
         teacher in science and physical education. While coaching elite athletes using advanced
         analytical software targeted at individualizing coaching, I discovered a passion for nuanced software.
@@ -26,8 +28,8 @@ export default function About (props) {
         racing my bike across the US with the development team I own and direct. To relax, I
         value spending time outdoors with my wife, Lydia, and our labrador retriever, Solomon. We
         particularly enjoy backpacking, camping, and hiking in the Rocky Mountains and across
-        Texas. */}
-      </p>
+        Texas.
+      </AboutText>
     </AboutContainer>
   )
 }
