@@ -45,11 +45,7 @@ export default function Chart2 (props) {
       <ChartContainer>
         {locations.filter(i => i != null && i.power > 0).map((i, index) => (
           <Tooltip title={`Duration: ${i.duration}s, ${i.power}w`} key={`${index}-${i.duration}-${i.power}`}>
-            <ChartItem columns={locations.length} power={i.power}>
-              {/* <ChartItemLegend>
-                    Duration: {i.duration}s, {i.power}w
-              </ChartItemLegend> */}
-            </ChartItem>
+            <ChartItem columns={locations.length} power={i.power} />
           </Tooltip>
         ))}
       </ChartContainer>

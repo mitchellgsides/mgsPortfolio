@@ -6,6 +6,7 @@ import {
   DistanceItem,
   DistanceSelectorList,
   DistanceInputContainer,
+  DistanceWrapper,
   UnitSelectorList,
   StyledNumberInput,
   TimeBox,
@@ -20,9 +21,13 @@ import SwimCalculator from '../PaceCalculator/SwimCalculator'
 import BikeCalculator from '../PaceCalculator/BikeCalculator'
 import RunCalculator from '../PaceCalculator/RunCalculator'
 import Transition from '../PaceCalculator/Transition'
+import Description from '../Description'
 
 export default class CalculatorPage extends Component {
-    state = {
+  constructor(props) {
+    super(props)
+    this.state = {
+      distanceOpen: false,
       units: 'Imperial',
       event: 'Full Distance',
       selectedSport: 'swim',
@@ -47,6 +52,8 @@ export default class CalculatorPage extends Component {
       t1Time: 240,
       t2Time: 200
     }
+  }
+
 
   handlePaceChange = (sport, time, pace) => {
     this.setState({
@@ -157,11 +164,15 @@ export default class CalculatorPage extends Component {
     })
   }
 
+  
   render () {
-    const { units, event, selectedSport, swim, bike, run, customSwim, customBike, customRun } = this.state
+    const description = 'This calculator allows you to input distance, pace, or time, and then see the resulting overall metrics of each leg of a triathlon. Start by selecting a distance and a goal pace for each sport to see what your overall time would. Conversely, you can also enter times for each sport (plus transitions) to see the required paces.'
+    const { units, event, selectedSport, swim, bike, run, customSwim, customBike, customRun, distanceOpen } = this.state
     const metric = this.state.units === 'Metric'
     return (
       <CalculatorPageContainer>
+        <Description title='Triathlon Calculator' description={description} />
+        <DistanceWrapper distanceOpen={distanceOpen}>
           <DistanceSelectorList>
             {['Custom', 'Olympic', 'Half Distance', 'Full Distance'].map((d, i) =>
               <DistanceItem
@@ -193,14 +204,15 @@ export default class CalculatorPage extends Component {
                     type='number'
                     name={i.sport}
                     value={event === 'Custom' ? this.state[i.sport] : i.sport.includes('Swim') ? this.state.swim.distance : i.sport.includes('Bike') ? this.state.bike.distance : this.state.run.distance}
-                    onChange={(e) => this.setState({ [e.target.name]: parseFloat(e.target.value) })}
+                    onChange={(e) => this.setState({ [e.target.name]: Math.round(parseFloat(e.target.value)) })}
                   />
                   <Label style={{ alignSelf: 'center'}}>{this.state.units === 'Imperial' ? i.impUnits : i.metUnits}</Label>
                 </CustomDistanceField>
             )
             )}
             </DistanceInputContainer>
-
+            </DistanceWrapper>
+            <div style={{ cursor: 'pointer', padding: '0.5rem', margin: '0.5rem' }} onClick={() => this.setState({ distanceOpen: !distanceOpen})}>{distanceOpen ? 'Close Change Distance' : 'Change Distance'}</div>
         <CalculatorContainer>
         <div>
           <SportTabContainer>

@@ -18,5 +18,4 @@ export default class Trackpoint {
     this.watts = getData(Extensions['ns3:TPX']['ns3:Watts'])
     this.speed = getData(Extensions['ns3:TPX']['ns3:Speed'])
   }
-
 }

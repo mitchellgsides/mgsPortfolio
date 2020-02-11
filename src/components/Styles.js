@@ -7,6 +7,10 @@ export const CalculatorContainer = styled.div`
     padding: 0.5rem;
     margin: 0.5rem;
 `
+export const DistanceWrapper = styled.div`
+    display: ${(p) => p.distanceOpen ? 'flex' : 'none'};
+    flex-direction: column;
+`
 
 export const SportTabContainer = styled.div`
   display: flex;
@@ -27,7 +31,9 @@ export const SportTabTitle = styled.div`
 export const SportItem = styled.div`
     margin-left: 0;
     color: ${colors.light};
-    background-color: ${colors.dark};
+    min-height: 200px;
+    min-width: 320px;
+    background-color: ${colors.gunmetal};
 `
 export const CalculatorPageContainer = styled.div`
     display: flex;
@@ -102,7 +108,8 @@ export const AppContainer = styled.div`
 export const DistanceSelectorList = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    border: 1px solid red;
+    background-color: ${colors.light};
+    color: ${colors.light};
     margin-bottom: 0.25rem;
     @media (max-width: 360px) {
         grid-template-columns: 1fr 1fr;
@@ -114,6 +121,9 @@ export const UnitSelectorList = styled(DistanceSelectorList)`
 export const DistanceInputContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  background-color: ${colors.gunmetal};
+  padding: 0.5rem;
+  margin: 0.5rem;
 `
 export const CustomDistanceField = styled.div`
   display: flex;
@@ -133,8 +143,8 @@ export const DistanceSelectorTitleList = styled.div`
 export const DistanceItem = styled.div`
     list-style-type: none;
     cursor: pointer;
-    background-color: ${(p) => p.selected ? colors.dark : ''};
-    color: ${(p) => p.selected ? colors.light : ''};
+    background-color: ${(p) => p.selected ? colors.gunmetal : colors.light};
+    color: ${(p) => p.selected ? colors.light : colors.gunmetal};
     font-size: 1rem;
     font-weight: 600;
     padding: 0.65rem;

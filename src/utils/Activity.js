@@ -71,15 +71,26 @@ export default class Activity {
     return Math.round(avgPower)
   }
 
+  getAverageCadence (lap) {
+    const cadenceArr = this.getCadenceArray(lap)
+    const avgCadence = cadenceArr.reduce((acc, curr) => {
+      if (typeof curr === 'number') {
+        return acc + curr
+      } else return acc
+    }) / cadenceArr.length
+    return Math.round(avgCadence)
+  }
+
   createPowerCurve (lapToAnalyze) {
-    const durations = [2, 5, 10, 12, 20, 30, 60, 120, 300, 360, 600, 720, 1200, 1800, 3600, 5400, 7200]
+    const durations = [1, 2, 5, 10, 12, 20, 25, 30, 35, 60, 90, 120, 300, 360, 600, 720, 1200, 1800, 3600, 5400, 7200]
     let lap = lapToAnalyze
     if (lapToAnalyze.track) {
       lap = lapToAnalyze.track
     }
-    console.log(lap)
+    console.log('create powerCurve', lap)
     const curve = durations.map(i => {
       if (i <= lap.length) {
+        console.log('create power curve', i)
         return Object.assign({}, {
           duration: i,
           power: Math.round(this.getAveragePowerOverDuration(lap, i))
@@ -109,9 +120,15 @@ export default class Activity {
   }
 
   getPowerOverDurationWithCadence (lap, duration, cadence) {
-    const powArr = this.getPowerArray(lap)
-    const currentMax = 0
-    console.log(powArr, currentMax)
+    const arr = this.getCadenceAndPowerArr(lap).map(i => i)
+    let currentMax = 0
+    console.log('getPOwerOverDurationWithCadence', arr, currentMax)
+    for (let i = 0; i + duration < arr.length; i++) {
+      const tempMax = arr.map(i => i.power).slice(i, i + duration).reduce((acc, curr) => acc + curr)
+      if (tempMax > currentMax && cadence >= arr.map(i => i.cadence).slice(i, i + duration).reduce((acc, curr) => acc + curr)) {
+        currentMax = tempMax
+      }
+    }
   }
 
   getPowerArray (lap) {
@@ -122,6 +139,16 @@ export default class Activity {
       powArr = lap.map(i => i.watts)
     }
     return powArr
+  }
+
+  getCadenceAndPowerArr (lap) {
+    let cadenceArr
+    if (lap.track) {
+      cadenceArr = lap.track.map(i => Object.assign({}, { power: i.power, cadence: i.cadence }))
+    } else {
+      cadenceArr = lap.map(i => Object.assign({}, { power: i.power, cadence: i.cadence }))
+    }
+    return cadenceArr
   }
 }
 

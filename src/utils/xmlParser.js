@@ -24,7 +24,6 @@ import Activity from './Activity'
 // }
 
 export function XMLToJsonParser (file, handleXML, setLoading) {
-  
   const reader = new FileReader()
   const parser = new DOMParser()
   let xmlDoc
@@ -34,6 +33,8 @@ export function XMLToJsonParser (file, handleXML, setLoading) {
     xmlDoc = parser.parseFromString(reader.result, 'text/xml')
     const activity = new Activity(xmlToJson(xmlDoc).TrainingCenterDatabase.Activities.Activity)
     const powerCurve = activity.createPowerCurve(activity.fullTrack)
+    // const powerCurveAtCadence = activity.getPowerOverDurationWithCadence(activity.fullTrack, 60, 60)
+    // console.log('powerCurveAtCadence', powerCurveAtCadence)
     handleXML(powerCurve)
     setLoading(false)
   }

@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { XMLToJsonParser } from '../../utils/xmlParser'
 import styled from 'styled-components'
-import Chart2 from '../Chart/Chart2'
+import { NivoLine } from '../Chart/NivoChart'
+import { powerCurveTest } from '../../utils/powerCurveTest'
 
 const GraphContainer = styled.div`
   display: flex;
@@ -13,7 +14,7 @@ const GraphContainer = styled.div`
 
 export default function FunctionFileAnalysis (props) {
   const [file, uploadFile] = useState(null)
-  const [powerCurve, setPowerCurve] = useState([])
+  const [powerCurve, setPowerCurve] = useState(null)
   const [loading, setLoading] = useState(false)
 
   const handleXML = (file) => {
@@ -25,16 +26,25 @@ export default function FunctionFileAnalysis (props) {
     listStyleType: 'none'
   }
 
+  const data = powerCurve
+    ? [{
+      id: 'Power Duration Curve',
+      color: 'red',
+      data: powerCurve.filter(i => i.power > 0).map(i => Object.assign({}, { x: i.duration, y: i.power }))
+    }] 
+    : powerCurveTest
+
   return (
     <div>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-      Work in progress. Choose a Garmin or compatible .tcx file to view brief power curve.
-      </div>
-      <ul style={tempStyles}>
+        <div>
+          Work in progress. Choose a Garmin or compatible .tcx file to view brief power curve.
+        </div>
+        <br />
         <em>Features in development:</em>
-        <li style={tempStyles}>Max Power at Specified Cadence for Specified Duration</li>
-        <li style={tempStyles}>Add Average Power of Specified Duration to Curve</li>
-      </ul>
+        <div style={tempStyles}>Max Power at Specified Cadence for Specified Duration</div>
+        <div style={tempStyles}>Add Average Power of Specified Duration to Curve</div>
+      </div>
       <label style={tempStyles}>
             Upload file:
         <input
@@ -45,10 +55,10 @@ export default function FunctionFileAnalysis (props) {
           )}
         />
       </label>
-      <button style={tempStyles} onClick={() => handleXML(file)}>Upload</button>
-      <div style={{ display: 'grid', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-evenly' }}>{loading ? <div>Loading...</div> : powerCurve && powerCurve.map((i, index) => <div style={tempStyles} key={`${i}-${index}`}>{i.duration}s: {i.power}w</div>)}</div>
-      <GraphContainer>
-        <Chart2 locations={powerCurve} />
+      <button style={tempStyles} onClick={() => handleXML(file)}>Analyze</button>
+      <h2 style={{ margin: '0.5rem' }}>Power Curve (Demo)</h2>
+      <GraphContainer style={{ height: '500px', backgroundColor: 'whitesmoke' }}>
+        {data && <NivoLine data={data} />}
       </GraphContainer>
     </div>
   )
