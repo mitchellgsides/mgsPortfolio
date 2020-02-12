@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "3ed2625a46ea4bfe98d1",
-    "url": "/mgsPortfolio/static/js/main.3ed2625a.chunk.js"
+    "revision": "7a488d0023de1d57234a",
+    "url": "/mgsPortfolio/static/js/main.7a488d00.chunk.js"
   },
   {
-    "revision": "ec5078c47f8e01eb71ee",
-    "url": "/mgsPortfolio/static/js/1.ec5078c4.chunk.js"
+    "revision": "fe99f00a6ced595a9ff6",
+    "url": "/mgsPortfolio/static/js/1.fe99f00a.chunk.js"
   },
   {
     "revision": "8148a8a3eb1815fafad9",
@@ -32,10 +32,6 @@ self.__precacheManifest = [
     "url": "/mgsPortfolio/static/media/react-original.e9f3d01c.svg"
   },
   {
-    "revision": "ccb43d3400fb05951c89ad3ba6acd9d5",
-    "url": "/mgsPortfolio/static/media/nodejs-original.ccb43d34.svg"
-  },
-  {
     "revision": "e83e60b310396562d703c9ccff616b91",
     "url": "/mgsPortfolio/static/media/npm-original-wordmark.e83e60b3.svg"
   },
@@ -60,7 +56,7 @@ self.__precacheManifest = [
     "url": "/mgsPortfolio/static/media/Tetons.44e7f39b.jpg"
   },
   {
-    "revision": "de8f442a3e6a8d66f4e0ec132fffcf51",
+    "revision": "ae952dc9f6c86e6ae966b841708474bb",
     "url": "/mgsPortfolio/index.html"
   }
 ];

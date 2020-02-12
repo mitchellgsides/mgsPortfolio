@@ -1,8 +1,8 @@
 {
-  "main.js": "/mgsPortfolio/static/js/main.3ed2625a.chunk.js",
-  "main.js.map": "/mgsPortfolio/static/js/main.3ed2625a.chunk.js.map",
-  "static/js/1.ec5078c4.chunk.js": "/mgsPortfolio/static/js/1.ec5078c4.chunk.js",
-  "static/js/1.ec5078c4.chunk.js.map": "/mgsPortfolio/static/js/1.ec5078c4.chunk.js.map",
+  "main.js": "/mgsPortfolio/static/js/main.7a488d00.chunk.js",
+  "main.js.map": "/mgsPortfolio/static/js/main.7a488d00.chunk.js.map",
+  "static/js/1.fe99f00a.chunk.js": "/mgsPortfolio/static/js/1.fe99f00a.chunk.js",
+  "static/js/1.fe99f00a.chunk.js.map": "/mgsPortfolio/static/js/1.fe99f00a.chunk.js.map",
   "runtime~main.js": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js",
   "runtime~main.js.map": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js.map",
   "static/media/css3-icon.svg": "/mgsPortfolio/static/media/css3-icon.a70a7e3e.svg",
@@ -10,7 +10,6 @@
   "static/media/jquery-icon.svg": "/mgsPortfolio/static/media/jquery-icon.36a90fcb.svg",
   "static/media/git-original.svg": "/mgsPortfolio/static/media/git-original.c02b7da9.svg",
   "static/media/react-original.svg": "/mgsPortfolio/static/media/react-original.e9f3d01c.svg",
-  "static/media/nodejs-original.svg": "/mgsPortfolio/static/media/nodejs-original.ccb43d34.svg",
   "static/media/npm-original-wordmark.svg": "/mgsPortfolio/static/media/npm-original-wordmark.e83e60b3.svg",
   "static/media/redux-original.svg": "/mgsPortfolio/static/media/redux-original.b7dc3b99.svg",
   "static/media/typescript-original.svg": "/mgsPortfolio/static/media/typescript-original.02867dbe.svg",
@@ -18,6 +17,6 @@
   "static/media/github-icon.svg": "/mgsPortfolio/static/media/github-icon.4097a5be.svg",
   "static/media/Tetons.jpg": "/mgsPortfolio/static/media/Tetons.44e7f39b.jpg",
   "index.html": "/mgsPortfolio/index.html",
-  "precache-manifest.c94eac3d85d0ec1209b1670d5bcb8ece.js": "/mgsPortfolio/precache-manifest.c94eac3d85d0ec1209b1670d5bcb8ece.js",
+  "precache-manifest.70ca36be0149318d8de7c59d8cfefa1b.js": "/mgsPortfolio/precache-manifest.70ca36be0149318d8de7c59d8cfefa1b.js",
   "service-worker.js": "/mgsPortfolio/service-worker.js"
 }
