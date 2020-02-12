@@ -7,7 +7,7 @@ import html from '../../assets/icon-images/html5-icon.png'
 import jQuery from '../../assets/icon-images/jquery-icon.svg'
 import git from '../../assets/icon-images/git-original.svg'
 import reactIcon from '../../assets/icon-images/react-original.svg'
-import node from '../../assets/icon-images/nodejs-original.svg'
+// import node from '../../assets/icon-images/nodejs-original.svg'
 import npm from '../../assets/icon-images/npm-original-wordmark.svg'
 import redux from '../../assets/icon-images/redux-original.svg'
 import typescript from '../../assets/icon-images/typescript-original.svg'
@@ -63,18 +63,17 @@ const TechIcon = styled.img`
 
 export default function TechExperience () {
   const technologies = [
-    { title: 'React', description: 'Saas Application in the cybersecurity space with React, Redux, Node', icon: reactIcon },
-    { title: 'Javascript', description: 'javascript', icon: javascript },
-    { title: 'Redux', description: 'Redux', icon: redux },
-    { title: 'TypeScript', description: 'TypeScript', icon: typescript },
-    { title: 'Node', description: 'Node', icon: node },
-    { title: 'CSS3', description: 'CSS3', icon: css },
-    { title: 'HTML5', description: 'HTML5', icon: html },
-    { title: 'jQuery', description: 'jQuery', icon: jQuery },
-    { title: 'Git', description: 'VCS with experience using git in Jira and GitHub', icon: git },
-    { title: 'PostgreSQL', description: 'PostgreSQL', icon: postgresql },
-    { title: 'Npm', description: 'npm', icon: npm },
-    { title: 'GitHub', description: 'GitHub', icon: github }
+    { title: 'React', description: 'Saas Application in the cybersecurity space primarily using React and Redux', icon: reactIcon },
+    { title: 'Javascript', description: 'JavaScript experience with core JS data structures and common algorithms including some experience with OOD in JavaScript', icon: javascript },
+    { title: 'Redux', description: 'I used Redux for React state management, using  a complicated RxJs, epic, action, and reducer flow to handle asynchronous streaming across multiple components in a single page web application', icon: redux },
+    { title: 'TypeScript', description: 'Primarily used for bug prevention, I\'ve used TypeScript to tighten up React applications and make catching, fixing, and preventing bugs simpler', icon: typescript },
+    { title: 'CSS3', description: 'CSS3 for a variety of clean and smooth UI components. With React, I primarily used styled-components, a library for building and managing component styles written in CSS-like format, and Material-UI, Google\'s user interface library', icon: css },
+    { title: 'HTML5', description: 'Layouts, inputs, and other HTML5 tags for both standalone web pages and as part of development in React', icon: html },
+    { title: 'jQuery', description: 'I used jQuery to build a simple quiz application, which you can check out on the projects page', icon: jQuery },
+    { title: 'Git', description: 'I use Git for Version control both personally and professionally, with experience using git in conjunction with Jira (Bitbucket) and GitHub', icon: git },
+    { title: 'PostgreSQL', description: 'For fullstack applications, I used PostgreSQL as my primary database software', icon: postgresql },
+    { title: 'Npm', description: 'npm and node development packages have powered most of my projects and professional builds', icon: npm },
+    { title: 'GitHub', description: 'GitHub, including issues, PR and code review, all linked to Agile methodologies and workflow', icon: github }
   ]
   const [selectedTech, setSelectedTech] = useState(null)
   return (

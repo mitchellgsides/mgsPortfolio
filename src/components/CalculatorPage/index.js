@@ -13,6 +13,7 @@ import {
   Label,
   UnitLabel, 
   SportTabContainer,
+  SportCalculatorContainer,
   SportTab,
   SportTabTitle,
 } from '../Styles'
@@ -206,7 +207,7 @@ export default class CalculatorPage extends Component {
                     value={event === 'Custom' ? this.state[i.sport] : i.sport.includes('Swim') ? this.state.swim.distance : i.sport.includes('Bike') ? this.state.bike.distance : this.state.run.distance}
                     onChange={(e) => this.setState({ [e.target.name]: Math.round(parseFloat(e.target.value)) })}
                   />
-                  <Label style={{ alignSelf: 'center'}}>{this.state.units === 'Imperial' ? i.impUnits : i.metUnits}</Label>
+                  <Label>{this.state.units === 'Imperial' ? i.impUnits : i.metUnits}</Label>
                 </CustomDistanceField>
             )
             )}
@@ -214,7 +215,6 @@ export default class CalculatorPage extends Component {
             </DistanceWrapper>
             <div style={{ cursor: 'pointer', padding: '0.5rem', margin: '0.5rem' }} onClick={() => this.setState({ distanceOpen: !distanceOpen})}>{distanceOpen ? 'Close Change Distance' : 'Change Distance'}</div>
         <CalculatorContainer>
-        <div>
           <SportTabContainer>
                 {['swim', 'T1', 'bike', 'T2', 'run'].map((i, index) => (
                   <SportTab
@@ -226,8 +226,8 @@ export default class CalculatorPage extends Component {
                     </SportTabTitle>
                   </SportTab>)
                 )}
-              </SportTabContainer>
-            
+            </SportTabContainer>
+          <SportCalculatorContainer>
             { selectedSport === 'swim' 
               ? <SwimCalculator
                 handleTimeChange={this.handleTimeChange}
@@ -274,7 +274,7 @@ export default class CalculatorPage extends Component {
               runPace={run.pace}
             /> 
             : null }
-            </div>
+            </SportCalculatorContainer>
            { this.renderTotalTime() }
           </CalculatorContainer>
 

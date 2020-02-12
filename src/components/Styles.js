@@ -2,8 +2,8 @@ import styled from 'styled-components'
 import { colors } from '../utils/colors'
 
 export const CalculatorContainer = styled.div`
-    display: grid;
-    grid-template-rows: 4fr 1fr;
+    display: flex;
+    flex-direction: column;
     padding: 0.5rem;
     margin: 0.5rem;
 `
@@ -13,11 +13,13 @@ export const DistanceWrapper = styled.div`
 `
 
 export const SportTabContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: space-between;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  align-items: center;
   background-color: ${colors.gunmetal};
+`
+
+export const SportCalculatorContainer = styled.div`
 `
 export const SportTab = styled.div`
     cursor: pointer;
@@ -41,6 +43,7 @@ export const CalculatorPageContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
+    max-width: 320px;
 `
 
 export const UnitLabel = styled.div`
