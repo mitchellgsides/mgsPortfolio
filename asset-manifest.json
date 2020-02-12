@@ -1,6 +1,6 @@
 {
-  "main.js": "/mgsPortfolio/static/js/main.02866cc7.chunk.js",
-  "main.js.map": "/mgsPortfolio/static/js/main.02866cc7.chunk.js.map",
+  "main.js": "/mgsPortfolio/static/js/main.b249def4.chunk.js",
+  "main.js.map": "/mgsPortfolio/static/js/main.b249def4.chunk.js.map",
   "static/js/1.9ebcd316.chunk.js": "/mgsPortfolio/static/js/1.9ebcd316.chunk.js",
   "static/js/1.9ebcd316.chunk.js.map": "/mgsPortfolio/static/js/1.9ebcd316.chunk.js.map",
   "runtime~main.js": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js",
@@ -18,6 +18,6 @@
   "static/media/github-icon.svg": "/mgsPortfolio/static/media/github-icon.4097a5be.svg",
   "static/media/Tetons.jpg": "/mgsPortfolio/static/media/Tetons.44e7f39b.jpg",
   "index.html": "/mgsPortfolio/index.html",
-  "precache-manifest.68f3bd868c5e37707381d9d569644f1f.js": "/mgsPortfolio/precache-manifest.68f3bd868c5e37707381d9d569644f1f.js",
+  "precache-manifest.965a245bffeb00dddf596944aa6c2832.js": "/mgsPortfolio/precache-manifest.965a245bffeb00dddf596944aa6c2832.js",
   "service-worker.js": "/mgsPortfolio/service-worker.js"
 }
