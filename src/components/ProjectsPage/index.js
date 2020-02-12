@@ -64,18 +64,33 @@ const projects = [
     description: 'This project allows you to analyze a single power file and evaluate different training metrics such as average power over a given duration',
     imageSrc: '../',
     imageAlt: 'Power Symbol, Watts'
+  },
+  {
+    name: 'Strava PR Analysis',
+    pathname: 'strava-pr',
+    description: 'This project uses jQuery and the Strava API to show brief summary of the last several activities you uploaded to Strava. *May have issues being out of date with Strava API',
+    imageSrc: '../',
+    imageAlt: 'Strava'
+  },
+  {
+    name: 'Physiology Quiz App',
+    pathname: 'quiz-app',
+    description: 'This project uses jQuery and CSS for a simple quiz application',
+    imageSrc: '../',
+    imageAlt: 'Quiz Applet Logo',
+    link: 'link here'
   }
 ]
 
 const technologies = [
   { title: 'React', projects: ['Triathlon Calculator', 'File Analysis'], icon: reactIcon },
-  { title: 'Javascript', projects: ['Triathlon Calculator', 'File Analysis'], icon: javascript },
+  { title: 'Javascript', projects: ['Physiology Quiz App', 'Physiology Quiz App', 'Triathlon Calculator', 'File Analysis'], icon: javascript },
   { title: 'Redux', projects: [], icon: redux },
   { title: 'TypeScript', projects: [], icon: typescript },
-  { title: 'CSS3', projects: ['Triathlon Calculator', 'File Analysis'], icon: css },
+  { title: 'CSS3', projects: ['Physiology Quiz App', 'Strava PR Analysis', 'Triathlon Calculator', 'File Analysis'], icon: css },
   { title: 'HTML5', projects: ['Triathlon Calculator', 'File Analysis'], icon: html },
-  { title: 'jQuery', projects: [], icon: jQuery },
-  { title: 'Git', projects: ['Triathlon Calculator', 'File Analysis'], icon: git },
+  { title: 'jQuery', projects: ['Physiology Quiz App', 'Strava PR Analysis'], icon: jQuery },
+  { title: 'Git', projects: [], icon: git },
   { title: 'PostgreSQL', projects: [], icon: postgresql },
   { title: 'Npm', projects: [], icon: npm },
   { title: 'GitHub', projects: [], icon: github }
@@ -91,7 +106,7 @@ export default function Projects (props) {
         >
           <ProjectTitleLink to={`/projects/${project.pathname}`}>
             <ProjectItemName>
-              {project.name}
+              {project.link ? <a src={project.link}>{project.name}</a> : project.name}
             </ProjectItemName>
           </ProjectTitleLink>
           <p>{project.description}</p>

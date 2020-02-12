@@ -11,6 +11,7 @@ const DescriptionBox = styled.div`
   margin: 0.5rem;
   background-color: ${colors.gunmetal};
   color: ${colors.light};
+  border-radius: 1rem;
 `
 
 export default function Description (props) {

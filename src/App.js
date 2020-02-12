@@ -3,7 +3,7 @@ import { withRouter, Route } from 'react-router-dom'
 import CalculatorPage from './components/CalculatorPage/index'
 import FileAnalysis from './components/FileAnalysis/index'
 import ContactPage from './components/ContactPage'
-// import DemoAppDisplay from './components/DemoAppDisplay'
+import DemoAppDisplay from './components/DemoAppDisplay'
 import TechExperience from './components/TechExperience'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
@@ -25,10 +25,15 @@ import {
   PageTitle
 } from './Styles'
 
-// const stravaProps = {
-//   title: 'StravaPR',
-//   link: 'https://mitchellgsides.github.io/Strava-PR-Lister/'
-// }
+const stravaProps = {
+  title: 'StravaPR',
+  link: 'https://mitchellgsides.github.io/Strava-PR-Lister/'
+}
+
+const quizProps = {
+  title: 'Physiology Quiz App',
+  link: 'https://mitchellgsides.github.io/quiz-app/'
+}
 
 const routes = [
   { path: '/', exact: true, title: 'Home', component: About },
@@ -40,8 +45,9 @@ const routes = [
     component: Projects
   },
   { path: '/projects/file-analysis', exact: true, title: 'Ride File Analysis', component: FileAnalysis, description: '', requiresParent: true },
-  { path: '/projects/triathlon', exact: true, title: 'Triathlon Pace', component: CalculatorPage, description: 'This app allows you to set a distance, time, and pace, and see your total time for a triathlon.', requiresParent: true }
-  // { path: '/projects/strava-pr', exact: true, title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps), description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.', requiresParent: true }
+  { path: '/projects/triathlon', exact: true, title: 'Triathlon Pace', component: CalculatorPage, description: 'This app allows you to set a distance, time, and pace, and see your total time for a triathlon.', requiresParent: true },
+  { path: '/projects/strava-pr', exact: true, title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps), description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.', requiresParent: true },
+  { path: '/projects/quiz-app', exact: true, title: 'Physiology Quiz', component: () => DemoAppDisplay(quizProps), description: 'This is a simple quiz application built using jQuery, JavaScript, HTML, and CSS.', requiresParent: true }
 ]
 
 class App extends Component {

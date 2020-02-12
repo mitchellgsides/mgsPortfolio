@@ -72,7 +72,7 @@ export default function TechExperience () {
     { title: 'jQuery', description: 'I used jQuery to build a simple quiz application, which you can check out on the projects page', icon: jQuery },
     { title: 'Git', description: 'I use Git for Version control both personally and professionally, with experience using git in conjunction with Jira (Bitbucket) and GitHub', icon: git },
     { title: 'PostgreSQL', description: 'For fullstack applications, I used PostgreSQL as my primary database software', icon: postgresql },
-    { title: 'Npm', description: 'npm and node development packages have powered most of my projects and professional builds', icon: npm },
+    { title: 'npm', description: 'npm and node development packages have powered most of my projects and professional builds', icon: npm },
     { title: 'GitHub', description: 'GitHub, including issues, PR and code review, all linked to Agile methodologies and workflow', icon: github }
   ]
   const [selectedTech, setSelectedTech] = useState(null)

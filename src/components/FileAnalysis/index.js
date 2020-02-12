@@ -3,6 +3,7 @@ import { XMLToJsonParser } from '../../utils/xmlParser'
 import styled from 'styled-components'
 import { NivoLine } from '../Chart/NivoChart'
 import { powerCurveTest } from '../../utils/powerCurveTest'
+import Description from '../Description/index'
 import { PageTitle } from '../../Styles'
 
 const GraphContainer = styled.div`
@@ -37,15 +38,16 @@ export default function FunctionFileAnalysis (props) {
 
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-        <div>
-          Work in progress! Best viewed on a larger screen. Choose a Garmin or compatible .tcx file to view brief power curve.
-        </div>
-        <br />
-        <em>Features in development:</em>
-        <div style={tempStyles}>Max Power at Specified Cadence for Specified Duration</div>
-        <div style={tempStyles}>Add Average Power of Specified Duration to Curve</div>
-      </div>
+      <Description description='Work in progress! Best viewed on a larger screen. Choose a Garmin or compatible .tcx file to view brief power curve.' />
+      <ul>
+      Features in development:
+        <li>
+          Max Power at Specified Cadence for Specified Duration
+        </li>
+        <li>
+          Add Average Power of Specified Duration to Curve
+        </li>
+      </ul>
       <label style={tempStyles}>
             Upload file:
         <input
@@ -59,7 +61,7 @@ export default function FunctionFileAnalysis (props) {
       {loading ? <div>loading...</div> : null}
       <button style={tempStyles} onClick={() => handleXML(file)}>Analyze</button>
       <PageTitle style={{ margin: '0.5rem' }}>Power Curve (Demo)</PageTitle>
-      <GraphContainer style={{ height: '500px', backgroundColor: 'whitesmoke' }}>
+      <GraphContainer style={{ flex: 1, height: '500px', backgroundColor: 'whitesmoke' }}>
         {data && <NivoLine data={data} />}
       </GraphContainer>
     </div>
