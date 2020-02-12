@@ -31,7 +31,7 @@ export default function FunctionFileAnalysis (props) {
       id: 'Power Duration Curve',
       color: 'red',
       data: powerCurve.filter(i => i.power > 0).map(i => Object.assign({}, { x: i.duration, y: i.power }))
-    }] 
+    }]
     : powerCurveTest
 
   return (
@@ -55,6 +55,7 @@ export default function FunctionFileAnalysis (props) {
           )}
         />
       </label>
+      {loading ? <div>loading...</div> : null}
       <button style={tempStyles} onClick={() => handleXML(file)}>Analyze</button>
       <h2 style={{ margin: '0.5rem' }}>Power Curve (Demo)</h2>
       <GraphContainer style={{ height: '500px', backgroundColor: 'whitesmoke' }}>

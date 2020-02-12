@@ -8,12 +8,12 @@ import TechExperience from './components/TechExperience'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
-import { colors } from './utils/colors'
+// import { colors } from './utils/colors'
 import mountain from './assets/icon-images/Tetons.jpg'
-import prism from './assets/icon-images/prism.png'
+// import prism from './assets/icon-images/prism.png'
 import {
   AppContainer,
-  SubContainer,
+  // SubContainer,
   MainContainer,
   InnerContainer,
   ContactSection,
