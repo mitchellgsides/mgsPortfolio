@@ -63,11 +63,11 @@ const TechIcon = styled.img`
 
 export default function TechExperience () {
   const technologies = [
-    { title: 'React', description: 'Saas Application in the cybersecurity space primarily using React and Redux', icon: reactIcon },
+    { title: 'React', description: 'Saas Application in the cybersecurity space primarily using React and Redux to build simple, clean, and effective UI through the use of reusable and customizable components', icon: reactIcon },
     { title: 'Javascript', description: 'JavaScript experience with core JS data structures and common algorithms including some experience with OOD in JavaScript', icon: javascript },
     { title: 'Redux', description: 'I used Redux for React state management, using  a complicated RxJs, epic, action, and reducer flow to handle asynchronous streaming across multiple components in a single page web application', icon: redux },
     { title: 'TypeScript', description: 'Primarily used for bug prevention, I\'ve used TypeScript to tighten up React applications and make catching, fixing, and preventing bugs simpler', icon: typescript },
-    { title: 'CSS3', description: 'CSS3 for a variety of clean and smooth UI components. With React, I primarily used styled-components, a library for building and managing component styles written in CSS-like format, and Material-UI, Google\'s user interface library', icon: css },
+    { title: 'CSS3', description: 'CSS3 for a variety of clean UI. With React, I primarily used styled-components, a library for building and managing component styles written in CSS-like format, and Material-UI, Google\'s user interface library', icon: css },
     { title: 'HTML5', description: 'Layouts, inputs, and other HTML5 tags for both standalone web pages and as part of development in React', icon: html },
     { title: 'jQuery', description: 'I used jQuery to build a simple quiz application, which you can check out on the projects page', icon: jQuery },
     { title: 'Git', description: 'I use Git for Version control both personally and professionally, with experience using git in conjunction with Jira (Bitbucket) and GitHub', icon: git },
@@ -83,7 +83,10 @@ export default function TechExperience () {
         {selectedTech ? (
           <>
             <TechIcon src={selectedTech.icon} />
-            {selectedTech.description}
+            <div style={{ display: 'flex', flexDirection: 'column', margin: '0.5rem' }}>
+              <h3>{selectedTech.title}</h3>
+              {selectedTech.description}
+            </div>
           </>
         )
           : <TechNote>Select an Icon to Learn More</TechNote>}
