@@ -166,7 +166,7 @@ export default class CalculatorPage extends Component {
 
   
   render () {
-    const description = 'This calculator allows you to input distance, pace, or time, and then see the resulting overall metrics of each leg of a triathlon. Start by selecting a distance and a goal pace for each sport to see what your overall time would. Conversely, you can also enter times for each sport (plus transitions) to see the required paces.'
+    const description = 'This calculator allows you to input distance, pace, or time, and then see the resulting overall metrics of each leg of a triathlon. Start by selecting a distance and a goal pace for each sport to see what your overall time would be. Conversely, you can also enter times for each sport (plus transitions) to see the required paces.'
     const { units, event, selectedSport, swim, bike, run, customSwim, customBike, customRun, distanceOpen } = this.state
     const metric = this.state.units === 'Metric'
     return (
