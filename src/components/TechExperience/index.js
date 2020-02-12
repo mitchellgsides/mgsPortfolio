@@ -13,7 +13,8 @@ import redux from '../../assets/icon-images/redux-original.svg'
 import typescript from '../../assets/icon-images/typescript-original.svg'
 import postgresql from '../../assets/icon-images/postgresql-original.svg'
 import github from '../../assets/icon-images/github-icon.svg'
-import { colors } from '../../utils/colors'
+import { PageTitle } from '../../Styles'
+// import { colors } from '../../utils/colors'
 
 const TechExperienceContainer = styled.div`
   display: flex;
@@ -31,10 +32,6 @@ const TechItemsContainer = styled.div`
     flex-direction: column;
     flex-wrap: wrap;
   }
-`
-const TechTitle = styled.h2`
-  padding: 0.5rem;
-  margin: 1rem;
 `
 
 const TechNote = styled.div`
@@ -82,7 +79,7 @@ export default function TechExperience () {
   const [selectedTech, setSelectedTech] = useState(null)
   return (
     <TechExperienceContainer>
-      <TechTitle>Tech Experience</TechTitle>
+      <PageTitle>Tech Experience</PageTitle>
       <TechDescription>
         {selectedTech ? (
           <>

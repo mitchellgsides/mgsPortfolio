@@ -3,6 +3,7 @@ import { XMLToJsonParser } from '../../utils/xmlParser'
 import styled from 'styled-components'
 import { NivoLine } from '../Chart/NivoChart'
 import { powerCurveTest } from '../../utils/powerCurveTest'
+import { PageTitle } from '../../Styles'
 
 const GraphContainer = styled.div`
   display: flex;
@@ -57,7 +58,7 @@ export default function FunctionFileAnalysis (props) {
       </label>
       {loading ? <div>loading...</div> : null}
       <button style={tempStyles} onClick={() => handleXML(file)}>Analyze</button>
-      <h2 style={{ margin: '0.5rem' }}>Power Curve (Demo)</h2>
+      <PageTitle style={{ margin: '0.5rem' }}>Power Curve (Demo)</PageTitle>
       <GraphContainer style={{ height: '500px', backgroundColor: 'whitesmoke' }}>
         {data && <NivoLine data={data} />}
       </GraphContainer>

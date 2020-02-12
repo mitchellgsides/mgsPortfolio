@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import NavBar from '../NavBar'
 import ContactPage from '../ContactPage'
 import { Route } from 'react-router'
+import { PageTitle } from '../../Styles'
 
 const HomePageContainer = styled.div`
   display: flex;
@@ -48,11 +49,11 @@ export default function HomePage (props) {
 
       <SubContainer color='red' flex={1}>
         <InfoSection>
-          <h2>{title.toUpperCase()}</h2>
+          <PageTitle>{title.toUpperCase()}</PageTitle>
           <h5>Full Stack Engineer</h5>
         </InfoSection>
         <ContactSection>
-          <h2>Contact Me:</h2>
+          <PageTitle>Contact Me:</PageTitle>
           <ContactPage />
         </ContactSection>
       </SubContainer>

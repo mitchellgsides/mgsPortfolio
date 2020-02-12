@@ -21,7 +21,8 @@ import {
   InfoSection,
   InfoSectionMobile,
   ContactSectionMobile,
-  MobileContactSection
+  MobileContactSection,
+  PageTitle
 } from './Styles'
 
 // const stravaProps = {
@@ -68,12 +69,12 @@ class App extends Component {
         >
           <NavBar routes={routes.filter(route => !route.requiresParent)} />
           <InfoSection style={{ flex: 2 }}>
-            <h2>{title.toUpperCase()}</h2>
+            <PageTitle>{title.toUpperCase()}</PageTitle>
             <h5>Full Stack Engineer</h5>
             <p>Under Construction. Check Back for Updates!</p>
           </InfoSection>
           <ContactSection style={{ flex: 2 }}>
-            <h2>Contact:</h2>
+            <PageTitle>Contact:</PageTitle>
             <ContactPage />
           </ContactSection>
         </ContactContainer>
@@ -95,12 +96,12 @@ class App extends Component {
         </MainContainer>
         <MobileContactSection>
           <InfoSectionMobile>
-            <h2>{title.toUpperCase()}</h2>
+            <PageTitle>{title.toUpperCase()}</PageTitle>
             <h5>Full Stack Engineer</h5>
             <p>Under Construction. Check Back for Updates!</p>
           </InfoSectionMobile>
           <ContactSectionMobile>
-            <h2>Contact:</h2>
+            <PageTitle>Contact:</PageTitle>
             <ContactPage />
           </ContactSectionMobile>
         </MobileContactSection>

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../utils/colors'
+import { PageTitle } from '../../Styles'
 
 const DescriptionBox = styled.div`
   display: flex;
@@ -15,7 +16,7 @@ const DescriptionBox = styled.div`
 export default function Description (props) {
   return (
     <>
-      <h2>{props.title}</h2>
+      <PageTitle>{props.title}</PageTitle>
       <DescriptionBox>
         {props.description}
       </DescriptionBox>

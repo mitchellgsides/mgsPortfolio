@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 import { colors } from '../../utils/colors'
+import { PageTitle } from '../../Styles'
 
 const ProjectsContainer = styled.div`
   max-width: 500px;
@@ -11,11 +12,14 @@ const ProjectItem = styled.div`
     border-radius: 1rem;
     padding: 2rem;
     margin: 1rem;
-    cursor: pointer;
     border: 1px solid ${colors.gunmetal};
     &:hover {
       background-color: ${colors.gunmetal};
     }
+`
+
+const ProjectItemName = styled.div`
+  padding: 1rem;
 `
 
 const ProjectTitleLink = styled(NavLink)`
@@ -46,13 +50,15 @@ const projects = [
 export default function Projects (props) {
   return (
     <ProjectsContainer>
-      <h2>Projects</h2>
+      <PageTitle>Projects</PageTitle>
       {projects.map((project, index) => (
         <ProjectItem
           key={`${project.name}-${index}`}
         >
           <ProjectTitleLink to={`/projects/${project.pathname}`}>
-            {project.name}
+            <ProjectItemName>
+              {project.name}
+            </ProjectItemName>
           </ProjectTitleLink>
           <p>{project.description}</p>
 

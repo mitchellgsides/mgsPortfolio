@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../utils/colors'
+import { PageTitle } from '../../Styles'
 
 const AboutContainer = styled.div`
   padding: 1rem;
@@ -15,15 +16,10 @@ const AboutText = styled.p`
   max-width: 500px;
 `
 
-const AboutTitle = styled.h2`
-  padding: 0.5rem;
-  margin: 0.5rem;
-`
-
 export default function About (props) {
   return (
     <AboutContainer>
-      <h2>About Me</h2>
+      <PageTitle>About Me</PageTitle>
       <AboutText>
         I'm a full stack developer and student of programming languages and technology.
         Prior to development, I was a professional cyclist and coach, as well as a high school

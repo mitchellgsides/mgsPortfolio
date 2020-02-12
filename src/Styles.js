@@ -26,6 +26,11 @@ export const InfoSectionMobile = styled(InfoSection)`
 export const ContactSectionMobile = styled(ContactSection)`
 `
 
+export const PageTitle = styled.h2`
+  padding: 0.5rem;
+  margin: 0.5rem;
+`
+
 export const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
