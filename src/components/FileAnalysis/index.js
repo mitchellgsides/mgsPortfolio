@@ -38,7 +38,7 @@ export default function FunctionFileAnalysis (props) {
     <div>
       <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
         <div>
-          Work in progress. Choose a Garmin or compatible .tcx file to view brief power curve.
+          Work in progress! Best viewed on a larger screen. Choose a Garmin or compatible .tcx file to view brief power curve.
         </div>
         <br />
         <em>Features in development:</em>

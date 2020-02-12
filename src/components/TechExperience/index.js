@@ -13,6 +13,7 @@ import redux from '../../assets/icon-images/redux-original.svg'
 import typescript from '../../assets/icon-images/typescript-original.svg'
 import postgresql from '../../assets/icon-images/postgresql-original.svg'
 import github from '../../assets/icon-images/github-icon.svg'
+import { colors } from '../../utils/colors'
 
 const TechExperienceContainer = styled.div`
   display: flex;
@@ -24,7 +25,7 @@ const TechExperienceContainer = styled.div`
 const TechItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 50vw;
+  max-width: 60vw;
   @media (max-width: 600px) {
     display: flex;
     flex-direction: column;
@@ -45,26 +46,28 @@ const TechDescription = styled.div`
   padding: 0.5rem;
   margin: 1rem;
   display: flex;
-  width: 200px;
+  width: 300px;
   height: 200px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   max-width: 500px;
+  border-radius: 1rem;
+  border: 1px solid ${colors.gunmetal};
 `
 
 const TechIcon = styled.img`
-    padding: 0.5rem;
-    margin: 0.5rem;
+    padding: 0.25rem;
+    margin: 0.25rem;
     width: 75px;
     border-radius: 5px;
 `
 
 export default function TechExperience () {
   const technologies = [
-    { title: 'Javascript', description: 'javascript', icon: javascript },
     { title: 'React', description: 'Saas Application in the cybersecurity space with React, Redux, Node', icon: reactIcon },
     { title: 'Redux', description: 'Redux', icon: redux },
+    { title: 'Javascript', description: 'javascript', icon: javascript },
     { title: 'TypeScript', description: 'TypeScript', icon: typescript },
     { title: 'Node', description: 'Node', icon: node },
     { title: 'CS3S', description: 'CSS3', icon: css },

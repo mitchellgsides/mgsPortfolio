@@ -6,10 +6,18 @@ const AboutContainer = styled.div`
   padding: 1rem;
   border: 1px solid ${colors.gunmetal};
   border-radius: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  background-color: rgba(0, 0, 0, 0.2);
 `
 const AboutText = styled.p`
   padding: 0.5rem;
   max-width: 500px;
+`
+
+const AboutTitle = styled.h2`
+  padding: 0.5rem;
+  margin: 0.5rem;
 `
 
 export default function About (props) {
