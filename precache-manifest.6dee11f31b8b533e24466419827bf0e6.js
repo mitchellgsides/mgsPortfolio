@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "b3c121a562f0afc90811",
-    "url": "/mgsPortfolio/static/js/main.b3c121a5.chunk.js"
+    "revision": "3414bd5d659d9be30543",
+    "url": "/mgsPortfolio/static/js/main.3414bd5d.chunk.js"
   },
   {
-    "revision": "c575c422bf1a9e66b5cf",
-    "url": "/mgsPortfolio/static/js/1.c575c422.chunk.js"
+    "revision": "6fa3acec40e4ca45bcd8",
+    "url": "/mgsPortfolio/static/js/1.6fa3acec.chunk.js"
   },
   {
     "revision": "8148a8a3eb1815fafad9",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/mgsPortfolio/static/media/Tetons.44e7f39b.jpg"
   },
   {
-    "revision": "6090dbc76524be9e0cd295c5af04c333",
+    "revision": "4c48b44e7df8a2e692fd1ecb93024508",
     "url": "/mgsPortfolio/index.html"
   }
 ];
