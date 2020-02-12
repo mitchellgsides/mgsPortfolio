@@ -68,7 +68,7 @@ export default function TechExperience () {
     { title: 'Redux', description: 'Redux', icon: redux },
     { title: 'TypeScript', description: 'TypeScript', icon: typescript },
     { title: 'Node', description: 'Node', icon: node },
-    { title: 'CS3S', description: 'CSS3', icon: css },
+    { title: 'CSS3', description: 'CSS3', icon: css },
     { title: 'HTML5', description: 'HTML5', icon: html },
     { title: 'jQuery', description: 'jQuery', icon: jQuery },
     { title: 'Git', description: 'VCS with experience using git in Jira and GitHub', icon: git },
