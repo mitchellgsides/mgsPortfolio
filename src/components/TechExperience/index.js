@@ -53,7 +53,8 @@ const TechDescription = styled.div`
   justify-content: center;
   max-width: 500px;
   border-radius: 1rem;
-  border: 1px solid ${colors.gunmetal};
+  @media (max-width: 600px) {
+  }
 `
 
 const TechIcon = styled.img`
@@ -66,8 +67,8 @@ const TechIcon = styled.img`
 export default function TechExperience () {
   const technologies = [
     { title: 'React', description: 'Saas Application in the cybersecurity space with React, Redux, Node', icon: reactIcon },
-    { title: 'Redux', description: 'Redux', icon: redux },
     { title: 'Javascript', description: 'javascript', icon: javascript },
+    { title: 'Redux', description: 'Redux', icon: redux },
     { title: 'TypeScript', description: 'TypeScript', icon: typescript },
     { title: 'Node', description: 'Node', icon: node },
     { title: 'CS3S', description: 'CSS3', icon: css },
@@ -89,7 +90,7 @@ export default function TechExperience () {
             {selectedTech.description}
           </>
         )
-          : <TechNote>Click an Icon to Learn More</TechNote>}
+          : <TechNote>Select an Icon to Learn More</TechNote>}
       </TechDescription>
       <TechItemsContainer>
         {technologies.map((tech, index) => <TechItem key={`${tech.title}-${index}`} tech={tech} title={tech.title} icon={tech.icon} currentlySelected={selectedTech} onSelect={setSelectedTech} />)}

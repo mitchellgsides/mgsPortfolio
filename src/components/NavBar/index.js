@@ -14,7 +14,7 @@ import {
 } from './Styles'
 
 import { Icon } from '../Icon'
-import { faBicycle } from '@fortawesome/free-solid-svg-icons'
+import { faBicycle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 export default function NavBar (props) {
   const { routes } = props
@@ -24,6 +24,7 @@ export default function NavBar (props) {
       <NavBarContainerMobile>
         <NavIconMobile onClick={() => setMobileOpen(!mobileOpen)}>
           Menu <Icon icon={faBicycle} />
+          {mobileOpen ? <Icon icon={faChevronUp} /> : null}
         </NavIconMobile>
         {
           mobileOpen
