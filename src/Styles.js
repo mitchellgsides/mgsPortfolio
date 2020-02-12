@@ -16,8 +16,9 @@ export const MobileContactSection = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 1rem;
   flex: 1;
-  background-color: ${colors.darker_red};
+  background-image: linear-gradient(to top, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
 `
 
 export const InfoSectionMobile = styled(InfoSection)`
@@ -62,6 +63,10 @@ export const SubContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+`
+
+export const ContactContainer = styled(SubContainer)`
+  background-image: linear-gradient(to right, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0.3));
 `
 export const InnerContainer = styled(SubContainer)`
   flex: 2;

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import {
   NavBarContainer,
@@ -8,7 +8,9 @@ import {
   NavChildren,
   ChildNavTitle,
   ParentNavTitle,
-  NavIcon
+  NavIcon,
+  NavIconMobile,
+  NavLinkItemMobile
 } from './Styles'
 
 import { Icon } from '../Icon'
@@ -16,42 +18,18 @@ import { faBicycle } from '@fortawesome/free-solid-svg-icons'
 
 export default function NavBar (props) {
   const { routes } = props
+  const [mobileOpen, setMobileOpen] = useState(false)
   return (
     <>
       <NavBarContainerMobile>
-      Mobile Nav Bar!
-        {routes.map((route, index) => {
-          return (route.children && route.children.length > 0
-            ? (
-              <div
-                key={`${route.title}-${index}`}
-              >
-                <div>
-                  {route.title}
-                </div>
-                <div>
-                  {route.children.map((child, index) => (
-                    <NavLinkItem to={child.path} key={`child-link-${child.title}-${index}`}>
-                      <div>
-                        {child.title}
-                      </div>
-                    </NavLinkItem>))}
-                </div>
-              </div>
-            )
-            : (
-              <NavLinkItem
-                key={`${route.title}-${index}`}
-                to={route.path}
-              >
-                <div>
-                  {route.title}
-                </div>
-              </NavLinkItem>
-            )
-          )
+        <NavIconMobile onClick={() => setMobileOpen(!mobileOpen)}>
+          Menu <Icon icon={faBicycle} />
+        </NavIconMobile>
+        {
+          mobileOpen
+            ? routes.map((route, index) => <NavLinkItemMobile to={route.path} key={`${route.title}-${index}`}>{route.title}</NavLinkItemMobile>)
+            : null
         }
-        )}
       </NavBarContainerMobile>
       <NavBarContainer>
         <NavIcon>

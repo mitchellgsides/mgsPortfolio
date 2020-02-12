@@ -17,12 +17,11 @@ import {
   MainContainer,
   InnerContainer,
   ContactSection,
+  ContactContainer,
   InfoSection,
-  InfoSectionContainer,
   InfoSectionMobile,
   ContactSectionMobile,
-  MobileContactSection,
-  prismBackground
+  MobileContactSection
 } from './Styles'
 
 // const stravaProps = {
@@ -31,8 +30,7 @@ import {
 // }
 
 const routes = [
-  { path: '/', exact: true, title: 'Home', component: null },
-  { path: '/about', exact: true, title: 'About', component: About },
+  { path: '/', exact: true, title: 'Home', component: About },
   { path: '/experience', exact: true, title: 'Experience', component: TechExperience },
   {
     path: '/projects',
@@ -60,15 +58,12 @@ class App extends Component {
         style={{
           backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
           backgroundAttachment: 'fixed',
-          backgroundSize: '100%',
+          backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat'
         }}
       >
-        <SubContainer
-          style={{
-            backgroundImage: 'linear-gradient(to right, rgba(0, 0, 0, .7), rgba(0, 0, 0, 0.3))'
-          }}
+        <ContactContainer
           flex={1}
         >
           <NavBar routes={routes.filter(route => !route.requiresParent)} />
@@ -81,7 +76,7 @@ class App extends Component {
             <h2>Contact:</h2>
             <ContactPage />
           </ContactSection>
-        </SubContainer>
+        </ContactContainer>
 
         <MainContainer
           flex={5}
