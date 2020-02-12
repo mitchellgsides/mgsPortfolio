@@ -1,37 +1,96 @@
-import React from 'react'
+import React, { useState } from 'react'
 import TechItem from './TechItem'
 import styled from 'styled-components'
 import css from '../../assets/icon-images/css3-icon.svg'
 import javascript from '../../assets/icon-images/javascript-icon.svg'
 import html from '../../assets/icon-images/html5-icon.png'
 import jQuery from '../../assets/icon-images/jquery-icon.svg'
-import github from '../../assets/icon-images/github-icon.svg'
+import git from '../../assets/icon-images/git-original.svg'
 import reactIcon from '../../assets/icon-images/react-original.svg'
+import node from '../../assets/icon-images/nodejs-original.svg'
+import npm from '../../assets/icon-images/npm-original-wordmark.svg'
+import redux from '../../assets/icon-images/redux-original.svg'
+import typescript from '../../assets/icon-images/typescript-original.svg'
+import postgresql from '../../assets/icon-images/postgresql-original.svg'
+import github from '../../assets/icon-images/github-icon.svg'
+
+const TechExperienceContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 const TechItemsContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 50vw;
   @media (max-width: 600px) {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
   }
 `
+const TechTitle = styled.h2`
+  padding: 0.5rem;
+  margin: 1rem;
+`
 
-export default function TechExperience (props) {
-  const items = [
+const TechNote = styled.div`
+  padding: 0.5rem;
+  margin: 1rem;
+`
+
+const TechDescription = styled.div`
+  padding: 0.5rem;
+  margin: 1rem;
+  display: flex;
+  width: 200px;
+  height: 200px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+`
+
+const TechIcon = styled.img`
+    padding: 0.5rem;
+    margin: 0.5rem;
+    width: 75px;
+    border-radius: 5px;
+`
+
+export default function TechExperience () {
+  const technologies = [
+    { title: 'Javascript', description: 'javascript', icon: javascript },
     { title: 'React', description: 'Saas Application in the cybersecurity space with React, Redux, Node', icon: reactIcon },
-    { title: 'CS3S', description: 'CSS', icon: css },
+    { title: 'Redux', description: 'Redux', icon: redux },
+    { title: 'TypeScript', description: 'TypeScript', icon: typescript },
+    { title: 'Node', description: 'Node', icon: node },
+    { title: 'CS3S', description: 'CSS3', icon: css },
     { title: 'HTML5', description: 'HTML5', icon: html },
     { title: 'jQuery', description: 'jQuery', icon: jQuery },
-    { title: 'Javascript', description: 'javascript', icon: javascript },
-    { title: 'GitHub', description: 'VCS with experience using git in Jira and GitHub', icon: github }
+    { title: 'Git', description: 'VCS with experience using git in Jira and GitHub', icon: git },
+    { title: 'PostgreSQL', description: 'PostgreSQL', icon: postgresql },
+    { title: 'Npm', description: 'npm', icon: npm },
+    { title: 'GitHub', description: 'GitHub', icon: github }
   ]
+  const [selectedTech, setSelectedTech] = useState(null)
   return (
-    <div>
-      <h2>Tech Experience</h2>
+    <TechExperienceContainer>
+      <TechTitle>Tech Experience</TechTitle>
+      <TechDescription>
+        {selectedTech ? (
+          <>
+            <TechIcon src={selectedTech.icon} />
+            {selectedTech.description}
+          </>
+        )
+          : <TechNote>Click an Icon to Learn More</TechNote>}
+      </TechDescription>
       <TechItemsContainer>
-        {items.map((tech, index) => <TechItem key={`${tech.title}-${index}`} title={tech.title} description={tech.description} icon={tech.icon} />)}
+        {technologies.map((tech, index) => <TechItem key={`${tech.title}-${index}`} tech={tech} title={tech.title} icon={tech.icon} currentlySelected={selectedTech} onSelect={setSelectedTech} />)}
       </TechItemsContainer>
-    </div>
+    </TechExperienceContainer>
   )
 }

@@ -8,7 +8,7 @@ export const colors = {
   bright_red: '#6E515B',
   darker_red: '#64222D',
   // grey
-  gunmetal: 'rgba(94, 117, 121, 0.8)'
+  gunmetal: 'rgba(94, 117, 121, 0.65)'
 }
 
 // blue #102542
