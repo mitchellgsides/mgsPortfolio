@@ -46,6 +46,7 @@ const projects = [
 export default function Projects (props) {
   return (
     <ProjectsContainer>
+      <h2>Projects</h2>
       {projects.map((project, index) => (
         <ProjectItem
           key={`${project.name}-${index}`}

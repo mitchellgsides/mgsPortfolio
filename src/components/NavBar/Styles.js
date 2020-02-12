@@ -16,12 +16,11 @@ export const NavLinkItem = styled(NavLink)`
   }
 `
 export const NavIcon = styled.div`
+  display: flex;
   cursor: pointer;
   color: ${colors.light};
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `
 export const NavChildren = styled.div`
   display: none;
@@ -46,40 +45,59 @@ export const ParentNavTitle = styled.div`
   padding: 1rem;
   cursor: pointer;
   font-weight: 600;
+`
 
-`
 const NavBarKeyframeIn = keyframes`
-    0% {
-      flex: 1;
-        color: rgba(0, 0, 0, 0);
+    from {
+      height: 10%;
     }
-    100% {
-        flex: 4;
-        top: 0;
+
+    to {
+      height: 60%;
+      background-image: linear-gradient(to right, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
     }
 `
+
 const NavBarKeyframeOut = keyframes`
-    100% {
-      flex: 1;
-        color: rgba(0, 0, 0, 0);
+    from {
+      height: 60%;
     }
-    0% {
-      flex: 4;
-        top: 0;
+
+    to {
+      height: 10%;
+      background-image: linear-gradient(to right, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
     }
+`
+export const NavBarContainerMobile = styled.div`
+  display: none;
+  background-color: ${colors.darker_red};
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  @media (max-width: 600px) {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
 `
 
 export const NavBarContainer = styled.div`
+  align-items: center;
+  justify-content: center;
   width: 100%;
-  flex: 1;
-  animation: ${NavBarKeyframeOut} 400ms ease-in;
+  height: 10%;
+  padding: 1rem;
+  animation: ${NavBarKeyframeOut} 300ms ease-in;
   animation-iteration-count: 1;
   animation-fill-mode: both;
-  @media (max-width: 400px) {
-    top: 0;
+  @media (max-width: 600px) {
+    background-image: linear-gradient(to right, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
+    width: 100%;
+    height: 100%;
+    display: none;
   }
   &:hover {
-    animation: ${NavBarKeyframeIn} 400ms ease-in;
+    animation: ${NavBarKeyframeIn} 300ms ease-in;
     animation-iteration-count: 1;
     animation-fill-mode: both;
     ${NavLinkItem} {

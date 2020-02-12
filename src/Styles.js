@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { colors } from './utils/colors'
 
-export const InfoSection = styled.section`
+export const InfoSection = styled.div`
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@ export const AppContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 100vh;
-  @media (max-width: 420px) {
+  @media (max-width: 600px) {
     flex-direction: column;
     ${InfoSection} {
       display: none;
@@ -64,7 +64,7 @@ export const SubContainer = styled.div`
   justify-content: space-evenly;
 `
 export const InnerContainer = styled(SubContainer)`
-  flex: 1;
+  flex: 2;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -76,7 +76,7 @@ export const Box = styled.div`
   flex: 1;
 `
 export const InfoSectionContainer = styled.div`
-  flex: 1
+  flex: 3;
 `
 export const MainContainer = styled.div`
   flex: 4;

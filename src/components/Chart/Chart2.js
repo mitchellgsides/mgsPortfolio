@@ -18,7 +18,7 @@ const ChartContainer = styled.div`
   flex-direction: row;
   align-items: flex-end;
   padding: 0.5rem;
-  @media (max-width: 500px) {
+  @media (max-width: 600px) {
     display: none;
   }
 `

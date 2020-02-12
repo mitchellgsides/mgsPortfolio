@@ -111,7 +111,7 @@ export const DistanceSelectorList = styled.div`
     background-color: ${colors.light};
     color: ${colors.light};
     margin-bottom: 0.25rem;
-    @media (max-width: 360px) {
+    @media (max-width: 600px) {
         grid-template-columns: 1fr 1fr;
   }
 `
@@ -129,7 +129,7 @@ export const CustomDistanceField = styled.div`
   display: flex;
   flex-direction: row;
   padding: 0.25rem;
-  @media (max-width: 400px) {
+  @media (max-width: 600px) {
     flex-direction: column;
   }
 `

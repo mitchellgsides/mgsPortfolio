@@ -72,18 +72,15 @@ class App extends Component {
           flex={1}
         >
           <NavBar routes={routes.filter(route => !route.requiresParent)} />
-          <InfoSectionContainer>
-            <InfoSection>
-              <h2>{title.toUpperCase()}</h2>
-              <h5>Full Stack Engineer</h5>
-              <p>Under Construction. Check Back for Updates!</p>
-            </InfoSection>
-            <ContactSection>
-              <h2>Contact:</h2>
-              <ContactPage />
-            </ContactSection>
-          </InfoSectionContainer>
-
+          <InfoSection style={{ flex: 2 }}>
+            <h2>{title.toUpperCase()}</h2>
+            <h5>Full Stack Engineer</h5>
+            <p>Under Construction. Check Back for Updates!</p>
+          </InfoSection>
+          <ContactSection style={{ flex: 2 }}>
+            <h2>Contact:</h2>
+            <ContactPage />
+          </ContactSection>
         </SubContainer>
 
         <MainContainer
