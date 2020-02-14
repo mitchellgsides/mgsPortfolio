@@ -8,7 +8,6 @@ const Canvas = styled.canvas`
 // draw function
 function draw (ctx, location, width, height) {
   ctx.beginPath()
-  console.log(location)
   const SCALE_X = 20
   const SCALE_Y = 20
   const OFFSET_X = 0

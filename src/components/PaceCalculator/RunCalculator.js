@@ -14,12 +14,10 @@ export default function RunCalculator (props) {
   const { runDistance, runPace, runTime, handlePaceChange, handleTimeChange, metric } = props
 
   const handlePace = (e, seconds) => {
-    console.log(seconds)
     const distance = runDistance
     const pace = seconds // <-- currently in seconds, which is fine.
     const time = distance * seconds // <--
     const sport = e.target.name
-    console.log(`handlePace, Time: ${time}, Pace: ${pace}`)
 
     handleTimeChange(sport, time, pace)
   }
@@ -29,7 +27,6 @@ export default function RunCalculator (props) {
     const pace = seconds / (distance)
     const sport = e.target.name
     const time = seconds
-    console.log(`handleTime, Time: ${time}, Pace: ${pace}`)
     handlePaceChange(sport, time, pace)
   }
 

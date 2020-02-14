@@ -15,7 +15,6 @@ export default function BikeCalculator (props) {
   const { bikeDistance, bikePace, bikeTime, handlePaceChange, handleTimeChange, metric } = props
 
   const handlePace = (e) => {
-    console.log(e.target.value)
     const distance = bikeDistance
     const pace = e.target.value
     const time = distance / (pace / 3600)

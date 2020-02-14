@@ -27,7 +27,6 @@ export default function SwimCalculator (props) {
     const sport = e.target.name
     const pace = seconds / (distance / 100)
     const time = seconds
-    // console.log(`Time: ${time}, Pace: ${pace}`)
     handlePaceChange(sport, time, pace)
   }
 
