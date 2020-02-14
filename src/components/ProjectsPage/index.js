@@ -65,13 +65,13 @@ const projects = [
     imageSrc: '../',
     imageAlt: 'Power Symbol, Watts'
   },
-  {
-    name: 'Strava PR Analysis',
-    pathname: 'strava-pr',
-    description: 'This project uses jQuery and the Strava API to show brief summary of the last several activities you uploaded to Strava. *May have issues being out of date with Strava API',
-    imageSrc: '../',
-    imageAlt: 'Strava'
-  },
+  // {
+  //   name: 'Strava PR Analysis',
+  //   pathname: 'strava-pr',
+  //   description: 'This project uses jQuery and the Strava API to show brief summary of the last several activities you uploaded to Strava. *May have issues being out of date with Strava API',
+  //   imageSrc: '../',
+  //   imageAlt: 'Strava'
+  // },
   {
     name: 'Physiology Quiz App',
     pathname: 'quiz-app',
