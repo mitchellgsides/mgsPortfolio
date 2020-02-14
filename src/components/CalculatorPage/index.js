@@ -77,7 +77,6 @@ export default class CalculatorPage extends Component {
   }
 
   handleTransitionTime = (e, time) => {
-    console.log(`T ${e.target.name}: ${time}`)
     this.setState({
       [e.target.name]: parseInt(time)
     })
@@ -86,10 +85,6 @@ export default class CalculatorPage extends Component {
   renderTotalTime = () => {
     const { swim, bike, run, t1Time, t2Time } = this.state
     let totalSeconds = Number(swim.time) + Number(run.time) + Number(bike.time) + t1Time + t2Time
-    console.log('swimTime', swim.time)
-    console.log('bikeTime', Number(bike.time))
-    console.log('runTime', run.time)
-    console.log('totalSeconds', totalSeconds)
 
     const hours = Math.floor(totalSeconds / 3600) || 0
     totalSeconds %= 3600
