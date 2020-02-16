@@ -19,41 +19,51 @@ import { PageTitle } from '../../Styles'
 const TechExperienceContainer = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `
 
 const TechItemsContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  max-width: 60vw;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   @media (max-width: 600px) {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    position: relative;
+    height: 200px;
+    overflow-y: auto;
+    width: 100%;
   }
 `
 
+const TechDescription = styled.div`
+  padding: 0.25rem;
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  max-width: 500px;
+  border-radius: 1rem;
+  @media (max-width: 600px) {
+    max-width: 320px;
+    height: 200px;
+  }
+`
 const TechNote = styled.div`
   padding: 0.5rem;
   margin: 1rem;
 `
 
-const TechDescription = styled.div`
-  padding: 0.5rem;
-  margin: 1rem;
+const TechContent = styled.div`
   display: flex;
-  width: 300px;
-  height: 200px;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  max-width: 500px;
-  border-radius: 1rem;
+  flex-direction: column;
+  margin: 0.5rem;
+`
+const TechDetailsContainer = styled.div`
   @media (max-width: 600px) {
+    font-size: 0.8rem;
   }
 `
-
 const TechIcon = styled.img`
     padding: 0.25rem;
     margin: 0.25rem;
@@ -70,7 +80,7 @@ export default function TechExperience () {
     { title: 'CSS3', description: 'CSS3 for a variety of clean UI. With React, I primarily used styled-components, a library for building and managing component styles written in CSS-like format, and Material-UI, Google\'s user interface library', icon: css },
     { title: 'HTML5', description: 'Layouts, inputs, and other HTML5 tags for both standalone web pages and as part of development in React', icon: html },
     { title: 'jQuery', description: 'I used jQuery to build a simple quiz application, which you can check out on the projects page', icon: jQuery },
-    { title: 'Git', description: 'I use Git for Version control both personally and professionally, with experience using git in conjunction with Jira (Bitbucket) and GitHub', icon: git },
+    { title: 'Git', description: 'I use Git for version control both personally and professionally, with experience using git in conjunction with Jira (Bitbucket) and GitHub', icon: git },
     { title: 'PostgreSQL', description: 'For fullstack applications, I used PostgreSQL as my primary database software', icon: postgresql },
     { title: 'npm', description: 'npm and node development packages have powered most of my projects and professional builds', icon: npm },
     { title: 'GitHub', description: 'GitHub, including issues, PR and code review, all linked to Agile methodologies and workflow', icon: github }
@@ -81,18 +91,18 @@ export default function TechExperience () {
       <PageTitle>Tech Experience</PageTitle>
       <TechDescription>
         {selectedTech ? (
-          <>
+          <TechDetailsContainer>
             <TechIcon src={selectedTech.icon} />
-            <div style={{ display: 'flex', flexDirection: 'column', margin: '0.5rem' }}>
+            <TechContent>
               <h3>{selectedTech.title}</h3>
               {selectedTech.description}
-            </div>
-          </>
+            </TechContent>
+          </TechDetailsContainer>
         )
-          : <TechNote>Select an Icon to Learn More</TechNote>}
+          : <TechNote>Select an Icon for a brief overview</TechNote>}
       </TechDescription>
       <TechItemsContainer>
-        {technologies.map((tech, index) => <TechItem key={`${tech.title}-${index}`} tech={tech} title={tech.title} icon={tech.icon} currentlySelected={selectedTech} onSelect={setSelectedTech} />)}
+        {technologies.map((tech, index) => <TechItem selected={selectedTech && selectedTech.title === tech.title} key={`${tech.title}-${index}`} tech={tech} title={tech.title} icon={tech.icon} currentlySelected={selectedTech} onSelect={setSelectedTech} />)}
       </TechItemsContainer>
     </TechExperienceContainer>
   )

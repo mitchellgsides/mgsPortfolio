@@ -15,10 +15,13 @@ import redux from '../../assets/icon-images/redux-original.svg'
 import typescript from '../../assets/icon-images/typescript-original.svg'
 import postgresql from '../../assets/icon-images/postgresql-original.svg'
 import github from '../../assets/icon-images/github-icon.svg'
-// import { colors } from '../../utils/colors'
 
 const ProjectsContainer = styled.div`
   max-width: 500px;
+  @media (max-width: 600px) {
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
 `
 
 const ProjectItem = styled.div`

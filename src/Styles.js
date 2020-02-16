@@ -13,22 +13,33 @@ export const ContactSection = styled(InfoSection)`
 `
 export const MobileContactSection = styled.div`
   display: none;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: ${(p) => p.contactOpen ? 'none' : ''};
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1rem;
   flex: 1;
   background-image: linear-gradient(to top, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
+
 `
 
 export const InfoSectionMobile = styled(InfoSection)`
+  display: ${(p) => p.open ? 'none' : ''};
+
 `
 export const ContactSectionMobile = styled(ContactSection)`
+  display: ${(p) => p.open ? 'none' : ''};
 `
 
 export const PageTitle = styled.h2`
   padding: 0.5rem;
   margin: 0.5rem;
+  @media (max-width: 600px) {
+    font-size: 1.5rem;
+  }
 `
 
 export const AppContainer = styled.div`
@@ -79,6 +90,8 @@ export const InnerContainer = styled(SubContainer)`
   flex-direction: row;
   align-items: center;
   justify-content: center;
+  @media (max-width: 600px) {
+  }
 `
 
 export const Box = styled.div`
@@ -92,4 +105,11 @@ export const MainContainer = styled.div`
   flex: 4;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  height: 100vh;
+  overflow-y: auto;
+  @media (max-width: 600px) {
+    max-width: '';
+    height: 75vh;
+  }
 `

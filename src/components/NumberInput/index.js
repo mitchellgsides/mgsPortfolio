@@ -1,14 +1,10 @@
 import React from 'react'
 import {
   StyledNumberInput,
+  InputContainer,
   Label,
   UnitLabel
-} from '../Styles'
-
-const inputStyle = {
-  display: 'flex',
-  alignItems: 'center'
-}
+} from './Styles'
 
 export default function NumberInput (props) {
   const { onChange, name, label, value, durationType } = props
@@ -35,7 +31,7 @@ export default function NumberInput (props) {
       <Label>{label}:</Label>
       {durationType === 'time' || durationType !== 'pace'
         ? (
-          <div style={inputStyle}>
+          <InputContainer>
             <StyledNumberInput
               min={0}
               max={24}
@@ -47,9 +43,9 @@ export default function NumberInput (props) {
             <UnitLabel>
               {' h'}
             </UnitLabel>
-          </div>)
+          </InputContainer>)
         : null}
-      <div style={inputStyle}>
+      <InputContainer>
         <StyledNumberInput
           name={name}
           min={0}
@@ -61,9 +57,9 @@ export default function NumberInput (props) {
         <UnitLabel>
           {' m'}
         </UnitLabel>
-      </div>
+      </InputContainer>
 
-      <div style={inputStyle}>
+      <InputContainer>
         <StyledNumberInput
           name={name}
           min={0.0}
@@ -75,7 +71,7 @@ export default function NumberInput (props) {
         <UnitLabel>
           {' s '}
         </UnitLabel>
-      </div>
+      </InputContainer>
     </>
   )
 }

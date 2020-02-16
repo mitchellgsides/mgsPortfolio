@@ -14,6 +14,15 @@ const GraphContainer = styled.div`
   align-items: center;
 `
 
+const FileAnalysisContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+`
+
 export default function FunctionFileAnalysis (props) {
   const [file, uploadFile] = useState(null)
   const [powerCurve, setPowerCurve] = useState(null)
@@ -37,8 +46,8 @@ export default function FunctionFileAnalysis (props) {
     : powerCurveTest
 
   return (
-    <div>
-      <Description description='Work in progress! Best viewed on a larger screen. Choose a Garmin or compatible .tcx file to view brief power curve.' />
+    <FileAnalysisContainer>
+      <Description description='Work in progress! Best viewed on a larger screen. Choose a Garmin or compatible .tcx file to view power curve.' />
       <ul>
       Features in development:
         <li>
@@ -61,9 +70,9 @@ export default function FunctionFileAnalysis (props) {
       {loading ? <div>loading...</div> : null}
       <button style={tempStyles} onClick={() => handleXML(file)}>Analyze</button>
       <PageTitle style={{ margin: '0.5rem' }}>Power Curve (Demo)</PageTitle>
-      <GraphContainer style={{ flex: 1, height: '500px', backgroundColor: 'whitesmoke' }}>
+      <GraphContainer style={{ flex: 1, height: '500px', minWidth: '80vw', backgroundColor: 'whitesmoke' }}>
         {data && <NivoLine data={data} />}
       </GraphContainer>
-    </div>
+    </FileAnalysisContainer>
   )
 }

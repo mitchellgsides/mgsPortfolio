@@ -48,7 +48,7 @@ export const ParentNav = styled.div`
       ${NavChildren} {
           display: flex;
       }
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      box-shadow: 0 4px 8px 0 rgba(200, 200, 200, 0.2), 0 6px 20px 0 rgba(200, 200, 200, 0.19);
       background-image: linear-gradient(to right, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
 
   }
@@ -111,12 +111,14 @@ const NavBarKeyframeOut = keyframes`
 export const NavBarContainerMobile = styled.div`
   display: none;
   background-image: linear-gradient(to bottom, rgba(90, 0, 0, 1), rgba(90, 0, 0, 0.5));
+  background-color: rgba(90, 0, 0, 1);
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   @media (max-width: 600px) {
     width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0;
     display: flex;
   }
 `

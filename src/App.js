@@ -24,6 +24,8 @@ import {
   MobileContactSection,
   PageTitle
 } from './Styles'
+import { Icon } from './components/Icon'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
 const stravaProps = {
   title: 'StravaPR',
@@ -54,7 +56,8 @@ class App extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      selected: null
+      selected: null,
+      mobileContactOpen: false
     }
   }
 
@@ -88,28 +91,39 @@ class App extends Component {
         <MainContainer
           flex={5}
         >
-          {routes.map((route, index) => {
-            return (
-              <InnerContainer key={`${index}-${route.title}`}>
+          <InnerContainer>
+            {routes.map((route, index) => {
+              return (
                 <Route
+                  key={`${index}-${route.title}`}
                   path={route.path}
                   exact={route.exact}
                   component={route.component}
                 />
-              </InnerContainer>
-            )
-          })}
+              )
+            })}
+          </InnerContainer>
         </MainContainer>
-        <MobileContactSection>
-          <InfoSectionMobile>
-            <PageTitle>{title.toUpperCase()}</PageTitle>
-            <h5>Full Stack Engineer</h5>
-            <p>Under Construction. Check Back for Updates!</p>
-          </InfoSectionMobile>
-          <ContactSectionMobile>
-            <PageTitle>Contact:</PageTitle>
-            <ContactPage />
-          </ContactSectionMobile>
+        <MobileContactSection onClick={() => this.setState({ mobileContactOpen: !this.state.mobileContactOpen })}>
+          <div style={{ display: 'flex', alignItems: 'center' }}>
+            <PageTitle>Contact</PageTitle>
+            <div onClick={() => this.setState({ mobileContactOpen: false })}>{this.state.mobileContactOpen ? <Icon icon={faChevronDown} /> : null}</div>
+          </div>
+          {
+            this.state.mobileContactOpen ? (
+              <>
+                <InfoSectionMobile>
+                  <PageTitle>{title.toUpperCase()}</PageTitle>
+                  <h5>Full Stack Engineer</h5>
+                  <p>Under Construction. Check Back for Updates!</p>
+                </InfoSectionMobile>
+                <ContactSectionMobile>
+                  <ContactPage />
+                </ContactSectionMobile>
+              </>
+            )
+              : null
+          }
         </MobileContactSection>
       </AppContainer>
     )

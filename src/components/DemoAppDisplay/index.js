@@ -1,4 +1,10 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const DemoAppContainer = styled.div`
+  margin-top: 4rem;
+  margin-bottom: 5rem;
+`
 
 export default function DemoAppDisplay (props) {
   const {
@@ -7,9 +13,9 @@ export default function DemoAppDisplay (props) {
     name
   } = props
   return (
-    <div style={{ maxWidth: '500px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'space-evenly' }}>
+    <DemoAppContainer>
       {title}
       <a style={{ textDecoration: 'none', color: 'red' }} href={link} rel='noopener noreferrer' target='_blank'>{name} Demo</a>
-    </div>
+    </DemoAppContainer>
   )
 }

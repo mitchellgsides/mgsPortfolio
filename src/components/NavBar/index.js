@@ -14,7 +14,7 @@ import {
 } from './Styles'
 
 import { Icon } from '../Icon'
-import { faBicycle, faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
+import { faBicycle, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 
 export default function NavBar (props) {
   const { routes } = props

@@ -43,13 +43,27 @@ export const CalculatorPageContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     padding: 1rem;
-    max-width: 320px;
+    max-width: 500px;
+    @media (max-width: 600px) {
+        max-width: 320px;
+        margin-top: 5rem;
+        margin-bottom: 5rem;
+    }
 `
 
 export const UnitLabel = styled.div`
     font-size: 1rem;
     align-self: center;
     margin: 0.3rem;
+`
+export const StyledNumberInput = styled.input`
+    ::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+    ::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+    }
 `
 
 export const Label = styled.h5`
@@ -164,14 +178,4 @@ export const TitleRow = styled.div`
     grid-template-columns: 30vw 30vw 30vw;
     margin: 0rem;
     padding: 0.25rem;
-`
-
-export const StyledNumberInput = styled.input`
-    ::-webkit-inner-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-    }
-    ::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-    }
 `
