@@ -78,3 +78,12 @@ export function xmlToJson (xml) {
   }
   return jsonObj
 };
+
+/* Data Structure/Algorithm for Greatest Max of All Possible Ranges */
+/* Data
+  [{ time: 1, power: 100}, {time: 2, power: 112}, {time: 3, power: 0}, {time: 4, power: 140}, {time: 5, power: 300}, ...]
+
+*/
+// 1. Set max range and calculate max average as reference
+// 2. Subtract one from range, check each side's values (aka shift the range, take the highest, set the new max range)
+// 3. Repeat until max range = 0
