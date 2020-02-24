@@ -1,8 +1,8 @@
 {
-  "main.js": "/mgsPortfolio/static/js/main.10eff9d4.chunk.js",
-  "main.js.map": "/mgsPortfolio/static/js/main.10eff9d4.chunk.js.map",
-  "static/js/1.fe99f00a.chunk.js": "/mgsPortfolio/static/js/1.fe99f00a.chunk.js",
-  "static/js/1.fe99f00a.chunk.js.map": "/mgsPortfolio/static/js/1.fe99f00a.chunk.js.map",
+  "main.js": "/mgsPortfolio/static/js/main.002b7e4a.chunk.js",
+  "main.js.map": "/mgsPortfolio/static/js/main.002b7e4a.chunk.js.map",
+  "static/js/1.a0cd74a1.chunk.js": "/mgsPortfolio/static/js/1.a0cd74a1.chunk.js",
+  "static/js/1.a0cd74a1.chunk.js.map": "/mgsPortfolio/static/js/1.a0cd74a1.chunk.js.map",
   "runtime~main.js": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js",
   "runtime~main.js.map": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js.map",
   "static/media/css3-icon.svg": "/mgsPortfolio/static/media/css3-icon.a70a7e3e.svg",
@@ -14,9 +14,11 @@
   "static/media/redux-original.svg": "/mgsPortfolio/static/media/redux-original.b7dc3b99.svg",
   "static/media/typescript-original.svg": "/mgsPortfolio/static/media/typescript-original.02867dbe.svg",
   "static/media/postgresql-original.svg": "/mgsPortfolio/static/media/postgresql-original.1e83f710.svg",
-  "static/media/github-icon.svg": "/mgsPortfolio/static/media/github-icon.4097a5be.svg",
+  "static/media/github-icon.svg": "/mgsPortfolio/static/media/github-icon.ad84e47a.svg",
+  "static/media/maroon_bells.jpg": "/mgsPortfolio/static/media/maroon_bells.f8706689.jpg",
+  "static/media/Elevate-reduced.jpg": "/mgsPortfolio/static/media/Elevate-reduced.31bcd771.jpg",
   "static/media/Tetons.jpg": "/mgsPortfolio/static/media/Tetons.44e7f39b.jpg",
   "index.html": "/mgsPortfolio/index.html",
-  "precache-manifest.1e3e1f1f323f0c75dc54963fbed7d863.js": "/mgsPortfolio/precache-manifest.1e3e1f1f323f0c75dc54963fbed7d863.js",
+  "precache-manifest.2529c2fd299a4617c2498a9afb7d92f8.js": "/mgsPortfolio/precache-manifest.2529c2fd299a4617c2498a9afb7d92f8.js",
   "service-worker.js": "/mgsPortfolio/service-worker.js"
 }
