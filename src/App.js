@@ -13,7 +13,6 @@ import mountain from './assets/icon-images/Tetons.jpg'
 // import prism from './assets/icon-images/prism.png'
 import {
   AppContainer,
-  // SubContainer,
   MainContainer,
   InnerContainer,
   ContactSection,
@@ -26,6 +25,9 @@ import {
 } from './Styles'
 import { Icon } from './components/Icon'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import Login from './components/Login'
+import UserContext from './UserContext'
+import Sandbox from './components/Sandbox'
 
 const stravaProps = {
   title: 'StravaPR',
@@ -46,10 +48,12 @@ const routes = [
     title: 'Projects',
     component: Projects
   },
+  { path: '/projects/sandbox', exact: true, title: 'React Sandbox', component: Sandbox, description: 'React Sandbox for developing features, trying out new things, and exploring React and other libraries\' capabilities.', requiresParent: true },
   { path: '/projects/file-analysis', exact: true, title: 'Ride File Analysis', component: FileAnalysis, description: '', requiresParent: true },
   { path: '/projects/triathlon', exact: true, title: 'Triathlon Pace', component: CalculatorPage, description: 'This app allows you to set a distance, time, and pace, and see your total time for a triathlon.', requiresParent: true },
   { path: '/projects/strava-pr', exact: true, title: 'Strava PR Lister', component: () => DemoAppDisplay(stravaProps), description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.', requiresParent: true },
   { path: '/projects/quiz-app', exact: true, title: 'Physiology Quiz', component: () => DemoAppDisplay(quizProps), description: 'This is a simple quiz application built using jQuery, JavaScript, HTML, and CSS.', requiresParent: true }
+  // { path: '/login', exact: true, title: 'Login', component: Login }
 ]
 
 class App extends Component {
@@ -57,75 +61,79 @@ class App extends Component {
     super(props)
     this.state = {
       selected: null,
-      mobileContactOpen: false
+      mobileContactOpen: false,
+      user: ''
     }
   }
 
   render () {
     const title = 'Mitchell G Sides'
+    const { user } = this.state
     return (
-      <AppContainer
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
-          backgroundAttachment: 'fixed',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <ContactContainer
-          flex={1}
+      <UserContext.Provider value={user}>
+        <AppContainer
+          style={{
+            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
+            backgroundAttachment: 'fixed',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
         >
-          <NavBar routes={routes.filter(route => !route.requiresParent)} />
-          <InfoSection style={{ flex: 2 }}>
-            <PageTitle>{title.toUpperCase()}</PageTitle>
-            <h5>Full Stack Engineer</h5>
-            <p>Under Construction. Check Back for Updates!</p>
-          </InfoSection>
-          <ContactSection style={{ flex: 2 }}>
-            <PageTitle>Contact:</PageTitle>
-            <ContactPage />
-          </ContactSection>
-        </ContactContainer>
+          <ContactContainer
+            flex={1}
+          >
+            <NavBar routes={routes.filter(route => !route.requiresParent)} />
+            <InfoSection style={{ flex: 2 }}>
+              <PageTitle>{title.toUpperCase()}</PageTitle>
+              <h5>Full Stack Engineer</h5>
+            </InfoSection>
+            <ContactSection style={{ flex: 2 }}>
+              <PageTitle>Contact:</PageTitle>
+              <ContactPage />
+            </ContactSection>
+          </ContactContainer>
 
-        <MainContainer
-          flex={5}
-        >
-          <InnerContainer>
-            {routes.map((route, index) => {
-              return (
-                <Route
-                  key={`${index}-${route.title}`}
-                  path={route.path}
-                  exact={route.exact}
-                  component={route.component}
-                />
+          <MainContainer
+            flex={5}
+          >
+            <InnerContainer>
+              {routes.map((route, index) => {
+                return (
+                  <Route
+                    key={`${index}-${route.title}`}
+                    path={route.path}
+                    exact={route.exact}
+                    component={route.component}
+                  />
+                )
+              })}
+            </InnerContainer>
+          </MainContainer>
+          <MobileContactSection onClick={() => this.setState({ mobileContactOpen: !this.state.mobileContactOpen })}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <PageTitle>Contact</PageTitle>
+              <div onClick={() => this.setState({ mobileContactOpen: false })}>{this.state.mobileContactOpen ? <Icon icon={faChevronDown} /> : null}</div>
+            </div>
+            {
+              this.state.mobileContactOpen ? (
+                <>
+                  <InfoSectionMobile>
+                    <PageTitle>{title.toUpperCase()}</PageTitle>
+                    <h5>Full Stack Engineer</h5>
+                    <p>Under Construction. Check Back for Updates!</p>
+                  </InfoSectionMobile>
+                  <ContactSectionMobile>
+                    <ContactPage />
+                  </ContactSectionMobile>
+                </>
               )
-            })}
-          </InnerContainer>
-        </MainContainer>
-        <MobileContactSection onClick={() => this.setState({ mobileContactOpen: !this.state.mobileContactOpen })}>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <PageTitle>Contact</PageTitle>
-            <div onClick={() => this.setState({ mobileContactOpen: false })}>{this.state.mobileContactOpen ? <Icon icon={faChevronDown} /> : null}</div>
-          </div>
-          {
-            this.state.mobileContactOpen ? (
-              <>
-                <InfoSectionMobile>
-                  <PageTitle>{title.toUpperCase()}</PageTitle>
-                  <h5>Full Stack Engineer</h5>
-                  <p>Under Construction. Check Back for Updates!</p>
-                </InfoSectionMobile>
-                <ContactSectionMobile>
-                  <ContactPage />
-                </ContactSectionMobile>
-              </>
-            )
-              : null
-          }
-        </MobileContactSection>
-      </AppContainer>
+                : null
+            }
+          </MobileContactSection>
+        </AppContainer>
+      </UserContext.Provider>
+
     )
   }
 }

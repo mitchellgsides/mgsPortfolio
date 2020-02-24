@@ -68,26 +68,25 @@ const projects = [
     imageSrc: '../',
     imageAlt: 'Power Symbol, Watts'
   },
-  // {
-  //   name: 'Strava PR Analysis',
-  //   pathname: 'strava-pr',
-  //   description: 'This project uses jQuery and the Strava API to show brief summary of the last several activities you uploaded to Strava. *May have issues being out of date with Strava API',
-  //   imageSrc: '../',
-  //   imageAlt: 'Strava'
-  // },
+  {
+    name: 'React Sandbox',
+    pathname: 'sandbox',
+    description: 'React Sandbox for developing features, trying out new things, and exploring React and other libraries\' capabilities.',
+    imageSrc: '../',
+    imageAlt: 'React Logo'
+  },
   {
     name: 'Physiology Quiz App',
     pathname: 'quiz-app',
     description: 'This project uses jQuery and CSS for a simple quiz application',
     imageSrc: '../',
-    imageAlt: 'Quiz Applet Logo',
-    link: 'link here'
+    imageAlt: 'Quiz Applet Logo'
   }
 ]
 
 const technologies = [
-  { title: 'React', projects: ['Triathlon Calculator', 'File Analysis'], icon: reactIcon },
-  { title: 'Javascript', projects: ['Physiology Quiz App', 'Physiology Quiz App', 'Triathlon Calculator', 'File Analysis'], icon: javascript },
+  { title: 'React', projects: ['Triathlon Calculator', 'File Analysis', 'React Sandbox'], icon: reactIcon },
+  { title: 'Javascript', projects: ['Physiology Quiz App', 'Physiology Quiz App', 'Triathlon Calculator', 'File Analysis', 'React Sandbox'], icon: javascript },
   { title: 'Redux', projects: [], icon: redux },
   { title: 'TypeScript', projects: [], icon: typescript },
   { title: 'CSS3', projects: ['Physiology Quiz App', 'Strava PR Analysis', 'Triathlon Calculator', 'File Analysis'], icon: css },
@@ -109,7 +108,7 @@ export default function Projects (props) {
         >
           <ProjectTitleLink to={`/projects/${project.pathname}`}>
             <ProjectItemName>
-              {project.link ? <a src={project.link}>{project.name}</a> : project.name}
+              {project.link ? <a href={project.link}>{project.name}</a> : project.name}
             </ProjectItemName>
           </ProjectTitleLink>
           <p>{project.description}</p>

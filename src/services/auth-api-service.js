@@ -4,8 +4,8 @@ import fetch from 'node-fetch'
 const AuthApiService = {
   postLogin (userName, password) {
     const credentials = {
-      userName,
-      password
+      user_name: userName,
+      password: password
     }
     return fetch(`${config.REACT_APP_API_ENDPOINT}/api/auth/login`, {
       method: 'POST',
@@ -14,13 +14,13 @@ const AuthApiService = {
       },
       body: JSON.stringify(credentials)
     }).then(res =>
-      !res.ok ? res.json().then(e => Promise.reject(e)) : res.json()
+      !res.ok ? res.json().then(err => Promise.reject(err)) : res.json()
     )
   },
   postUser (userName, fullName, password) {
     const user = {
-      userName,
-      fullName,
+      user_name: userName,
+      full_name: fullName,
       password
     }
     return fetch(`${config.REACT_APP_API_ENDPOINT}/api/users`, {
