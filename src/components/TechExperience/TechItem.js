@@ -15,6 +15,8 @@ const TechItemContainer = styled.div`
   vertical-align: center;
   cursor: ${(p) => p.small ? '' : 'pointer'};
   background-color: ${(p) => p.selected ? colors.gunmetal : 'none'};
+  padding-left: 2rem;
+  padding-right: 2rem;
   &:hover {
     background-color: ${(p) => p.small ? 'none' : colors.gunmetal};
   }
@@ -31,9 +33,9 @@ const TechIcon = styled.img`
 `
 
 export default function TechItem (props) {
-  const { icon, title, onSelect, tech, currentlySelected, small } = props
+  const { icon, title, onSelect, tech, currentlySelected, selected, small } = props
   return (
-    <TechItemContainer selected={props.selected} small={small} onClick={onSelect ? () => onSelect((tech && tech.title) === (currentlySelected && currentlySelected.title) ? null : tech) : null}>
+    <TechItemContainer selected={selected} small={small} onClick={onSelect ? () => onSelect((tech && tech.title) === (currentlySelected && currentlySelected.title) ? null : tech) : null}>
       <TechIcon small src={icon} alt={`${title} icon`} />
       {small ? <h6>{title}</h6> : <h4>{title}</h4>}
     </TechItemContainer>

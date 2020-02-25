@@ -126,6 +126,25 @@ export default class Activity {
     }
   }
 
+  getPowerCurve (lap) {
+    let powArr
+    if (lap.track) {
+      powArr = lap.track.map(i => i.watts)
+    } else {
+      powArr = lap.track.map(i => i.watts)
+    }
+    let totalSum = 0
+    const output = []
+    for (let i = 0; i < powArr.length; i++) {
+      if (powArr[i] > 0) {
+        totalSum += powArr[i]
+        const avg = totalSum / (i + 1)
+        output.push(Math.round(avg))
+      }
+    }
+    return output
+  }
+
   getPowerArray (lap) {
     let powArr
     if (lap.track) {

@@ -17,17 +17,25 @@ import postgresql from '../../assets/icon-images/postgresql-original.svg'
 import github from '../../assets/icon-images/github-icon.svg'
 
 const ProjectsContainer = styled.div`
-  max-width: 500px;
   @media (max-width: 600px) {
     margin-top: 5rem;
     margin-bottom: 5rem;
   }
 `
 
+const ProjectsGrid = styled.div`
+  border: 1px solid green;
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+`
+
 const ProjectItem = styled.div`
     border-radius: 1rem;
-    padding: 2rem;
-    margin: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+    max-width: 320px;
     border: 1px solid ${colors.gunmetal};
     &:hover {
       background-color: ${colors.gunmetal};
@@ -102,21 +110,23 @@ export default function Projects (props) {
   return (
     <ProjectsContainer>
       <PageTitle>Projects</PageTitle>
-      {projects.map((project, index) => (
-        <ProjectItem
-          key={`${project.name}-${index}`}
-        >
-          <ProjectTitleLink to={`/projects/${project.pathname}`}>
-            <ProjectItemName>
-              {project.link ? <a href={project.link}>{project.name}</a> : project.name}
-            </ProjectItemName>
-          </ProjectTitleLink>
-          <p>{project.description}</p>
-          <TechnologiesContainer>
-            {technologies.filter(tech => tech.projects.includes(project.name)).map((tech, index) => <TechItem small key={`${tech.title}-${index}`} title={tech.title} icon={tech.icon} />)}
-          </TechnologiesContainer>
-        </ProjectItem>
-      ))}
+      <ProjectsGrid>
+        {projects.map((project, index) => (
+          <ProjectItem
+            key={`${project.name}-${index}`}
+          >
+            <ProjectTitleLink to={`/projects/${project.pathname}`}>
+              <ProjectItemName>
+                {project.link ? <a href={project.link}>{project.name}</a> : project.name}
+              </ProjectItemName>
+            </ProjectTitleLink>
+            <p>{project.description}</p>
+            <TechnologiesContainer>
+              {technologies.filter(tech => tech.projects.includes(project.name)).map((tech, index) => <TechItem small key={`${tech.title}-${index}`} title={tech.title} icon={tech.icon} />)}
+            </TechnologiesContainer>
+          </ProjectItem>
+        ))}
+      </ProjectsGrid>
     </ProjectsContainer>
   )
 }

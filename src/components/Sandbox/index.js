@@ -1,95 +1,121 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 // import DogBox from './DogBox'
 import styled from 'styled-components'
 import { motion } from 'framer-motion'
+import { colors } from '../../utils/colors'
+import { technologies } from '../TechExperience/index'
+import TechItem from '../TechExperience/TechItem'
 
 const SandboxContainer = styled.div`
   flex: 1;
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(100, 100, 100, 0.5);
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+`
+const ExperienceContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+`
+const DragRefContainer = styled(motion.div)`
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    cursor: pointer;
+`
+const TargetRefContainer = styled.div`
+    width: 50%;
+`
+const TechDescription = styled.div`
+  padding: 0.25rem;
+  margin: 0.25rem;
+  display: flex;
+  flex-direction: row;
+  height: 250px;
+  border-radius: 1rem;
+  @media (max-width: 600px) {
+    max-width: 320px;
+    height: 200px;
+  }
+`
+const TechNote = styled.div`
+  padding: 0.5rem;
+  margin: 1rem;
+`
+const TechContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.5rem;
+`
+const TechDetailsContainer = styled.div`
+  @media (max-width: 600px) {
+    font-size: 0.8rem;
+  }
+`
+const TechIcon = styled.img`
+    padding: 0.25rem;
+    margin: 0.25rem;
+    width: 75px;
+    border-radius: 5px;
 `
 
-// const TicTacToeBoard = styled.div`
-//   display: grid;
-//   grid-template-rows: 1fr 1fr 1fr;
-//   grid-template-columns: 1fr 1fr 1fr;
-//   background-color: rgba(200, 200, 200, 0.4);
-//   height: 500px;
-//   width: 500px;
-// `
-
-// const TTTBox = styled.div`
-//   border: 1px solid red;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `
-// const Marker = styled.div`
-//     font-weight: 600;
-//     padding: 2rem;
-//     font-size: 2rem;
-// `
-// const Legend = styled.div`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   padding: 1rem;
-//   margin: 0.5rem;
-// `
-
 export default function Sandbox () {
-//   const [X, setX] = useState([])
-//   const [O, setO] = useState([])
-//   const [currentTurn, setTurn] = useState('X')
+  const containerRef = useRef(null)
+  const targetRef = useRef(null)
+  const [selected, setSelected] = useState(null)
 
-  //   const handleSelectBox = (box) => {
-  //     if (currentTurn === 'X') {
-  //       setX([...X, box])
-  //       setTurn('O')
-  //     } else if (currentTurn === 'O') {
-  //       setO([...O, box])
-  //       setTurn('X')
-  //     }
-  //   }
-  //   const TicTacToe = (
-  //     <>
-  //       <Legend>
-  //         <div>
-  //       React Sandbox
-  //         </div>
-  //         <div>
-  //       Current Turn: {currentTurn}
-  //         </div>
-  //       </Legend>
-  //       <TicTacToeBoard>
-  //         {[0, 1, 2, 3, 4, 5, 6, 7, 8].map(i =>
-  //           (
-  //             <TTTBox
-  //               key={`${i}-box`}
-  //               onClick={() => handleSelectBox(i)}
-  //             >
-  //               <Marker>
-  //                 {X.includes(i) ? 'X' : O.includes(i) ? 'O' : ''}
-  //               </Marker>
-  //             </TTTBox>)
-  //         )}
-  //       </TicTacToeBoard>
-  //     </>)
+  const handleDragEnd = (item) => {
+    // icon location === target location
+    const thing = true
+    if (thing) {
+      const newSelected = selected && selected.title === item.title ? null : item
+      setSelected(newSelected)
+    }
+  }
 
   return (
-    <SandboxContainer>
-      <motion.div
-        drag
-        dragConstraints={{
-          left: 0,
-          right: 100,
-          top: 0,
-          bottom: 100
-        }}
-      >
-            Mitchell
-      </motion.div>
+    <SandboxContainer ref={containerRef}>
+      <TargetRefContainer draggable ref={targetRef}>
+        <TechDescription>
+          {selected ? (
+            <TechDetailsContainer>
+              <TechIcon src={selected.icon} />
+              <TechContent>
+                <h3>{selected.title}</h3>
+                {selected.description}
+              </TechContent>
+            </TechDetailsContainer>
+          )
+            : <TechNote>Drag to move icons around (just for fun), then select an icon for a brief overview</TechNote>}
+        </TechDescription>
+      </TargetRefContainer>
+      <ExperienceContainer>
+        {technologies.map((i, index) => {
+          return (
+            <DragRefContainer
+              key={`${index}-tech-elastic-item`}
+              drag
+              dragConstraints={containerRef}
+              onDragEnd={() => handleDragEnd(i)}
+              selected={selected && selected.title === i.title}
+            >
+              <TechItem
+                elastic
+                small
+                title={i.title}
+                icon={i.icon}
+              />
+            </DragRefContainer>)
+        })}
+      </ExperienceContainer>
     </SandboxContainer>
   )
 }
