@@ -1,8 +1,8 @@
 {
-  "main.js": "/mgsPortfolio/static/js/main.002b7e4a.chunk.js",
-  "main.js.map": "/mgsPortfolio/static/js/main.002b7e4a.chunk.js.map",
-  "static/js/1.a0cd74a1.chunk.js": "/mgsPortfolio/static/js/1.a0cd74a1.chunk.js",
-  "static/js/1.a0cd74a1.chunk.js.map": "/mgsPortfolio/static/js/1.a0cd74a1.chunk.js.map",
+  "main.js": "/mgsPortfolio/static/js/main.927fe1e4.chunk.js",
+  "main.js.map": "/mgsPortfolio/static/js/main.927fe1e4.chunk.js.map",
+  "static/js/1.b4eac266.chunk.js": "/mgsPortfolio/static/js/1.b4eac266.chunk.js",
+  "static/js/1.b4eac266.chunk.js.map": "/mgsPortfolio/static/js/1.b4eac266.chunk.js.map",
   "runtime~main.js": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js",
   "runtime~main.js.map": "/mgsPortfolio/static/js/runtime~main.8148a8a3.js.map",
   "static/media/css3-icon.svg": "/mgsPortfolio/static/media/css3-icon.a70a7e3e.svg",
@@ -19,6 +19,6 @@
   "static/media/Elevate-reduced.jpg": "/mgsPortfolio/static/media/Elevate-reduced.31bcd771.jpg",
   "static/media/Tetons.jpg": "/mgsPortfolio/static/media/Tetons.44e7f39b.jpg",
   "index.html": "/mgsPortfolio/index.html",
-  "precache-manifest.2529c2fd299a4617c2498a9afb7d92f8.js": "/mgsPortfolio/precache-manifest.2529c2fd299a4617c2498a9afb7d92f8.js",
+  "precache-manifest.2b59df73fe62fa9d91f6f841f0deb3f4.js": "/mgsPortfolio/precache-manifest.2b59df73fe62fa9d91f6f841f0deb3f4.js",
   "service-worker.js": "/mgsPortfolio/service-worker.js"
 }
