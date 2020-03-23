@@ -24,7 +24,6 @@ const ProjectsContainer = styled.div`
 `
 
 const ProjectsGrid = styled.div`
-  border: 1px solid green;
   border-radius: 1rem;
   display: flex;
   justify-content: space-evenly;
