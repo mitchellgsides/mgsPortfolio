@@ -87,7 +87,7 @@ export const technologies = [
   { title: 'GitHub', description: 'GitHub, including issues, PR and code review, all linked to Agile methodologies and workflow', icon: github }
 ]
 
-export default function TechExperience () {
+export default function TechExperience() {
   const [selectedTech, setSelectedTech] = useState(null)
   const containerRef = useRef(null)
   return (
@@ -103,7 +103,7 @@ export default function TechExperience () {
             </TechContent>
           </TechDetailsContainer>
         )
-          : <TechNote>Drag to move icons around (just for fun), then select an icon for a brief overview</TechNote>}
+          : <TechNote>Click for a brief overview, drag icons around (just for fun)</TechNote>}
       </TechDescription>
       <TechItemsContainer>
         {technologies.map((tech, index) => (
