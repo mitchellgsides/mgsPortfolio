@@ -56,7 +56,7 @@ const routes = [
 ]
 
 class App extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       selected: null,
@@ -70,10 +70,10 @@ class App extends Component {
     this.setState(prevState => ({ isOldVersion: !prevState.isOldVersion }))
   }
 
-  render () {
+  render() {
     const title = 'Mitchell G Sides'
     const { user, isOldVersion } = this.state
-    
+
     return (
       <UserContext.Provider value={user}>
         {/* Toggle button to switch between versions */}

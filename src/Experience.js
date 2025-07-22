@@ -2,9 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import { jobs } from './assets/resume-data'; // Assuming you have a file that exports the jobs data
-import { CgChevronLeft, CgChevronRight } from 'react-icons/cg';
-import { FiMinus } from 'react-icons/fi';
+import { FaCircleChevronLeft, FaCircleChevronRight } from 'react-icons/fa6';
 
+const isLightMode = true;
 const devBorders = false;
 
 const ExperienceCarousel = () => {
@@ -30,7 +30,7 @@ const ExperienceCarousel = () => {
   }, [currentJobIndex]);
 
   return (
-      <ExperienceSection id="experience">
+      <SectionContainer id="experience">
         <CarouselContainer>
           <CarouselTrack
             ref={carouselRef}
@@ -38,43 +38,42 @@ const ExperienceCarousel = () => {
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             {jobs.map((job, index) => (
-              <JobCard
+              <SectionCard
                 key={`job-${index}`}
                 gradient={job.gradient}
                 initial="hidden"
                 animate={index === currentJobIndex ? "visible" : "hidden"}
               >
                 <CardImage image={job.image} />
-                
-                <JobContent>
-                  <JobHeader>
-                    <JobTitle>
+
+                <SectionContent>
+                  <SectionHeader>
+                    <SectionTitle>
                       {job.title}
-                    </JobTitle>
-                    <JobDuration>
+                    </SectionTitle>
+                    <SectionDetail>
                       {job.duration}
-                    </JobDuration>
+                    </SectionDetail>
                     <JobPosition>
                       {job.position}
                     </JobPosition>
-                  </JobHeader>
+                  </SectionHeader>
 
-                  <JobDescription>
+                  <SectionDescription>
                     {job.bullets.map((bullet, bulletIndex) => (
-                      <JobItem
+                      <SectionItem
                         key={bulletIndex}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: bulletIndex * 0.1 }}
                       >
-                        ️    <FiMinus size="0.8rem" color={'whitesmoke'} style={{ marginRight: '0.2rem' }} />
                             {bullet}
-                      </JobItem>
+                      </SectionItem>
                     ))}
-                  </JobDescription>
-                  
-                </JobContent>
-              </JobCard>
+                  </SectionDescription>
+
+                </SectionContent>
+              </SectionCard>
             ))}
           </CarouselTrack>
 
@@ -94,25 +93,25 @@ const ExperienceCarousel = () => {
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-              <CgChevronLeft size="40px" color={'whitesmoke'} />
+              <FaCircleChevronLeft size="40px" color={isLightMode ? '#3c3c3c' : 'whitesmoke'} />
             </NavButton>
             <NavButton
               onClick={nextJob}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
-                <CgChevronRight size="40px" color={'whitesmoke'} />
+                <FaCircleChevronRight size="40px" color={isLightMode ? '#3c3c3c' : 'whitesmoke'} />
             </NavButton>
           </ButtonGroup>
         </NavigationContainer>
-      </ExperienceSection>
+      </SectionContainer>
   );
 };
 
 export default ExperienceCarousel;
 
 // Styled Components
-const ExperienceSection = styled.section.withConfig({
+export const SectionContainer = styled.section.withConfig({
   displayName: 'ExperienceSection'
 })`
   display: flex;
@@ -120,28 +119,36 @@ const ExperienceSection = styled.section.withConfig({
   height: 100vh;
   padding: 0.5rem 10vw;
   padding-top: 5rem;
+  background-color: ${isLightMode ? '#fff' : '#000'};
+  
+  @media (max-width: 809px) {
+    padding: 0.5rem 5vw;
+    padding-top: 4rem;
+  }
 `;
 
-const SectionTitle = styled(motion.h2).withConfig({
+export const SectionTitle = styled(motion.h2).withConfig({
   displayName: 'SectionTitle'
 })`
   text-align: left;
   font-size: 2rem;
   font-weight: 800;
+  color: ${isLightMode ? '#3c3c3c' : '#e2e2e2'};
 `;
 
-const CarouselContainer = styled.div.withConfig({
+export const CarouselContainer = styled.div.withConfig({
   displayName: 'CarouselContainer'
 })`
   position: relative;
   width: 100%;
   flex: 1;
-  border: 1px solid #3a3a3a;
   border-radius: 12px;
+  background-color: ${isLightMode ? '#f9f9f9' : '#1a1a1a'};
   overflow: hidden;
+  box-shadow: ${isLightMode ? '0 2px 10px rgba(0,0,0,0.1)' : '0 2px 10px rgba(255,255,255,0.1)'};
 `;
 
-const CarouselTrack = styled(motion.div).withConfig({
+export const CarouselTrack = styled(motion.div).withConfig({
   displayName: 'CarouselTrack'
 })`
   display: flex;
@@ -150,91 +157,7 @@ const CarouselTrack = styled(motion.div).withConfig({
   ${devBorders && 'border: 1px solid yellow;'}
 `;
 
-const JobCard = styled(motion.div).withConfig({
-  displayName: 'JobCard'
-})`
-  min-width: 100%;
-  height: 100%;
-  padding: 0 10vw;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-`;
-
-const JobContent = styled.div.withConfig({
-  displayName: 'JobContent'
-})`
-  height: 100%;
-  padding: 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  color: white;
-  position: relative;
-  z-index: 2;
-  ${devBorders && 'border: 1px solid purple;'}
-`;
-
-const JobHeader = styled(motion.div).withConfig({
-  displayName: 'JobHeader'
-})`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  ${devBorders && 'border: 1px solid gold;'}
-  padding: 0.2rem;
-`;
-
-const JobTitle = styled(motion.h3).withConfig({
-  displayName: 'JobTitle'
-})`
-  font-size: 1.4rem;
-  font-weight: 700;
-    text-align: left;
-`;
-
-const JobPosition = styled(motion.h4).withConfig({
-  displayName: 'JobPosition'
-})`
-  font-size: 1.0rem;
-  font-weight: 600;
-  `;
-
-const JobDuration = styled(motion.div).withConfig({
-  displayName: 'JobDuration'
-})`
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
-  opacity: 0.8;
-  justify-self: flex-end;
-`;
-
-const JobDescription = styled(motion.div).withConfig({
-  displayName: 'JobDescription'
-})`
-  padding: 0;
-  margin: 0;
-  ${devBorders && 'border: 1px solid red;'}
-  color: white;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-`;
-
-const JobItem = styled(motion.div).withConfig({
-  displayName: 'JobItem'
-})`
-  font-size: 0.9rem;
-  padding: 0.2rem;
-  ${devBorders && 'border: 1px solid blue;'}
-  text-align: left;
-`;
-
-const CardImage = styled.div.withConfig({
+export const CardImage = styled.div.withConfig({
   displayName: 'CardImage'
 })`
   width: 100%;
@@ -247,11 +170,165 @@ const CardImage = styled.div.withConfig({
   margin-top: 0.5rem;
 `;
 
-const NavigationContainer = styled.div.withConfig({
+export const ButtonGroup = styled.div.withConfig({
+  displayName: 'ButtonGroup'
+})`
+  display: flex;
+  gap: 0.5rem;
+`;
+
+// Section-specific styled components for Experience
+
+export const SectionCard = styled(motion.div).withConfig({
+  displayName: 'JobCard'
+})`
+  min-width: 100%;
+  height: 100%;
+  padding: 0 10vw;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  
+  @media (max-width: 809px) {
+    padding: 0 5vw;
+    // overflow-y: auto;
+  }
+`;
+
+export const SectionContent = styled.div.withConfig({
+  displayName: 'JobContent'
+})`
+  height: 100%;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: ${isLightMode ? '#000' : 'white'};
+  position: relative;
+  z-index: 2;
+  ${devBorders && 'border: 1px solid purple;'}
+  
+  @media (max-width: 809px) {
+    height: auto;
+    min-height: 100%;
+    overflow-y: auto;
+    padding: 0.5rem 0.25rem;
+  }
+`;
+
+export const SectionHeader = styled(motion.div).withConfig({
+  displayName: 'JobHeader'
+})`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  ${devBorders && 'border: 1px solid gold;'}
+  padding: 0.2rem;
+  
+  @media (max-width: 809px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem 0.2rem;
+    flex-shrink: 0;
+  }
+`;
+
+export const SubTitle = styled(motion.h3).withConfig({
+  displayName: 'JobTitle'
+})`
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: left;
+  color: ${isLightMode ? '#000' : '#fff'};
+  
+  @media (max-width: 809px) {
+    font-size: 1.2rem;
+    margin: 0;
+    order: 1;
+  }
+`;
+
+const JobPosition = styled(motion.h4).withConfig({
+  displayName: 'JobPosition'
+})`
+  font-size: 1.0rem;
+  font-weight: 600;
+  color: ${isLightMode ? '#000' : '#fff'};
+  
+  @media (max-width: 809px) {
+    font-size: 0.9rem;
+    margin: 0;
+    order: 2;
+  }
+`;
+
+export const SectionDetail = styled(motion.div).withConfig({
+  displayName: 'JobDuration'
+})`
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  opacity: 0.8;
+  justify-self: flex-end;
+  color: ${isLightMode ? '#666' : '#ccc'};
+  
+  @media (max-width: 809px) {
+    justify-self: flex-start;
+    font-size: 0.8rem;
+    order: 3;
+  }
+`;
+
+export const SectionDescription = styled(motion.div).withConfig({
+  displayName: 'JobDescription'
+})`
+  padding: 0;
+  margin: 0;
+  ${devBorders && 'border: 1px solid red;'}
+  color: ${isLightMode ? '#000' : 'white'};
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  
+  @media (max-width: 809px) {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    overflow-y: auto;
+    height: auto;
+    max-height: 100%;
+  }
+`;
+
+export const SectionItem = styled(motion.div).withConfig({
+  displayName: 'JobItem'
+})`
+  font-size: 0.9rem;
+  padding: 0.4rem;
+  ${devBorders && 'border: 1px solid blue;'}
+  text-align: center;
+  border-left: 1px solid ${isLightMode ? '#ccc' : '#444'};
+  
+  @media (max-width: 809px) {
+    text-align: left;
+    border-left: none;
+    border-bottom: 1px solid ${isLightMode ? '#ccc' : '#444'};
+    padding: 0.6rem 0.4rem;
+    font-size: 0.85rem;
+  }
+`;
+
+export const NavigationContainer = styled.div.withConfig({
   displayName: 'NavigationContainer'
 })`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 20px;
   align-items: center;
   padding: 1rem 0;
   z-index: 10;
@@ -259,28 +336,18 @@ const NavigationContainer = styled.div.withConfig({
   ${devBorders && 'border: 1px solid green;'}
 `;
 
-const ButtonGroup = styled.div.withConfig({
-  displayName: 'ButtonGroup'
-})`
-  display: flex;
-  gap: 0.5rem;
-`;
-
-const NavButton = styled(motion.button).withConfig({
+export const NavButton = styled(motion.button).withConfig({
   displayName: 'NavButton'
 })`
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: none;
   padding: 0.5rem;
-  border-radius: 50%;
-  background-color: rgba(0, 0, 0, 0.5);
   cursor: pointer;
-  width: 50px;
-  height: 50px;
   
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
 `;

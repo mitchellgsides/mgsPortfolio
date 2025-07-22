@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled, { createGlobalStyle } from 'styled-components';
 import { HiMenu, HiX } from 'react-icons/hi';
 import wallpaper from './assets/icon-images/wallpaper-1de3c9.jpg';
-import ExperienceCarousel from './Experience';
+import ExperienceCarousel, { NavButton } from './Experience';
 import PersonalCarousel from './Personal';
 
 // Global styles for fonts
@@ -13,6 +13,8 @@ const GlobalFonts = createGlobalStyle`
     font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   }
 `;
+
+const isLightMode = true;
 
 // Breakpoints
 const breakpoints = {
@@ -75,23 +77,26 @@ const AppNew = () => {
       <GlobalFonts />
       <FloatingHeader activeSection={activeSection} scrollY={scrollY}>
         <HeaderContent>
-          <Logo onClick={() => scrollToSection('hero')}>Mitchell G Sides</Logo>
+          <Logo scrollY={scrollY} onClick={() => scrollToSection('hero')}>Mitchell G Sides</Logo>
           
           {/* Desktop Navigation */}
           <Nav>
             <NavItem 
+              scrollY={scrollY}
               active={activeSection === 'experience'}
               onClick={() => scrollToSection('experience')}
             >
               Experience
             </NavItem>
             <NavItem 
+              scrollY={scrollY}
               active={activeSection === 'personal'}
               onClick={() => scrollToSection('personal')}
             >
               Personal
             </NavItem>
             <NavItem 
+              scrollY={scrollY}
               active={activeSection === 'bottom-hero'}
               onClick={() => scrollToSection('bottom-hero')}
             >
@@ -195,18 +200,13 @@ const FloatingHeader = styled.header.withConfig({
   left: 0;
   right: 0;
   z-index: 999;
-  padding: 8px;
+  padding: 4px;
   transition: all 0.3s ease;
-  background: rgba(0, 0, 0, ${props => {
-    // Calculate opacity based on scroll position on mobile
-    // const isMobile = window.innerWidth <= 809;
-    // if (isMobile) {
-      const maxScroll = 500; // Scroll distance to reach full opacity
-      const opacity = Math.min(props.scrollY / maxScroll, 0.8);
-      return opacity;
-    // }
-    // return 0; // Desktop stays transparent
-  }});
+  background: ${props => {
+    const maxScroll = 500;
+    const opacity = Math.min(props.scrollY / maxScroll, 0.8);
+    return isLightMode ? `rgba(255, 255, 255, ${opacity})` : `rgba(0, 0, 0, ${opacity})`;
+  }};
   backdrop-filter: ${props => {
     const isMobile = window.innerWidth <= 809;
     if (isMobile && props.scrollY > 50) {
@@ -240,6 +240,8 @@ const Nav = styled.nav.withConfig({
   align-items: center;
   justify-content: center;
   background: transparent;
+  z-index: 1000;
+  position: relative;
   
   @media (max-width: ${breakpoints.mobile}) {
     display: none;
@@ -251,18 +253,29 @@ const NavItem = styled.button.withConfig({
 })`
   background: none;
   border: none;
-  color: ${props => props.active ? '#fff' : 'rgba(255, 255, 255, 0.7)'};
+  color: ${props => {
+    const maxScroll = 500;
+    const opacity = Math.min(props.scrollY / maxScroll, 0.8);
+    // Start light, transition to dark as background opacity increases
+    if (isLightMode) {
+      return `rgba(${255 - (255 * opacity)}, ${255 - (255 * opacity)}, ${255 - (255 * opacity)}, 1)`;
+    } else {
+      // Start dark, transition to light as background opacity increases
+      return `rgba(${255 * opacity}, ${255 * opacity}, ${255 * opacity}, 1)`;
+    }
+  }};
   font-size: 16px;
   font-weight: ${props => props.active ? '600' : '500'};
   font-family: 'Host Grotesk', sans-serif;
-  border-bottom: ${props => props.active ? '1px solid #fff' : 'none'};
+  border-bottom: ${props => props.active ? (isLightMode ? '1px solid #000' : '1px solid #fff') : 'none'};
   cursor: pointer;
-  padding: 8px 16px;
+  padding: 8px;
   transition: all 0.3s ease;
   letter-spacing: -0.01em;
   
   &:hover {
-    color: #fff;
+    color: ${isLightMode ? '#000' : '#fff'};
+    transform: scale(1.1);
   }
   
   @media (max-width: ${breakpoints.mobile}) {
@@ -271,20 +284,23 @@ const NavItem = styled.button.withConfig({
   }
 `;
 
-const Logo = styled(NavItem).withConfig({
+const Logo = styled(NavButton).withConfig({
   displayName: 'Logo'
 })`
   font-size: 24px;
-  font-weight: 700;
-  color: #fff;
-  align-self: left;
-  justify-self: left;
+  width: 100%;
+  color: ${props => {
+    const maxScroll = 500;
+    const opacity = Math.min(props.scrollY / maxScroll, 0.8);
+    // Start light, transition to dark as background opacity increases
+    if (isLightMode) {
+      return `rgba(${255 - (255 * opacity)}, ${255 - (255 * opacity)}, ${255 - (255 * opacity)}, ${opacity})`;
+    } else {
+      return `rgba(${255 * opacity}, ${255 * opacity}, ${255 * opacity}, ${opacity})`;
+    }
+  }};
+  font-weight: 600;
   font-family: 'Host Grotesk', sans-serif;
-  border-bottom: none !important;
-  
-  @media (max-width: ${breakpoints.mobile}) {
-    font-size: 20px;
-  }
 `;
 
 // Mobile Menu Components
@@ -294,14 +310,14 @@ const MobileMenuButton = styled.button.withConfig({
   display: none;
   background: none;
   border: none;
-  color: #fff;
+  color: ${isLightMode ? '#000' : '#fff'};
   cursor: pointer;
   padding: 8px;
   border-radius: 4px;
   transition: background-color 0.3s ease;
   
   &:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: ${isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   }
   
   @media (max-width: ${breakpoints.mobile}) {
@@ -316,9 +332,9 @@ const MobileMenuDropdown = styled.div.withConfig({
   top: 100%;
   left: 0;
   right: 0;
-  background: rgba(26, 26, 26, 0.95);
+  background: ${isLightMode ? 'rgba(255, 255, 255, 0.95)' : 'rgba(26, 26, 26, 0.95)'};
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid ${isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   display: ${props => props.isOpen ? 'block' : 'none'};
   z-index: 997;
   
@@ -332,7 +348,7 @@ const MobileNavItem = styled.button.withConfig({
 })`
   background: none;
   border: none;
-  color: ${props => props.active ? '#fff' : 'rgba(255, 255, 255, 0.7)'};
+  color: ${props => props.active ? (isLightMode ? '#000' : '#fff') : (isLightMode ? 'rgba(0, 0, 0, 0.7)' : 'rgba(255, 255, 255, 0.7)')};
   font-size: 16px;
   font-weight: ${props => props.active ? '600' : '500'};
   font-family: 'Host Grotesk', sans-serif;
@@ -341,20 +357,20 @@ const MobileNavItem = styled.button.withConfig({
   transition: all 0.3s ease;
   text-align: left;
   letter-spacing: -0.01em;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid ${isLightMode ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)'};
   
   &:last-child {
     border-bottom: none;
   }
   
   &:hover {
-    color: #fff;
-    background: rgba(255, 255, 255, 0.05);
+    color: ${isLightMode ? '#000' : '#fff'};
+    background: ${isLightMode ? 'rgba(0, 0, 0, 0.05)' : 'rgba(255, 255, 255, 0.05)'};
   }
   
   ${props => props.active && `
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 3px solid #fff;
+    background: ${isLightMode ? 'rgba(10, 10, 10, 0.05)' : 'rgba(245, 245, 245, 0.05)'};
+    border-left: 1px solid ${isLightMode ? '#000' : '#fff'};
   `}
 `;
 
@@ -432,8 +448,8 @@ const BottomHeroSection = styled(HeroSection).withConfig({
 const ContactSection = styled.section.withConfig({
   displayName: 'ContactSection'
 })`
-  background-color: #000;
-  color: #fff;
+  background-color: ${isLightMode ? '#f8f9fa' : '#000'};
+  color: ${isLightMode ? '#000' : '#fff'};
   min-height: 60vh;
   padding: 80px 0 40px 0;
   ${devBorders && 'border: 1px solid green;'}
@@ -482,7 +498,7 @@ const ContactTitle = styled.h2.withConfig({
 })`
   font-weight: 600;
   font-family: 'Host Grotesk', sans-serif;
-  color: #fff;
+  color: ${isLightMode ? '#000' : '#fff'};
   text-align: left;
 `;
 
@@ -498,7 +514,7 @@ const ContactList = styled.div.withConfig({
 const ContactLink = styled.a.withConfig({
   displayName: 'ContactLink'
 })`
-  color: #999;
+  color: ${isLightMode ? '#666' : '#999'};
   text-decoration: none;
   font-size: 1rem;
   font-family: 'Host Grotesk', sans-serif;
@@ -506,7 +522,7 @@ const ContactLink = styled.a.withConfig({
   transition: color 0.3s ease;
   padding: 0px;
   &:hover {
-    color: #fff;
+    color: ${isLightMode ? '#000' : '#fff'};
   }
 `;
 
@@ -532,7 +548,7 @@ const ContactInfo = styled.div.withConfig({
 const ContactText = styled.p.withConfig({
   displayName: 'ContactText'
 })`
-  color: #999;
+  color: ${isLightMode ? '#666' : '#999'};
   font-size: 1rem;
   font-family: 'Host Grotesk', sans-serif;
   font-weight: 400;
@@ -547,7 +563,7 @@ const ContactFooter = styled.div.withConfig({
   align-items: center;
   justify-content: space-between;
   padding-top: 40px;
-  border-top: 1px solid #333;
+  border-top: 1px solid ${isLightMode ? '#e0e0e0' : '#333'};
   gap: 20px;
   
   @media (max-width: ${breakpoints.tablet}) {
@@ -560,7 +576,7 @@ const ContactFooter = styled.div.withConfig({
 const FooterText = styled.p.withConfig({
   displayName: 'FooterText'
 })`
-  color: #666;
+  color: ${isLightMode ? '#999' : '#666'};
   font-size: 0.9rem;
   font-family: 'Host Grotesk', sans-serif;
   margin: 0;
@@ -569,7 +585,7 @@ const FooterText = styled.p.withConfig({
 const FooterCredit = styled.p.withConfig({
   displayName: 'FooterCredit'
 })`
-  color: #666;
+  color: ${isLightMode ? '#999' : '#666'};
   font-size: 0.9rem;
   font-family: 'Host Grotesk', sans-serif;
   margin: 0;
@@ -583,6 +599,7 @@ const FooterCredit = styled.p.withConfig({
 const Container = styled.div.withConfig({
   displayName: 'Container'
 })`
-  color: #fff;
+  color: ${isLightMode ? '#000' : '#fff'};
   font-family: 'Host Grotesk', sans-serif;
+  background-color: ${isLightMode ? '#fff' : '#000'};
 `;
