@@ -1,0 +1,588 @@
+import React, { useState, useEffect } from 'react'
+import styled, { createGlobalStyle } from 'styled-components';
+import { HiMenu, HiX } from 'react-icons/hi';
+import wallpaper from './assets/icon-images/wallpaper-1de3c9.jpg';
+import ExperienceCarousel from './Experience';
+import PersonalCarousel from './Personal';
+
+// Global styles for fonts
+const GlobalFonts = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:wght@300;400;500;600;700&display=swap');
+  
+  * {
+    font-family: 'Host Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  }
+`;
+
+// Breakpoints
+const breakpoints = {
+  mobile: '809px',
+  tablet: '1439px'
+};
+
+const devBorders = false;
+
+const AppNew = () => {
+  const [activeSection, setActiveSection] = useState('hero');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+  };
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+    //   const heroSection = document.getElementById('hero');
+      const experienceSection = document.getElementById('experience');
+      const personalSection = document.getElementById('personal');
+      const bottomHeroSection = document.getElementById('bottom-hero');
+      const contactSection = document.getElementById('contact');
+      
+      const scrollPosition = window.scrollY + 100;
+      setScrollY(window.scrollY);
+
+      if (scrollPosition < experienceSection.offsetTop) {
+        setActiveSection('hero');
+      } else if (scrollPosition < personalSection.offsetTop) {
+        setActiveSection('experience');
+      } else if (scrollPosition < bottomHeroSection.offsetTop) {
+        setActiveSection('personal');
+      } else if (scrollPosition < contactSection.offsetTop) {
+        setActiveSection('bottom-hero');
+      } else {
+        setActiveSection('contact');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSection = (sectionId) => {
+    const element = document.getElementById(sectionId);
+    element.scrollIntoView({ behavior: 'smooth' });
+    closeMobileMenu();
+  };
+
+  return (
+    <Container>
+      <GlobalFonts />
+      <FloatingHeader activeSection={activeSection} scrollY={scrollY}>
+        <HeaderContent>
+          <Logo onClick={() => scrollToSection('hero')}>Mitchell G Sides</Logo>
+          
+          {/* Desktop Navigation */}
+          <Nav>
+            <NavItem 
+              active={activeSection === 'experience'}
+              onClick={() => scrollToSection('experience')}
+            >
+              Experience
+            </NavItem>
+            <NavItem 
+              active={activeSection === 'personal'}
+              onClick={() => scrollToSection('personal')}
+            >
+              Personal
+            </NavItem>
+            <NavItem 
+              active={activeSection === 'bottom-hero'}
+              onClick={() => scrollToSection('bottom-hero')}
+            >
+              Contact
+            </NavItem>
+          </Nav>
+
+          {/* Mobile Menu Button */}
+          <MobileMenuButton onClick={toggleMobileMenu}>
+            {mobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+          </MobileMenuButton>
+        </HeaderContent>
+
+        {/* Mobile Menu Dropdown */}
+        <MobileMenuDropdown isOpen={mobileMenuOpen}>
+          <MobileNavItem 
+            active={activeSection === 'experience'}
+            onClick={() => scrollToSection('experience')}
+          >
+            Experience
+          </MobileNavItem>
+          <MobileNavItem 
+            active={activeSection === 'personal'}
+            onClick={() => scrollToSection('personal')}
+          >
+            Personal
+          </MobileNavItem>
+          <MobileNavItem 
+            active={activeSection === 'bottom-hero'}
+            onClick={() => scrollToSection('bottom-hero')}
+          >
+            Contact
+          </MobileNavItem>
+        </MobileMenuDropdown>
+      </FloatingHeader>
+
+      <HeroSection id="hero">
+        <HeroContent>
+          <MainTitle>Mitchell G Sides</MainTitle>
+          <SubTitle>Welcome to my resume</SubTitle>
+        </HeroContent>
+      </HeroSection>
+
+      <ExperienceCarousel />
+      <PersonalCarousel />
+
+      {/* Bottom Contact Hero for style */}
+      <BottomHeroSection id="bottom-hero">
+        <HeroContent>
+          <MainTitle>Contact</MainTitle>
+          <SubTitle>Get in Touch</SubTitle>
+        </HeroContent>
+      </BottomHeroSection>
+
+      <ContactSection id="contact">
+  <ContactContainer>
+    <ContactGrid>
+      <ContactColumn>
+        <ContactTitle>Links</ContactTitle>
+        <ContactList>
+          <ContactLink href="https://linkedin.com/in/mitchell-sides" target="_blank">LinkedIn</ContactLink>
+          <ContactLink href="https://github.com/mitchellgsides" target="_blank">GitHub</ContactLink>
+          <ContactLink href="mailto:mitchellgsides@gmail.com">Email</ContactLink>
+        </ContactList>
+      </ContactColumn>
+      
+      <ContactColumn>
+        <ContactTitle>Location</ContactTitle>
+        <ContactAddress>
+          <ContactText>The Woodlands, TX, USA</ContactText>
+          <ContactText>United States</ContactText>
+        </ContactAddress>
+      
+        <ContactTitle>Contact</ContactTitle>
+        <ContactInfo>
+          <ContactText>+1 (832) 244-4599</ContactText>
+          <ContactText>mitchellgsides@gmail.com</ContactText>
+        </ContactInfo>
+      </ContactColumn>
+    </ContactGrid>
+    
+    <ContactFooter>
+      <FooterText>© 2025 Mitchell G Sides. All rights reserved.</FooterText>
+      <FooterCredit>Designed by Mitchell Sides</FooterCredit>
+    </ContactFooter>
+  </ContactContainer>
+</ContactSection>
+      
+    </Container>
+  )
+}
+
+export default AppNew;
+
+// Floating Header
+const FloatingHeader = styled.header.withConfig({
+  displayName: 'FloatingHeader'
+})`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  padding: 8px;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, ${props => {
+    // Calculate opacity based on scroll position on mobile
+    // const isMobile = window.innerWidth <= 809;
+    // if (isMobile) {
+      const maxScroll = 500; // Scroll distance to reach full opacity
+      const opacity = Math.min(props.scrollY / maxScroll, 0.8);
+      return opacity;
+    // }
+    // return 0; // Desktop stays transparent
+  }});
+  backdrop-filter: ${props => {
+    const isMobile = window.innerWidth <= 809;
+    if (isMobile && props.scrollY > 50) {
+      return 'blur(10px)';
+    }
+    return 'none';
+  }};
+  
+
+  /* Responsive */
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 6px;
+  }
+`;
+
+const HeaderContent = styled.div.withConfig({
+  displayName: 'HeaderContent'
+})`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1200px;
+`;
+
+const Nav = styled.nav.withConfig({
+  displayName: 'Nav'
+})`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+const NavItem = styled.button.withConfig({
+  displayName: 'NavItem'
+})`
+  background: none;
+  border: none;
+  color: ${props => props.active ? '#fff' : 'rgba(255, 255, 255, 0.7)'};
+  font-size: 16px;
+  font-weight: ${props => props.active ? '600' : '500'};
+  font-family: 'Host Grotesk', sans-serif;
+  border-bottom: ${props => props.active ? '1px solid #fff' : 'none'};
+  cursor: pointer;
+  padding: 8px 16px;
+  transition: all 0.3s ease;
+  letter-spacing: -0.01em;
+  
+  &:hover {
+    color: #fff;
+  }
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+`;
+
+const Logo = styled(NavItem).withConfig({
+  displayName: 'Logo'
+})`
+  font-size: 24px;
+  font-weight: 700;
+  color: #fff;
+  align-self: left;
+  justify-self: left;
+  font-family: 'Host Grotesk', sans-serif;
+  border-bottom: none !important;
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 20px;
+  }
+`;
+
+// Mobile Menu Components
+const MobileMenuButton = styled.button.withConfig({
+  displayName: 'MobileMenuButton'
+})`
+  display: none;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    display: block;
+  }
+`;
+
+const MobileMenuDropdown = styled.div.withConfig({
+  displayName: 'MobileMenuDropdown'
+})`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: rgba(26, 26, 26, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: ${props => props.isOpen ? 'block' : 'none'};
+  z-index: 997;
+  
+  @media (min-width: ${breakpoints.mobile}) {
+    display: none;
+  }
+`;
+
+const MobileNavItem = styled.button.withConfig({
+  displayName: 'MobileNavItem'
+})`
+  background: none;
+  border: none;
+  color: ${props => props.active ? '#fff' : 'rgba(255, 255, 255, 0.7)'};
+  font-size: 16px;
+  font-weight: ${props => props.active ? '600' : '500'};
+  font-family: 'Host Grotesk', sans-serif;
+  cursor: pointer;
+  padding: 16px 20px;
+  transition: all 0.3s ease;
+  text-align: left;
+  letter-spacing: -0.01em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+  }
+  
+  ${props => props.active && `
+    background: rgba(255, 255, 255, 0.1);
+    border-left: 3px solid #fff;
+  `}
+`;
+
+// Hero Section
+const HeroSection = styled.section.withConfig({
+  displayName: 'HeroSection'
+})`
+  background-image: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 40%, rgba(0,0,0,0.7) 100%), url(${wallpaper});
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const HeroContent = styled.div.withConfig({
+  displayName: 'HeroContent'
+})`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    color: #fff;
+`;
+
+const MainTitle = styled.h1.withConfig({
+  displayName: 'MainTitle'
+})`
+  font-size: 4rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-family: 'Host Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 3rem;
+  }
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 2.5rem;
+  }
+`;
+
+const SubTitle = styled.p.withConfig({
+  displayName: 'SubTitle'
+})`
+  font-size: 1.5rem;
+  font-weight: 300;
+  font-family: 'Host Grotesk', sans-serif;
+  letter-spacing: -0.01em;
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    font-size: 1.3rem;
+  }
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 1.1rem;
+  }
+`;
+
+// Bottom Hero Section
+const BottomHeroSection = styled(HeroSection).withConfig({
+    displayName: 'BottomHero'
+})`
+    height: 40vh;
+    min-height: 400px;
+`;
+
+// Contact Section
+const ContactSection = styled.section.withConfig({
+  displayName: 'ContactSection'
+})`
+  background-color: #000;
+  color: #fff;
+  min-height: 60vh;
+  padding: 80px 0 40px 0;
+  ${devBorders && 'border: 1px solid green;'}
+`;
+
+const ContactContainer = styled.div.withConfig({
+  displayName: 'ContactContainer'
+})`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 0 20px;
+    gap: 40px;
+  }
+`;
+
+const ContactGrid = styled.div.withConfig({
+  displayName: 'ContactGrid'
+})`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;  
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+`;
+
+const ContactColumn = styled.div.withConfig({
+  displayName: 'ContactColumn'
+})`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  ${devBorders && 'border: 1px solid green;'}
+`;
+
+const ContactTitle = styled.h2.withConfig({
+  displayName: 'ContactTitle'
+})`
+  font-weight: 600;
+  font-family: 'Host Grotesk', sans-serif;
+  color: #fff;
+  text-align: left;
+`;
+
+const ContactList = styled.div.withConfig({
+  displayName: 'ContactList'
+})`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+`;
+
+const ContactLink = styled.a.withConfig({
+  displayName: 'ContactLink'
+})`
+  color: #999;
+  text-decoration: none;
+  font-size: 1rem;
+  font-family: 'Host Grotesk', sans-serif;
+  font-weight: 400;
+  transition: color 0.3s ease;
+  padding: 0px;
+  &:hover {
+    color: #fff;
+  }
+`;
+
+const ContactAddress = styled.div.withConfig({
+  displayName: 'ContactAddress'
+})`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 30px;
+`;
+
+const ContactInfo = styled.div.withConfig({
+  displayName: 'ContactInfo'
+})`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+`;
+
+const ContactText = styled.p.withConfig({
+  displayName: 'ContactText'
+})`
+  color: #999;
+  font-size: 1rem;
+  font-family: 'Host Grotesk', sans-serif;
+  font-weight: 400;
+  margin: 0;
+  line-height: 1.5;
+`;
+
+const ContactFooter = styled.div.withConfig({
+  displayName: 'ContactFooter'
+})`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 40px;
+  border-top: 1px solid #333;
+  gap: 20px;
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
+  }
+`;
+
+const FooterText = styled.p.withConfig({
+  displayName: 'FooterText'
+})`
+  color: #666;
+  font-size: 0.9rem;
+  font-family: 'Host Grotesk', sans-serif;
+  margin: 0;
+`;
+
+const FooterCredit = styled.p.withConfig({
+  displayName: 'FooterCredit'
+})`
+  color: #666;
+  font-size: 0.9rem;
+  font-family: 'Host Grotesk', sans-serif;
+  margin: 0;
+  text-align: right;
+  
+  @media (max-width: ${breakpoints.tablet}) {
+    text-align: center;
+  }
+`;
+
+const Container = styled.div.withConfig({
+  displayName: 'Container'
+})`
+  color: #fff;
+  font-family: 'Host Grotesk', sans-serif;
+`;

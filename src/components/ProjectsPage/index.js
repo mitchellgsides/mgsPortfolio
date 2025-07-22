@@ -30,8 +30,10 @@ const ProjectsGrid = styled.div`
   flex-wrap: wrap;
 `
 
-const ProjectItem = styled.div`
+const ProjectItem = styled(NavLink)`
     border-radius: 1rem;
+    text-decoration: none;
+    color: inherit;
     padding: 0.5rem;
     margin: 0.5rem;
     max-width: 320px;
@@ -39,13 +41,14 @@ const ProjectItem = styled.div`
     &:hover {
       background-color: ${colors.gunmetal};
     }
+    cursor: pointer;
 `
 
 const ProjectItemName = styled.div`
   padding: 1rem;
 `
 
-const ProjectTitleLink = styled(NavLink)`
+const ProjectTitle = styled.div`
     text-decoration: none;
     cursor: pointer;
     color: ${colors.light};
@@ -88,6 +91,14 @@ const projects = [
     description: 'This project uses jQuery and CSS for a simple quiz application',
     imageSrc: '../',
     imageAlt: 'Quiz Applet Logo'
+  },
+  {
+    name: 'Strava PR Analysis',
+    pathname: 'strava-pr',
+    description: 'Strava PR Grabs Data from Strava and shows brief overview of your last several rides or runs.',
+    // link: 'https://mitchellgsides.github.io/Strava-PR-Lister/',
+    imageSrc: '../',
+    imageAlt: 'Strava Logo'
   }
 ]
 
@@ -113,12 +124,13 @@ export default function Projects (props) {
         {projects.map((project, index) => (
           <ProjectItem
             key={`${project.name}-${index}`}
+            to={`/projects/${project.pathname}`}
           >
-            <ProjectTitleLink to={`/projects/${project.pathname}`}>
+            <ProjectTitle>
               <ProjectItemName>
                 {project.link ? <a href={project.link}>{project.name}</a> : project.name}
               </ProjectItemName>
-            </ProjectTitleLink>
+            </ProjectTitle>
             <p>{project.description}</p>
             <TechnologiesContainer>
               {technologies.filter(tech => tech.projects.includes(project.name)).map((tech, index) => <TechItem small key={`${tech.title}-${index}`} title={tech.title} icon={tech.icon} />)}

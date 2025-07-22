@@ -8,9 +8,7 @@ import TechExperience from './components/TechExperience'
 import About from './components/About'
 import Projects from './components/ProjectsPage'
 import NavBar from './components/NavBar'
-// import { colors } from './utils/colors'
 import mountain from './assets/icon-images/Tetons.jpg'
-// import prism from './assets/icon-images/prism.png'
 import {
   AppContainer,
   MainContainer,
@@ -25,9 +23,10 @@ import {
 } from './Styles'
 import { Icon } from './components/Icon'
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
-import Login from './components/Login'
 import UserContext from './UserContext'
 import Sandbox from './components/Sandbox'
+import AppNew from './AppNew'
+import styled from 'styled-components'
 
 const stravaProps = {
   title: 'StravaPR',
@@ -62,80 +61,114 @@ class App extends Component {
     this.state = {
       selected: null,
       mobileContactOpen: false,
-      user: ''
+      user: '',
+      isOldVersion: false // This will show NEW version by default
     }
+  }
+
+  handleOldVersionToggle = () => {
+    this.setState(prevState => ({ isOldVersion: !prevState.isOldVersion }))
   }
 
   render () {
     const title = 'Mitchell G Sides'
-    const { user } = this.state
+    const { user, isOldVersion } = this.state
+    
     return (
       <UserContext.Provider value={user}>
-        <AppContainer
-          style={{
-            backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
-            backgroundAttachment: 'fixed',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
+        {/* Toggle button to switch between versions */}
+        {/* <HoverButton
+          onClick={this.handleOldVersionToggle}
         >
-          <ContactContainer
-            flex={1}
-          >
-            <NavBar routes={routes.filter(route => !route.requiresParent)} />
-            <InfoSection style={{ flex: 2 }}>
-              <PageTitle>{title.toUpperCase()}</PageTitle>
-              <h5>Full Stack Engineer</h5>
-            </InfoSection>
-            <ContactSection style={{ flex: 2 }}>
-              <PageTitle>Contact:</PageTitle>
-              <ContactPage />
-            </ContactSection>
-          </ContactContainer>
+          {isOldVersion ? 'New Version' : 'Old Version'}
+        </HoverButton> */}
 
-          <MainContainer
-            flex={5}
+        {isOldVersion ? (
+          <AppContainer
+            style={{
+              backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${mountain})`,
+              backgroundAttachment: 'fixed',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
           >
-            <InnerContainer>
-              {routes.map((route, index) => {
-                return (
-                  <Route
-                    key={`${index}-${route.title}`}
-                    path={route.path}
-                    exact={route.exact}
-                    component={route.component}
-                  />
+            <ContactContainer
+              flex={1}
+            >
+              <NavBar routes={routes.filter(route => !route.requiresParent)} />
+              <InfoSection style={{ flex: 2 }}>
+                <PageTitle>{title.toUpperCase()}</PageTitle>
+                <h5>Full Stack Engineer</h5>
+              </InfoSection>
+              <ContactSection style={{ flex: 2 }}>
+                <PageTitle>Contact:</PageTitle>
+                <ContactPage />
+              </ContactSection>
+            </ContactContainer>
+
+            <MainContainer
+              flex={5}
+            >
+              <InnerContainer>
+                {routes.map((route, index) => {
+                  return (
+                    <Route
+                      key={`${index}-${route.title}`}
+                      path={route.path}
+                      exact={route.exact}
+                      component={route.component}
+                    />
+                  )
+                })}
+              </InnerContainer>
+            </MainContainer>
+            <MobileContactSection onClick={() => this.setState({ mobileContactOpen: !this.state.mobileContactOpen })}>
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                <PageTitle>Contact</PageTitle>
+                <div onClick={() => this.setState({ mobileContactOpen: false })}>{this.state.mobileContactOpen ? <Icon icon={faChevronDown} /> : null}</div>
+              </div>
+              {
+                this.state.mobileContactOpen ? (
+                  <>
+                    <InfoSectionMobile>
+                      <PageTitle>{title.toUpperCase()}</PageTitle>
+                      <h5>Full Stack Engineer</h5>
+                      <p>Under Construction. Check Back for Updates!</p>
+                    </InfoSectionMobile>
+                    <ContactSectionMobile>
+                      <ContactPage />
+                    </ContactSectionMobile>
+                  </>
                 )
-              })}
-            </InnerContainer>
-          </MainContainer>
-          <MobileContactSection onClick={() => this.setState({ mobileContactOpen: !this.state.mobileContactOpen })}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              <PageTitle>Contact</PageTitle>
-              <div onClick={() => this.setState({ mobileContactOpen: false })}>{this.state.mobileContactOpen ? <Icon icon={faChevronDown} /> : null}</div>
-            </div>
-            {
-              this.state.mobileContactOpen ? (
-                <>
-                  <InfoSectionMobile>
-                    <PageTitle>{title.toUpperCase()}</PageTitle>
-                    <h5>Full Stack Engineer</h5>
-                    <p>Under Construction. Check Back for Updates!</p>
-                  </InfoSectionMobile>
-                  <ContactSectionMobile>
-                    <ContactPage />
-                  </ContactSectionMobile>
-                </>
-              )
-                : null
-            }
-          </MobileContactSection>
-        </AppContainer>
+                  : null
+              }
+            </MobileContactSection>
+          </AppContainer>
+        ) : (
+          <AppNew />
+        )}
       </UserContext.Provider>
-
     )
   }
 }
 
-export default withRouter(App)
+export default withRouter(App);
+
+const HoverButton = styled.button`
+  position: fixed; 
+  top: 20px; 
+  right: 20px; 
+  z-index: 1000;
+  background-color: #333;
+  color: white;
+  padding: 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  &&:hover {
+    background-color: #555;
+  }
+`
